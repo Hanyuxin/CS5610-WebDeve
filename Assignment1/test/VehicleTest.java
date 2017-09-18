@@ -10,6 +10,11 @@ public class VehicleTest {
         Vehicle v = new Vehicle(5.5, 8);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void expectIllegalArgumentException1(){
+        Vehicle v = new Vehicle(-3,1);
+    }
+
     @Test(expected = NumberFormatException.class)
     public void expectNumberFormatException(){
         String s ="";

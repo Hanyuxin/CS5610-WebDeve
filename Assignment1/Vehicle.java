@@ -18,9 +18,10 @@ public class Vehicle {
      * @param direction Direction of the new object, where 1 represents eastbound direction, and 2 westbound direction.
      */
     public Vehicle(double velocity, int direction) {//add this to distinguish the global and local varieties
+        if(velocity<0) throw new IllegalArgumentException("Velocity can not be negative");
         this.velocity = velocity;
         if(direction !=1 && direction !=2)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Direction can only be 1 or 2");
         this.direction = direction;
     }
 
