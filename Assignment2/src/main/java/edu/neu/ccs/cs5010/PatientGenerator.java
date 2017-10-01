@@ -18,9 +18,9 @@ public class PatientGenerator implements Generator {
         try {
             Patient patient = Patient.class.newInstance();
             patient.setType(0);
-            patient.setArriveTime(arriveTimeLow+random.nextInt((int)(arriveTimeHigh-arriveTimeLow)));
+            patient.setArriveTime(arriveTimeLow+random.nextInt((int)(arriveTimeHigh-arriveTimeLow+1)));
             patient.setUrgeLevel(1+random.nextInt(9));
-            patient.setTreatment(random.nextInt(60));
+            patient.setTreatment(random.nextInt(160));
             return patient;
         } catch (InstantiationException e) {
             e.printStackTrace();

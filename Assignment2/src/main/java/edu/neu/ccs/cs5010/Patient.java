@@ -6,11 +6,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Patient implements Comparable<Patient> {
-    public int ID;
+    private int ID;
     private long arriveTime;
     private int urgeLevel;
     private long treatment;
     private int type;
+    private int UseRoomID;
     static int arrive = 0;
     static int left = 1;
 //    private DateFormat dateFormat = new SimpleDateFormat("HH:mm MM-dd-yyyy");
@@ -24,17 +25,19 @@ public class Patient implements Comparable<Patient> {
         this.urgeLevel = urgeLevel;
         this.treatment = treatment;
     }
+
+    public Patient(int ID,long arriveTime, int urgeLevel, long treatment){
+        this.ID = ID;
+        this.arriveTime = arriveTime;
+        this.urgeLevel = urgeLevel;
+        this.treatment = treatment;
+    }
     @Override
     public int compareTo(Patient p){
-        if(type != p.getType()) return p.getType()-type;
-        else if(type==arrive) {
             if (this.urgeLevel == p.getUrgeLevel()) {
                 return (int) (p.getArriveTime() - arriveTime);
-            } else return urgeLevel - p.getUrgeLevel();
-        }
-        else{
-            return (int)(p.getArriveTime()+p.getTreatment()-arriveTime-treatment);
-        }
+            }
+            else return urgeLevel - p.getUrgeLevel();
     }
 
     public void setID(int i){
@@ -50,6 +53,13 @@ public class Patient implements Comparable<Patient> {
     }
     public int getType(){
         return type;
+    }
+
+    public void setUseRoomID(int i){
+        UseRoomID = i;
+    }
+    public int getUseRoomID(){
+        return UseRoomID;
     }
     /**
      * Set the Arrive time

@@ -5,9 +5,8 @@ public class ERSimulatorApp
 {
     public static void main( String[] args )
     {
-        ERSimulator erSimulator = new ERSimulator(480,0,700);
+        ERSimulator erSimulator = new ERSimulator(180,4,50);
         erSimulator.runArriveSimulation();
-        erSimulator.runDepartSimulation();
         erSimulator.printResult();
 
     }
