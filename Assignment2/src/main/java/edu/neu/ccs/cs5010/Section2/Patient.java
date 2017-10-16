@@ -1,10 +1,6 @@
 package edu.neu.ccs.cs5010.Section2;
 
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 public class Patient implements Comparable<Patient> {
     private int ID;
     private long arriveTime;
@@ -16,7 +12,6 @@ public class Patient implements Comparable<Patient> {
 
 
     public Patient(){
-
     }
 
     public Patient(long arriveTime, int urgeLevel, long treatment){
@@ -49,7 +44,7 @@ public class Patient implements Comparable<Patient> {
      *  Set the ID of patient
      * @param i
      */
-    public void setID(int i){
+    void setID(int i){
         ID=i;
     }
 
@@ -57,7 +52,7 @@ public class Patient implements Comparable<Patient> {
      * get the ID of patient
      * @return ID
      */
-    public int getID() {
+    int getID() {
         return ID;
     }
 
@@ -65,7 +60,7 @@ public class Patient implements Comparable<Patient> {
      * set the type of patient
      * @param type
      */
-    public void setType(int type){
+    void setType(int type){
         this.type = type;
     }
 
@@ -73,7 +68,7 @@ public class Patient implements Comparable<Patient> {
      * return the type of patient
      * @return int type
      */
-    public int getType(){
+    int getType(){
         return type;
     }
 
@@ -88,7 +83,7 @@ public class Patient implements Comparable<Patient> {
      * Set the Arrive time
      * @param time
      */
-    public void setArriveTime(long time){
+    void setArriveTime(long time){
         arriveTime = time;
     }
 
@@ -96,15 +91,15 @@ public class Patient implements Comparable<Patient> {
      * Set the UrgeLevel
      * @param level
      */
-    public void setUrgeLevel(int level){
+    void setUrgeLevel(int level){
         urgeLevel = level;
     }
 
     /**
      * Set the treatment
-     * @param treatment
+     * @param treatment treatment
      */
-    public void setTreatment(long treatment){
+    void setTreatment(long treatment){
         this.treatment = treatment;
     }
 
@@ -112,7 +107,7 @@ public class Patient implements Comparable<Patient> {
      * get ArriveTime
      * @return arriveTime
      */
-    public long getArriveTime(){
+    long getArriveTime(){
         return arriveTime;
     }
 
@@ -120,7 +115,7 @@ public class Patient implements Comparable<Patient> {
      * get UrgeLevel
      * @return UrgeLevel
      */
-    public int getUrgeLevel(){
+    int getUrgeLevel(){
         return urgeLevel;
     }
 
@@ -128,7 +123,7 @@ public class Patient implements Comparable<Patient> {
      * get Treatment
      * @return Treatment
      */
-    public long getTreatment(){
+    long getTreatment(){
         return treatment;
     }
 

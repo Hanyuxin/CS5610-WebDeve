@@ -52,13 +52,11 @@ public class ReadCSV {
         BufferedReader bufferedReader = null;
         try {
             bufferedReader = new BufferedReader(new FileReader(new File(CsvName)));
-            String temp = null;
+            String temp ;
             while((temp = bufferedReader.readLine()) != null){
                 res.add(temp);
             }
-            }  catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (IOException e) {
+            } catch (IOException e) {
             e.printStackTrace();
         }finally {
             if (bufferedReader != null) {

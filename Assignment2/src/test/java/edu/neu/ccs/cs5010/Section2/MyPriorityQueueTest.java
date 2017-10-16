@@ -62,6 +62,16 @@ public class MyPriorityQueueTest {
     }
 
     @Test
+    public void TestEquals(){
+        assertTrue(myPriorityQueue.equals(myPriorityQueue));
+    }
+
+    @Test
+    public void TestHashCode(){
+        assertFalse(myPriorityQueue.hashCode()==0);
+    }
+
+    @Test
     public void TestForwardTraversal(){
         myPriorityQueue.insert('b');
         myPriorityQueue.insert('a');

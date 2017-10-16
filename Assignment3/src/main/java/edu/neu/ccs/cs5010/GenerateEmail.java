@@ -46,28 +46,8 @@ public class GenerateEmail {
      * get the content of template email text
      */
     private void getContents(){
-        BufferedReader bufferedReader = null;
-        StringBuilder sb = new StringBuilder();
-        try {
-            bufferedReader = new BufferedReader(new FileReader(file));
-            String temp = null;
-            while((temp = bufferedReader.readLine()) != null){
-                sb.append(temp).append(SEPARATOR);
-            }
-        }  catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        contents = sb.toString();
+        IOLibrary ioLibrary = new IOLibrary();
+        contents = ioLibrary.readFile(file);
     }
 
     /**
@@ -75,8 +55,9 @@ public class GenerateEmail {
      */
     public void writer(){
         int count = 0;
+        CSVParser csvParser = new CSVParser(informations.get(0));
         for(int k = 1;k< informations.size();k++){
-            Information i = new Information(informations.get(k));
+            Information i = new Information(informations.get(k),csvParser.getFirstNameIndex(),csvParser.getLastNameIndex(),csvParser.getEmailIndex(),csvParser.getRewardIndex());
             String fileName = dir+File.separator+"email"+count+".txt";
             writer(fileName,i);
             count++;
@@ -101,8 +82,12 @@ public class GenerateEmail {
             e.printStackTrace();
         }finally {
             try {
-                bufferedWriter.close();
-                writer.close();
+                if (bufferedWriter != null) {
+                    bufferedWriter.close();
+                }
+                if (writer != null) {
+                    writer.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -111,7 +96,7 @@ public class GenerateEmail {
     }
 
     /**
-     *
+     *use regular expression to replace content
      * @param firstName
      * @param lastName
      * @param email
@@ -119,7 +104,7 @@ public class GenerateEmail {
      * @return
      */
     public String getReplaceContent(String firstName, String lastName, String email, String rewards){
-        String regex = "\\[\\[[a-zA-Z]+(_|\\-)?[a-zA-Z]+\\]\\]";
+        String regex = "\\[\\[[a-zA-Z]+([_-])?[a-zA-Z]+]]";
         Pattern p = Pattern.compile(regex);
         Matcher matcher = p.matcher(contents);
         StringBuffer sb = new StringBuffer();

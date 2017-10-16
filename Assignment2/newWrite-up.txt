@@ -1,0 +1,3 @@
+optimaize the runSimulation method in ERSimulator, create more private class rather than do everything in one method, which make it more elegant.
+change the room class, make the variable private, and add many get and set method
+add more test class to improve the coverage

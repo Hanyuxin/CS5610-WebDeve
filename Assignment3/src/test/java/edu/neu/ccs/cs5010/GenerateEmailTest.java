@@ -3,12 +3,14 @@ package edu.neu.ccs.cs5010;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class GenerateEmailTest {
     private GenerateEmail generateEmail;
-    private List<String> information = Arrays.asList("\"Art\",\"Venere\",\"8 W Cerritos Ave #54\",\"Bridgeport\",\"Gloucester\",\"NJ\",\"8014\",\"856-636-8749\",\"art@venere.org\",\"bronze\"");
+    private List<String> information = new ArrayList<>();
+
     private String event = "arrival";
     private String departure = "Seattle";
     private String destination = "Beijing";
@@ -17,7 +19,10 @@ public class GenerateEmailTest {
     @Before
     public void setUp(){
         generateEmail = new GenerateEmail(information,"email-template.txt",event,departure,destination,dir);
-        i = new Information(information.get(0));
+        information.add("\"first_name\",\"last_name\",\"address\",\"city\",\"county\",\"state\",\"zip\",\"phone\",\"email\",\"rewards\"");
+        information.add("\"Art\",\"Venere\",\"8 W Cerritos Ave #54\",\"Bridgeport\",\"Gloucester\",\"NJ\",\"8014\",\"856-636-8749\",\"art@venere.org\",\"bronze\"");
+
+        i = new Information(information.get(0),1,3,17,19);
     }
 
     @Test

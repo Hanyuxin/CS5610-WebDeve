@@ -12,13 +12,13 @@ public interface IPriorityQueue<E> {
 
     /**
      * remove and return the first Element
-     * @return
+     * @return the first Element
      */
     E remove();
 
     /**
      * return the first Element without delete it
-     * @return
+     * @return the first Element
      */
     E front();
 
@@ -32,7 +32,7 @@ public interface IPriorityQueue<E> {
      * test methods to be used by the unit tests; used to make sure all of the links are
      correct (going forward and backward) by traversing the queue and constructing a
      list containing its contents.
-     * @return
+     * @return ForwardTraversal
      */
      List testForwardTraversal();
 

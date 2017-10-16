@@ -13,7 +13,7 @@ public class InformationTest {
 
     @Before
     public void setUp(){
-        i = new Information("\"James\",\"Butt\",\"6649 N Blue Gum St\",\"New Orleans\",\"Orleans\",\"LA\",\"70116\",\"504-621-8927\",\"jbutt@gmail.com\",\"gold \"");
+        i = new Information("\"James\",\"Butt\",\"6649 N Blue Gum St\",\"New Orleans\",\"Orleans\",\"LA\",\"70116\",\"504-621-8927\",\"jbutt@gmail.com\",\"gold \"",1,3,17,19);
     }
 
     @Test

@@ -1,15 +1,13 @@
 package edu.neu.ccs.cs5010.Section2;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Random;
 
 public class PatientGenerator implements Generator {
     private  Random random = new Random();
     private long arriveTimeLow;
     private long arriveTimeHigh;
-    public PatientGenerator(long low, long high){
+
+    PatientGenerator(long low, long high){
         arriveTimeLow=low;
         arriveTimeHigh= high;
     }
@@ -26,9 +24,7 @@ public class PatientGenerator implements Generator {
             patient.setUrgeLevel(1+random.nextInt(10));
             patient.setTreatment(random.nextInt(180));
             return patient;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;

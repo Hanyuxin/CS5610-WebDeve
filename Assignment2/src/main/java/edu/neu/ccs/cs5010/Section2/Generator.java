@@ -4,7 +4,7 @@ public interface Generator<T> {
 
     /**
      * Used to generate new Object
-     * @return
+     * @return next
      */
-    public T next();
+    T next();
 }

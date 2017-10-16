@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class AutoEmailApp
 {
-    static String CsvName=null,dir=null,template=null,event=null;
+    private static String CsvName=null,dir=null,template=null,event=null;
 
     public static void main( String[] args ) {
         AutoEmailApp app = new AutoEmailApp();
@@ -16,8 +16,8 @@ public class AutoEmailApp
             GenerateEmail g = new GenerateEmail(readCSV.getInformation(),template,event,readCSV.getDeparture(),readCSV.getDestination(),dir);
             g.writer();
             System.out.println("Success! Please check "+ dir+" dictionary!");
-            SendEmail sendEmail = new SendEmail(dir+File.separator+"email0.txt");
-            sendEmail.send();
+//            SendEmail sendEmail = new SendEmail(dir+File.separator+"email0.txt");
+//            sendEmail.send();
         }
     }
 
@@ -87,19 +87,8 @@ public class AutoEmailApp
     }
 
     public void printUsage() {
-        File file = new File("usage.txt");
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            String temp = null;
-            while ((temp = reader.readLine()) != null) {
-                System.out.println(temp);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        IOLibrary ioLibrary = new IOLibrary();
+        System.out.println(ioLibrary.readFile(new File("usage.txt")));
     }
 
 }

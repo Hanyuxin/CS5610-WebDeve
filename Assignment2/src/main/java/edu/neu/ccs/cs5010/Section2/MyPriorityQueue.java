@@ -8,7 +8,7 @@ public class MyPriorityQueue<E extends Comparable<E>> implements IPriorityQueue<
 
     private List<E> list;
 
-    public MyPriorityQueue() {
+    MyPriorityQueue() {
         list = new LinkedList<>();
     }
 
@@ -24,6 +24,30 @@ public class MyPriorityQueue<E extends Comparable<E>> implements IPriorityQueue<
             if(list.get(i).compareTo(temp)>0) break;
         }
         list.add(i+1,temp);
+    }
+
+    /**
+     * Override the equals method
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MyPriorityQueue)) return false;
+
+        MyPriorityQueue<?> that = (MyPriorityQueue<?>) o;
+
+        return list != null ? list.equals(that.list) : that.list == null;
+    }
+
+    /**
+     * Override the hashCode method
+     * @return int
+     */
+    @Override
+    public int hashCode() {
+        return list != null ? list.hashCode() : 0;
     }
 
     /**
@@ -65,9 +89,9 @@ public class MyPriorityQueue<E extends Comparable<E>> implements IPriorityQueue<
 
     /**
      * the size of this queue
-     * @return
+     * @return the size of this queue
      */
-    public int size(){
+    int size(){
         return list.size();
     }
 
@@ -75,7 +99,7 @@ public class MyPriorityQueue<E extends Comparable<E>> implements IPriorityQueue<
      * test methods to be used by the unit tests; used to make sure all of the links are
      correct (going forward and backward) by traversing the queue and constructing a
      list containing its contents.
-     * @return
+     * @return ForwardTraversal
      */
     public List testForwardTraversal() {
         return list;
