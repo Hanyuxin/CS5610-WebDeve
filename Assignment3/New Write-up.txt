@@ -1,4 +1,0 @@
-In last version, I assume that the order of columns will not change, so I use split and magic number to solve it.
-In this version, I figure it out by add a new class CSVParser and now it can works for all order.
-
-Also, I increase the coverage rate by add new test method.
