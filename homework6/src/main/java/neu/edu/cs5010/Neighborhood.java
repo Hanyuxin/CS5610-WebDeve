@@ -7,8 +7,6 @@ import java.util.Map;
 
 public class Neighborhood {
 
-    private Map<User, List<User>> neighborhood;
-    private Map<User, Integer> followers;
     private static Map<Integer, User> userList;
 
     /**
@@ -16,28 +14,9 @@ public class Neighborhood {
      * @param edgeFileName the file name of edge
      */
     public Neighborhood(String nodeFileName, String edgeFileName) {
-        neighborhood = new HashMap<>();
-        followers = new HashMap<>();
         userList = new HashMap<>();
         initialUserList(nodeFileName);
         setUp(edgeFileName);
-        setUserVariable();
-    }
-
-    /**
-     * get Neighborhood
-     * @return Map<User, List<User>> neighborhood
-     */
-    public Map<User, List<User>> getNeighborhood() {
-        return neighborhood;
-    }
-
-    /**
-     * get Followers
-     * @return  Map<Integer, Integer> followers
-     */
-    public Map<User, Integer> getFollowers() {
-        return followers;
     }
 
     /**
@@ -64,8 +43,7 @@ public class Neighborhood {
     }
 
     /**
-     * read content from edgeFileName, and store the information in neighborhood map, the key is User ID,
-     * the value is a list of this User's follows.
+     * read content from edgeFileName, and store the neighbor and follow information in user
      * @param edgeFileName the file name of edge
      */
     private void setUp(String edgeFileName) {
@@ -95,25 +73,13 @@ public class Neighborhood {
                 System.out.println("Error : there not exist user " + desVal);
                 continue;
             }
-            if (!neighborhood.containsKey(userList.get(srcVal))) {
-                neighborhood.put(userList.get(srcVal), new ArrayList<>());
-            }
 
-            neighborhood.get(userList.get(srcVal)).add(userList.get(desVal));
+            userList.get(srcVal).getNeighbor().add(userList.get(desVal));
 
-            followers.put(userList.get(desVal), followers.getOrDefault(userList.get(desVal), 0) + 1);
+            userList.get(desVal).setFollwers(userList.get(desVal).getFollwers()+1);
         }
     }
 
-    /**
-     * for every user, set his neighbor and the number of people that follow this user
-     */
-    public void setUserVariable() {
-        for (User user : userList.values()) {
-            user.setNeighbor(neighborhood.get(user));
-            user.setFollwers(followers.get(user));
-        }
-    }
 
     @Override
     public int hashCode() {

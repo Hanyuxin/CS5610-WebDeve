@@ -12,7 +12,7 @@ public class User {
     private String date;
     private int recommendationTimes;
     private List<User> neighbor;
-    int follwers;
+    private int follwers;
     private String gender;
     private int age;
     private String city;
@@ -25,6 +25,7 @@ public class User {
         this.gender = gender;
         this.age = age;
         this.city = city;
+        follwers = 0;
         recommendationTimes = 0;
         neighbor = new ArrayList<>();
         try {
