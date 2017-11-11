@@ -127,6 +127,54 @@ public class User {
         return s;
     }
 
+    /**
+     * get this user's age
+     * @return int age
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * set this user's age
+     * @param age int age
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    /**
+     * get this user's city
+     * @return String city name
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * set this user's city
+     * @param city String city name
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
+     * get this user's gender
+     * @return String gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * set this user's gender
+     * @param gender String gender
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(getID());

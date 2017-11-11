@@ -13,7 +13,7 @@ public class FollowInfluencer extends RecommendationCriteria {
         this.limit = limit;
     }
     /**
-     * recommend as friends those nodes that have more than 25% of all user
+     * recommend as friends those nodes that have more than limit of all user
      * @param number the number of recommendation
      * @param user the user
      * @param recommend the recommend information, the key is user, the value is a list of users that we recommend

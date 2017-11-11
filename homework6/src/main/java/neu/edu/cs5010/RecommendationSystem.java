@@ -80,6 +80,9 @@ public class RecommendationSystem {
     private void run() {
         criteria = new RecommendationCriteria[] {new NewbiesMimic(), new FriendOfFriend(),
                 new FollowInfluencer(limit), new BranchOut()};
+//        Bonus part
+//        criteria = new RecommendationCriteria[] {new NewbiesMimic(), new FriendOfFriend(),
+//                new FollowInfluencer(limit), new SameCityDiffGenderNearAge()};
         Neighborhood neighborhood = new Neighborhood(nodeFileName, edgeFileName);
         int size = Neighborhood.getUserList().size();
         switch (processingFlag) {
