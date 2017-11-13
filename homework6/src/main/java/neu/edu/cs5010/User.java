@@ -66,13 +66,6 @@ public class User {
         return neighbor;
     }
 
-    /**
-     * set this user's Neighbor
-     * @param neighbor the List<User> Neighbor to set as this user's Neighbor
-     */
-    public void setNeighbor(List<User> neighbor) {
-        this.neighbor = neighbor;
-    }
 
     /**
      * get the number of people that follow this user
@@ -136,13 +129,6 @@ public class User {
         return age;
     }
 
-    /**
-     * set this user's age
-     * @param age int age
-     */
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     /**
      * get this user's city
@@ -152,13 +138,7 @@ public class User {
         return city;
     }
 
-    /**
-     * set this user's city
-     * @param city String city name
-     */
-    public void setCity(String city) {
-        this.city = city;
-    }
+
 
     /**
      * get this user's gender
@@ -168,26 +148,45 @@ public class User {
         return gender;
     }
 
-    /**
-     * set this user's gender
-     * @param gender String gender
-     */
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+
 
     @Override
     public String toString() {
         return String.valueOf(getID());
     }
 
+
+    /**
+     * Override the equals method of User object.
+     * @param o The User object.
+     * @return If two User objects are the same.
+     */
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+        if (ID != user.ID) return false;
+        if (recommendationTimes != user.recommendationTimes) return false;
+        if (follwers != user.follwers) return false;
+        if (age != user.age) return false;
+        if (date != null ? !date.equals(user.date) : user.date != null) return false;
+        if (gender != null ? !gender.equals(user.gender) : user.gender != null) return false;
+        return city != null ? city.equals(user.city) : user.city == null;
     }
 
+    /**
+     * Overrides hashCode method in User class.
+     * @return The hashCode of User objects;
+     */
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public int hashCode() {
+        int result = ID;
+        result = 31 * result + follwers;
+        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        result = 31 * result + age;
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        return result;
     }
 }
