@@ -28,6 +28,10 @@ public class SequentialSkiDataProcessor {
         hourString = new StringBuilder();
     }
 
+    /**
+     * the main method to receive console input and fulfill the function to write 3 csv file in sequential way
+     * @param args input csv file name
+     */
     public static void main( String[] args ) {
         SequentialSkiDataProcessor processor = new SequentialSkiDataProcessor();
         processor.checkArgument(args);
@@ -55,19 +59,21 @@ public class SequentialSkiDataProcessor {
     private void run() {
         List<String> input = IOLibrary.read(inputFileName);
 
-        time = System.currentTimeMillis();
         int skierPos = 0, liftPos = 0, hourPos = 0;
         if (input.size() == 0) {
             throw new RuntimeException("There is no content in input file");
         }
 
-        //get the columns index
+        //get the different columns index
         String[] strs = input.get(0).split(",");
         for (int i = 0; i < strs.length; i++) {
             if (strs[i].contains("skier")) skierPos = i;
             else if (strs[i].contains("lift")) liftPos = i;
             else if (strs[i].contains("time")) hourPos = i;
         }
+
+        // start to count time
+        time = System.currentTimeMillis();
 
         for (int i = 1; i < input.size(); i++) {
             strs = input.get(i).split(",");
@@ -96,6 +102,9 @@ public class SequentialSkiDataProcessor {
         }
     }
 
+    /**
+     * write result to different CSV file
+     */
     private void write() {
         write2SkierFile();
         write2LiftFile();

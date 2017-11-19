@@ -16,12 +16,23 @@ public class ConcurrentSkiDataProcessor {
         hourQueue = new LinkedBlockingQueue<>();
     }
 
+
+    /**
+     * the main method to receive console input and fulfill the function to write 3 csv file in concurrent way
+     * @param args input csv file name
+     */
     public static void main( String[] args ) {
         ConcurrentSkiDataProcessor processor = new ConcurrentSkiDataProcessor();
         processor.checkArgument(args);
-        processor.run();
+        processor.preprocess();
+        processor.multiThreadsRun();
     }
 
+    /**
+     * check whether input arguments are valid
+     * @param args input arguments
+     * @RuntimeException IllegalArgumentException when argument not exactly one, and not a csv file
+     */
     private void checkArgument(String[] args) {
         if (args.length != 1)
             throw new IllegalArgumentException("Please check your argument");
@@ -30,10 +41,13 @@ public class ConcurrentSkiDataProcessor {
         inputFileName = args[0];
     }
 
-    private void run() {
+    /**
+     * read every line from input file name as a list of String, first find the different columns index,
+     * and then for each string, store information in 3 blocking queue,
+     */
+    private void preprocess() {
         List<String> input = IOLibrary.read(inputFileName);
 
-        time = System.currentTimeMillis();
         int skierPos = 0, liftPos = 0, hourPos = 0;
         if (input.size() == 0) {
             throw new RuntimeException("There is no content in input file");
@@ -56,6 +70,15 @@ public class ConcurrentSkiDataProcessor {
             hourQueue.offer(new int[]{hourID, liftID});
         }
 
+        multiThreadsRun();
+    }
+
+    /**
+     * use Executors to manage multiple thread, use submit to run SkierRunnable, LiftRunnable and HourRunnable.
+     * and use Future to see whether success
+     */
+    private void multiThreadsRun() {
+        time = System.currentTimeMillis();
         ExecutorService executor = Executors.newFixedThreadPool(3);
         Future skierFuture = executor.submit(new SkierRunnable(skierQueue));
         Future liftFuture = executor.submit(new LiftRunnable(liftQueue));
