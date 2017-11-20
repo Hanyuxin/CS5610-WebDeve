@@ -40,8 +40,13 @@ public class ConcurrentSkiDataProcessorTest {
      */
     @Test
     public void ResultCompareTest(){
-        sequentialSkiDataProcessor.main(args);
-        concurrentSkiDataProcessor.main(args);
+        sequentialSkiDataProcessor.checkArgument(args);
+        sequentialSkiDataProcessor.run();
+        sequentialSkiDataProcessor.write();
+
+        concurrentSkiDataProcessor.checkArgument(args);
+        concurrentSkiDataProcessor.preprocess();
+        concurrentSkiDataProcessor.multiThreadsRun();
         try {
             br_hourSequential = new BufferedReader(new FileReader("hourSequential.csv"));
             br_hourConcurrent = new BufferedReader(new FileReader("hourConcurrent.csv"));
