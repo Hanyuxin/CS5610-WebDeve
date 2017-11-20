@@ -33,7 +33,7 @@ public class ConcurrentSkiDataProcessor {
      * @param args input arguments
      * @RuntimeException IllegalArgumentException when argument not exactly one, and not a csv file
      */
-    private void checkArgument(String[] args) {
+    public void checkArgument(String[] args) {
         if (args.length != 1)
             throw new IllegalArgumentException("Please check your argument");
         if (!args[0].contains(".csv"))
@@ -45,7 +45,7 @@ public class ConcurrentSkiDataProcessor {
      * read every line from input file name as a list of String, first find the different columns index,
      * and then for each string, store information in 3 blocking queue,
      */
-    private void preprocess() {
+    public void preprocess() {
         List<String> input = IOLibrary.read(inputFileName);
 
         int skierPos = 0, liftPos = 0, hourPos = 0;
@@ -70,14 +70,13 @@ public class ConcurrentSkiDataProcessor {
             hourQueue.offer(new int[]{hourID, liftID});
         }
 
-        multiThreadsRun();
     }
 
     /**
      * use Executors to manage multiple thread, use submit to run SkierRunnable, LiftRunnable and HourRunnable.
      * and use Future to see whether success
      */
-    private void multiThreadsRun() {
+    public void multiThreadsRun() {
         time = System.currentTimeMillis();
         ExecutorService executor = Executors.newFixedThreadPool(3);
         Future skierFuture = executor.submit(new SkierRunnable(skierQueue));
@@ -112,4 +111,6 @@ public class ConcurrentSkiDataProcessor {
         time = System.currentTimeMillis() - time;
         System.out.println("Concurrent Solution Runtime: " + time);
     }
+
+
 }

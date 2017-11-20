@@ -34,7 +34,7 @@ public class SequentialSkiDataProcessorTest {
     line = br.readLine();
     line = br.readLine();
     line = br.readLine();
-    assertEquals("Not the Sequential Case","29,3408", line);
+    assertEquals("Not the Sequential Case","29, 3408", line);
   }
 
 }

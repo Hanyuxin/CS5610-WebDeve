@@ -8,14 +8,17 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+
 public class HourRunnable implements Runnable {
 
     private Map<Integer, Hour> map;
     private BlockingQueue<int[]> srcQueue;
 
+
     public HourRunnable(BlockingQueue<int[]> srcQueue) {
         this.srcQueue = srcQueue;
         map = new HashMap<>();
+
     }
 
     /**
@@ -64,5 +67,7 @@ public class HourRunnable implements Runnable {
         }
 
         IOLibrary.write("hourConcurrent.csv", hourString.toString());
+
     }
+
 }

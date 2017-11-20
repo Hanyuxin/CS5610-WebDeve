@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CountDownLatch;
 
 public class SkierRunnable implements Runnable {
 
@@ -16,9 +17,11 @@ public class SkierRunnable implements Runnable {
     private static int LEVEL_2 = 20;
     private static int LEVEL_3 = 30;
 
+
     public SkierRunnable(BlockingQueue<int[]> skierQueue) {
         srcQueue = skierQueue;
         map = new HashMap<>();
+
     }
 
     private int getVertical(int liftID) {
@@ -68,7 +71,7 @@ public class SkierRunnable implements Runnable {
                     append(System.lineSeparator());
         }
         IOLibrary.write("skierConcurrent.csv",output.toString());
-    }
 
+    }
 
 }

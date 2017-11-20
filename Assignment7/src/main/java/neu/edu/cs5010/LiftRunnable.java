@@ -8,14 +8,17 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+
 public class LiftRunnable implements Runnable{
 
     private Map<Integer, Lift> map;
     private BlockingQueue<Integer> srcQueue;
 
+
     public LiftRunnable(BlockingQueue<Integer> srcQueue) {
         this.srcQueue = srcQueue;
         map = new HashMap<>();
+
     }
     /**
      * When an object implementing interface <code>Runnable</code> is used
@@ -55,5 +58,7 @@ public class LiftRunnable implements Runnable{
         }
 
         IOLibrary.write("liftConcurrent.csv", liftString.toString());
+
     }
+
 }
