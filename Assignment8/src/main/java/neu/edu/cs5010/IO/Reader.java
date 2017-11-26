@@ -75,7 +75,7 @@ public class Reader {
         } else if(queryID==2){
             SkierDataBase skierDataBase = new SkierDataBase(fileName);
             Skier skier = skierDataBase.getSkier(parameterID);
-            for(Map.Entry entry: skier.getLiftMap().entrySet()){
+            for(Map.Entry entry: skier.getLiftMap().getMap().entrySet()){
                 sb.append(entry.getKey()+":"+entry.getValue());
                 sb.append(System.lineSeparator());
             }

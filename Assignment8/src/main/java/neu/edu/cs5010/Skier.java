@@ -8,8 +8,7 @@ public class Skier {
     private int liftRidesCount;
     private int verticalMetres;
     private int numberOfViews;
-    private Map<Integer, Integer> countToLiftID;
-    private Map<Integer,Lift> liftMap;
+    private SkierLiftMap liftMap;
 
 
     public Skier(int ID) {
@@ -17,8 +16,7 @@ public class Skier {
         liftRidesCount = 0;
         verticalMetres = 0;
         numberOfViews = 0;
-        countToLiftID = new HashMap<>();
-        liftMap= new HashMap<>();
+        liftMap= new SkierLiftMap();
     }
 
     /**
@@ -44,18 +42,16 @@ public class Skier {
         return ID;
     }
 
-
-    public void setCountToLiftID(Map<Integer,Integer> countToLiftID){
-        this.countToLiftID = countToLiftID;
-
+    public void setLiftMap(SkierLiftMap liftMap) {
+        this.liftMap = liftMap;
     }
 
-    public Map<Integer,Integer> getCountToLiftID(){
-        return this.countToLiftID;
-    }
-
-    public Map<Integer, Lift> getLiftMap() {
+    public SkierLiftMap getLiftMap() {
         return liftMap;
+    }
+
+    public void setNumberOfViews(int numberOfViews) {
+        this.numberOfViews = numberOfViews;
     }
 
     /**

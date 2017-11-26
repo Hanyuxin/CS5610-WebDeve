@@ -16,7 +16,7 @@ public class HourDataBase implements SkiDataBase {
 
     public HourDataBase(String fileName) {
         try {
-            file = new RandomAccessFile(fileName,"rws");
+            file = new RandomAccessFile(fileName,"rw");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

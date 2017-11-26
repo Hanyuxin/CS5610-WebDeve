@@ -1,6 +1,8 @@
 package neu.edu.cs5010.database;
 
+import neu.edu.cs5010.Lift;
 import neu.edu.cs5010.Skier;
+import neu.edu.cs5010.SkierLiftMap;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,13 +13,12 @@ import java.util.Map;
 public class SkierDataBase implements SkiDataBase {
 
     private RandomAccessFile file = null;
-    private static final int SKIER_OFFSET = 3 * Integer.BYTES;
-    private RandomAccessFile fileLift = null;
+    private static final int SKIER_OFFSET = 4 * Integer.BYTES +
+            SkierLiftMap.SIGNLE_LENGTH * SkierLiftMap.NUMBER *Character.BYTES;
 
     public SkierDataBase(String fileName) {
         try {
-            file = new RandomAccessFile(fileName,"rws");
-            fileLift = new RandomAccessFile("lift.dat","rws");
+            file = new RandomAccessFile(fileName,"rw");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -32,17 +33,46 @@ public class SkierDataBase implements SkiDataBase {
             skier = new Skier(file.readInt());
             skier.setVerticalMetres(file.readInt());
             skier.setLiftRidesCount(file.readInt());
-            Map<Integer, Integer> countToLiftID = new HashMap<>();
-            int LiftID = fileLift.readInt();
-            int count = fileLift.readInt();
-            countToLiftID.put(count,LiftID);
-            skier.setCountToLiftID(countToLiftID);
+            skier.setNumberOfViews(file.readInt());
+
+            SkierLiftMap liftMap = getLiftMap();
+            skier.setLiftMap(liftMap);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return skier;
+    }
+
+    public void updateSkierNumOfView(Skier skier) {
+        if (skier.getID() < 1) throw new IllegalArgumentException("Error: Invalid ID");
+        try {
+            file.seek((skier.getID()  - 1) * SKIER_OFFSET + 3 * Integer.BYTES);
+            file.writeInt(skier.getNumberOfViews() + 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private SkierLiftMap getLiftMap() {
+        Map<Integer, Lift> map = new HashMap<>();
+        for(int j = 0; j < SkierLiftMap.NUMBER; j++) {
+            char[] s = new char[SkierLiftMap.SIGNLE_LENGTH];
+            for (int i = 0; i < s.length; i++) {
+                try {
+                    s[i] = file.readChar();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            String temp = new String(s);
+            if (temp.contains("\0")) continue;
+            int time = Integer.parseInt(String.valueOf(s,0,3));
+            int liftID = Integer.parseInt(String.valueOf(s,3,2));
+            map.put(time,new Lift(liftID));
+        }
+        return new SkierLiftMap(map);
     }
 
     /**

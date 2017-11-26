@@ -1,6 +1,7 @@
 package neu.edu.cs5010.database;
 
 import neu.edu.cs5010.Skier;
+import neu.edu.cs5010.SkierLiftMap;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +21,8 @@ public class SkierDataBaseTest {
         System.out.println(skier.getID());
         System.out.println(skier.getVerticalMetres());
         System.out.println(skier.getLiftRidesCount());
+        SkierLiftMap map = skier.getLiftMap();
+        System.out.println(map);
     }
 
     @After

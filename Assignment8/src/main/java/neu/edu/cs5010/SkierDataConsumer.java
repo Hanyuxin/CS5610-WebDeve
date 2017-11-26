@@ -59,9 +59,9 @@ public class SkierDataConsumer implements Runnable{
             map.get(pairs[0]).increaseVerticalMetres(getVertical(pairs[1]));
             map.get(pairs[0]).increaseLiftRidesCount();
 
-            Map<Integer, Lift> skierLiftMap = map.get(pairs[0]).getLiftMap();
-            skierLiftMap.putIfAbsent(pairs[1], new Lift(pairs[1]));
-            skierLiftMap.get(pairs[1]).increaseRidesCount();
+            SkierLiftMap skierLiftMap = map.get(pairs[0]).getLiftMap();
+            skierLiftMap.getMap().putIfAbsent(pairs[1], new Lift(pairs[1]));
+            skierLiftMap.getMap().get(pairs[1]).increaseRidesCount();
         }
 
     }

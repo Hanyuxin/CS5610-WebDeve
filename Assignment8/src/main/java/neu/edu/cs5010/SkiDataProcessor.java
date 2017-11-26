@@ -89,8 +89,7 @@ public class SkiDataProcessor {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        time = System.currentTimeMillis() - time;
-//        System.out.println(time);
+
 
     }
 
@@ -118,16 +117,21 @@ public class SkiDataProcessor {
         List<Skier> list = new ArrayList<>( skierMap.values());
         list.sort((a,b) -> (a.getID() - b.getID()));
 
-        for (int i = 0; i < list.size(); i++) {
+        for (Skier skier : list) {
             try {
-                file.writeInt(list.get(i).getID());
-                file.writeInt(list.get(i).getVerticalMetres());
-                file.writeInt(list.get(i).getLiftRidesCount());
+                file.writeInt(skier.getID());
+                file.writeInt(skier.getVerticalMetres());
+                file.writeInt(skier.getLiftRidesCount());
+                file.writeInt(skier.getNumberOfViews());
+
+                StringBuffer sb = new StringBuffer(skier.getLiftMap().toString());
+                sb.setLength(SkierLiftMap.SIGNLE_LENGTH * SkierLiftMap.NUMBER);
+                file.writeChars(sb.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-//        Writer.OverriddenWrite("skier.dat", output.toString().getBytes());
+
     }
 
     /**
@@ -142,7 +146,7 @@ public class SkiDataProcessor {
             e.printStackTrace();
         }
         List<Lift> list = new ArrayList<>( liftMap.values());
-        list.sort((a,b) -> (b.getRidesCount() - a.getRidesCount()));
+        list.sort((a,b) -> (a.getLiftID() - b.getLiftID()));
 
         for (Lift lift : list) {
             try {
@@ -153,7 +157,6 @@ public class SkiDataProcessor {
             }
         }
 
-//        Writer.OverriddenWrite("lift.dat", liftString.toString().getBytes());
     }
 
     /**
@@ -188,9 +191,11 @@ public class SkiDataProcessor {
             }
         }
 
-//        Writer.OverriddenWrite("hour.date", hourString.toString().getBytes());
     }
 
+    /**
+     * write to liftRides.dat
+     */
     private void write2RawFile() {
         RandomAccessFile file = null;
         try {
@@ -198,16 +203,34 @@ public class SkiDataProcessor {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        for (int i = 1; i < input.size(); i++) {
-            String[] strs = input.get(i).split(",");
+        List<int[]> rawData = preprecessRawData();
+        for (int[] data : rawData) {
             try {
-                file.writeInt(Integer.parseInt(strs[CsvInfo.getSkierPos()]));
-                file.writeInt(Integer.parseInt(strs[CsvInfo.getLiftPos()]));
-                file.writeInt(Integer.parseInt(strs[CsvInfo.getHourPos()]));
+                file.writeInt(data[0]);
+                file.writeInt(data[1]);
+                file.writeInt(data[2]);
             } catch (IOException e) {
                 e.printStackTrace();
                 }
         }
+    }
+
+    /**
+     * only select the SkierID, LiftID and timestamp, and sort first by skierID, if same, sort by liftId
+     * @return List<int[]>
+     */
+    private  List<int[]> preprecessRawData() {
+        List<int[]> rawData = new ArrayList<>();
+        for (int i = 1; i < input.size(); i++) {
+            String[] strs = input.get(i).split(",");
+            int[] data = new int[] {
+                    Integer.parseInt(strs[CsvInfo.getSkierPos()]),
+                    Integer.parseInt(strs[CsvInfo.getLiftPos()]),
+                    Integer.parseInt(strs[CsvInfo.getHourPos()])};
+            rawData.add(data);
+        }
+        rawData.sort((a, b) -> (a[0] == b[0] ? a[1] - b[1] : a[0] - b [0]));
+        return rawData;
     }
 
 }
