@@ -59,12 +59,13 @@ public class Reader {
      */
 
     public static String readData(int queryID, int parameterID, String fileName ){
-        String data ="";
+        String data;
         StringBuilder sb = new StringBuilder();
 
         if(queryID==4){
           LiftDataBase liftDataBase = new LiftDataBase(fileName);
-          data = String.valueOf(liftDataBase.getLift(parameterID).getRidesCount());
+          data = parameterID +":"+String.valueOf(liftDataBase.getLift(parameterID).getRidesCount())
+                  +System.lineSeparator();
         } else if(queryID==3){
             HourDataBase hourDataBase = new HourDataBase(fileName);
             for(Map.Entry entry: hourDataBase.getHour(parameterID).getLiftMap().entrySet()){
@@ -85,7 +86,7 @@ public class Reader {
             Skier skier = skierDataBase.getSkier(parameterID);
             skier.increaseNumberOfViews();
             data=skier.getID()+","+skier.getLiftRidesCount()+","+skier.getVerticalMetres()+""+
-                    skier.getNumberOfViews();
+                    skier.getNumberOfViews()+System.lineSeparator();
         }
         return data;
     }
