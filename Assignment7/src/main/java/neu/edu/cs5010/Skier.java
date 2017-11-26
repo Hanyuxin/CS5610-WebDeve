@@ -66,27 +66,33 @@ public class Skier {
         this.verticalMetres += metres;
     }
 
+
+
+    /**
+     * Override the equals method of Skier object.
+     * @param o the Skier Object
+     * @return true If two Skier objects are the same
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Skier skier = (Skier) o;
+
+        if (ID != skier.ID) return false;
+        if (liftRidesCount != skier.liftRidesCount) return false;
+        return verticalMetres == skier.verticalMetres;
+    }
     /**
      * Override the hashCode method of Skier object.
      * @return integer hashcode
      */
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int result = ID;
+        result = 31 * result + liftRidesCount;
+        result = 31 * result + verticalMetres;
+        return result;
     }
-
-    /**
-     * Override the equals method of Skier object.
-     * @param obj the Skier Object
-     * @return true If two Skier objects are the same
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        Skier skier = (Skier)obj;
-        return ID == skier.getID() ? true : false;
-    }
-
 }

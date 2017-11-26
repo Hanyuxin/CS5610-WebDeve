@@ -79,20 +79,30 @@ public class Lift {
     }
 
     /**
+     * Override the equals method of Lift object.
+     * @param o The Lift object.
+     * @return If two Lift objects are the same.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lift lift = (Lift) o;
+
+        if (liftID != lift.liftID) return false;
+        if (ridesCount != lift.ridesCount) return false;
+        return vertical == lift.vertical;
+    }
+    /**
      * Override the hashCode method of Lift object.
      * @return integer hashcode
      */
     @Override
     public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        Lift lift = (Lift)obj;
-        return liftID == lift.getLiftID() ? true : false;
+        int result = liftID;
+        result = 31 * result + ridesCount;
+        result = 31 * result + vertical;
+        return result;
     }
 }

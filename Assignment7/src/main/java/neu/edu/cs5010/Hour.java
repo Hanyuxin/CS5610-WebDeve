@@ -36,4 +36,31 @@ public class Hour {
     public void setLiftMap(Map<Integer, Lift> liftMap) {
         this.liftMap = liftMap;
     }
+
+    /**
+     * Override the equals method of Hour object.
+     * @param o The Hour object.
+     * @return If two Hour objects are the same.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Hour hour = (Hour) o;
+
+        if (number != hour.number) return false;
+        return liftMap != null ? liftMap.equals(hour.liftMap) : hour.liftMap == null;
+    }
+
+    /**
+     * Override the hashCode method of Hour object.
+     * @return integer hashcode
+     */
+    @Override
+    public int hashCode() {
+        int result = number;
+        result = 31 * result + (liftMap != null ? liftMap.hashCode() : 0);
+        return result;
+    }
 }

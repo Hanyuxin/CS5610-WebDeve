@@ -44,7 +44,7 @@ public class SequentialSkiDataProcessor {
      * @param args input arguments
      * @RuntimeException IllegalArgumentException when argument not exactly one, and not a csv file
      */
-    private void checkArgument(String[] args) {
+    public void checkArgument(String[] args) {
         if (args.length != 1)
             throw new IllegalArgumentException("Please check your argument");
         if (!args[0].contains(".csv"))
@@ -56,7 +56,7 @@ public class SequentialSkiDataProcessor {
      * read every line from input file name as a list of String, first find the different columns index,
      * and then for each string, get the skierID, liftId, hourId, and update the skierMap, liftMap, hourMap
      */
-    private void run() {
+    public void run() {
         List<String> input = IOLibrary.read(inputFileName);
 
         int skierPos = 0, liftPos = 0, hourPos = 0;
@@ -105,7 +105,7 @@ public class SequentialSkiDataProcessor {
     /**
      * write result to different CSV file
      */
-    private void write() {
+    public void write() {
         write2SkierFile();
         write2LiftFile();
         write2HourFile();
