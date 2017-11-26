@@ -39,7 +39,7 @@ public class SkiDataProcessor {
         processor.checkArgument(args);
         processor.multiThreadsRun();
         processor.write();
-        
+
     }
 
     /**

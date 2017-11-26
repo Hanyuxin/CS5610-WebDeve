@@ -81,7 +81,11 @@ public class Reader {
             }
             data = sb.toString();
         } else{
-
+            SkierDataBase skierDataBase = new SkierDataBase(fileName);
+            Skier skier = skierDataBase.getSkier(parameterID);
+            skier.increaseNumberOfViews();
+            data=skier.getID()+","+skier.getLiftRidesCount()+","+skier.getVerticalMetres()+""+
+                    skier.getNumberOfViews();
         }
         return data;
     }
