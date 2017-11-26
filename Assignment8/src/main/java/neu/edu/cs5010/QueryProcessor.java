@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class QueryProcessor {
     private String inputFileName;
@@ -41,8 +43,6 @@ public class QueryProcessor {
 
     }
 
-
-
     public Map<Integer, List<Integer>> getQueryPerThread(int index){
         Reader reader = new Reader();
         input = reader.read(inputFileName);
@@ -61,8 +61,19 @@ public class QueryProcessor {
        return QueryInput;
     }
 
-    public void startThreads(){
+    public void startThreads() throws InterruptedException{
         generateThread();
+        ExecutorService executor = Executors.newCachedThreadPool();
+        for(int i=0; i<threads.length; i++){
+            ReadWriteLock lock = new ReadWriteLock();
+            lock.unlockRead(threads[i]);
+            lock.unlockWrite();
+            executor.submit(threads[i]);
+            lock.lockRead(threads[i]);
+            lock.lockWrite(threads[i]);
+        }
+
+        executor.shutdown();
 
     }
 
