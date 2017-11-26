@@ -5,6 +5,8 @@ import neu.edu.cs5010.Lift;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LiftDataBase implements SkiDataBase{
     private RandomAccessFile file = null;

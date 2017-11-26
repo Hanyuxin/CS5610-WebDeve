@@ -39,6 +39,7 @@ public class SkiDataProcessor {
         processor.checkArgument(args);
         processor.multiThreadsRun();
         processor.write();
+        
     }
 
     /**
@@ -141,7 +142,7 @@ public class SkiDataProcessor {
             e.printStackTrace();
         }
         List<Lift> list = new ArrayList<>( liftMap.values());
-        list.sort((a,b) -> (a.getLiftID() - b.getLiftID()));
+        list.sort((a,b) -> (b.getRidesCount() - a.getRidesCount()));
 
         for (Lift lift : list) {
             try {
