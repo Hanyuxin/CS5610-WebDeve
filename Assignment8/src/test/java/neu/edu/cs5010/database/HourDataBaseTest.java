@@ -1,7 +1,6 @@
 package neu.edu.cs5010.database;
 
-
-import neu.edu.cs5010.dataProcess.Hour;
+import neu.edu.cs5010.Hour;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

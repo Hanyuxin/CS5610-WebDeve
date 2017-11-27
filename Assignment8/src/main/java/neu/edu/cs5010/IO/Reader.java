@@ -1,6 +1,7 @@
 package neu.edu.cs5010.IO;
 
-import neu.edu.cs5010.dataProcess.Skier;
+import neu.edu.cs5010.Lift;
+import neu.edu.cs5010.Skier;
 import neu.edu.cs5010.database.HourDataBase;
 import neu.edu.cs5010.database.LiftDataBase;
 import neu.edu.cs5010.database.SkierDataBase;
