@@ -17,7 +17,6 @@ import java.util.concurrent.CyclicBarrier;
 
 public class WorkingThread extends java.lang.Thread {
     private int index;
-    private QueryProcessor queryProcessor;
     private Map<Integer, List<Integer>> QueryInput;
     private String fileName;
     private ReadWriteLock readWriteLock;
@@ -185,11 +184,11 @@ public class WorkingThread extends java.lang.Thread {
     }
 
     /**
-     * Return the index of current threads;
-     * @return The index of current threads;
+     * Return the QueryInput that the current thread is responsible for;
+     * @return The QueryInput that the current thread is responsible for;
      */
-    public int getIndex(){
-        return this.index;
+    public Map<Integer,List<Integer>> getQueryInput(){
+        return this.QueryInput;
     }
 }
 

@@ -1,0 +1,22 @@
+-encoding
+'UTF-8'
+-package
+-sourcepath
+'D:/pdp-songzhe007-hanyuxin-jinhao/Assignment8/src/main/java;D:/pdp-songzhe007-hanyuxin-jinhao/Assignment8/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2017. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'D:/pdp-songzhe007-hanyuxin-jinhao/Assignment8/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Assignment for class CS5010 1.0-SNAPSHOT API'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' 'D:/pdp-songzhe007-hanyuxin-jinhao/Assignment8/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Assignment for class CS5010 1.0-SNAPSHOT API'

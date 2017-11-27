@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Lift.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment for class CS5010</a> &gt; <a href="index.source.html" class="el_package">neu.edu.cs5010.dataProcess</a> &gt; <span class="el_source">Lift.java</span></div><h1>Lift.java</h1><pre class="source lang-java linenums">package neu.edu.cs5010.dataProcess;
+
+public class Lift {
+    private int liftID;
+    private int ridesCount;
+    private int vertical;
+<span class="fc" id="L7">    private static int LEVEL_1 = 10;</span>
+<span class="fc" id="L8">    private static int LEVEL_2 = 20;</span>
+<span class="fc" id="L9">    private static int LEVEL_3 = 30;</span>
+
+<span class="fc" id="L11">    public Lift(int ID) {</span>
+<span class="fc" id="L12">        this.liftID = ID;</span>
+<span class="fc" id="L13">        ridesCount = 0;</span>
+<span class="fc" id="L14">        initialVertical();</span>
+<span class="fc" id="L15">    }</span>
+
+    /**
+     * according to liftID, to determine the vertical
+     */
+    private void initialVertical() {
+
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (liftID &lt;= LEVEL_1) {</span>
+<span class="fc" id="L23">            vertical = 200;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        } else if (liftID &lt;= LEVEL_2) {</span>
+<span class="fc" id="L25">            vertical = 300;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        } else if(liftID &lt;=LEVEL_3) {</span>
+<span class="fc" id="L27">            vertical = 400;</span>
+        } else {
+<span class="fc" id="L29">            vertical = 500;</span>
+        }
+<span class="fc" id="L31">    }</span>
+
+    /**
+     * compare this Lift with another Lift, if this Lift's  rides count bigger than another user, return 1;
+     * if this user's  rides count  smaller than another user, return -1; if same, return 0;
+     * @param lift the Lift to compare with
+     * @return -1, 1, 0
+     */
+    public int compareTo(Lift lift) {
+
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (ridesCount &gt; lift.getRidesCount()) {</span>
+<span class="nc" id="L42">            return 1;</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        } else if (ridesCount &lt; lift.getRidesCount()) {</span>
+<span class="nc" id="L44">            return -1;</span>
+        } else {
+<span class="nc" id="L46">            return 0;</span>
+        }
+    }
+
+    /**
+     * return this lift's vertical high
+     * @return int vertical
+     */
+    public int getVertical() {
+<span class="nc" id="L55">        return vertical;</span>
+    }
+
+    /**
+     * get this lift ID
+     * @return int ID
+     */
+    public int getLiftID() {
+<span class="fc" id="L63">        return liftID;</span>
+    }
+
+    /**
+     * get the total number of lift rides per day
+     * @return int ridesCount
+     */
+    public int getRidesCount() {
+<span class="nc" id="L71">        return ridesCount;</span>
+    }
+
+    /**
+     * increase the total number of lift rides per day by 1
+     */
+    public void increaseRidesCount() {
+<span class="nc" id="L78">        this.ridesCount += 1;</span>
+<span class="nc" id="L79">    }</span>
+
+    /**
+     * set the total number of lift rides per day
+     * @param ridesCount int
+     */
+    public void setRidesCount(int ridesCount) {
+<span class="fc" id="L86">        this.ridesCount = ridesCount;</span>
+<span class="fc" id="L87">    }</span>
+
+    /**
+     * Override the hashCode method of Lift object.
+     * @return integer hashcode
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L95">        return super.hashCode();</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (this == obj) return true;</span>
+<span class="nc bnc" id="L101" title="All 4 branches missed.">        if (obj == null || getClass() != obj.getClass()) return false;</span>
+
+<span class="nc" id="L103">        Lift lift = (Lift)obj;</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        return liftID == lift.getLiftID() ? true : false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

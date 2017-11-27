@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>WorkingThread.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment for class CS5010</a> &gt; <a href="index.source.html" class="el_package">neu.edu.cs5010</a> &gt; <span class="el_source">WorkingThread.java</span></div><h1>WorkingThread.java</h1><pre class="source lang-java linenums">package neu.edu.cs5010;
+
+
+import neu.edu.cs5010.IO.Writer;
+import neu.edu.cs5010.ReadWriteLock.ReadWriteLock;
+import neu.edu.cs5010.dataProcess.Lift;
+import neu.edu.cs5010.dataProcess.Skier;
+import neu.edu.cs5010.database.HourDataBase;
+import neu.edu.cs5010.database.LiftDataBase;
+import neu.edu.cs5010.database.SkierDataBase;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
+
+public class WorkingThread extends java.lang.Thread {
+    private int index;
+    private QueryProcessor queryProcessor;
+    private Map&lt;Integer, List&lt;Integer&gt;&gt; QueryInput;
+    private String fileName;
+    private ReadWriteLock readWriteLock;
+    private CyclicBarrier cyclicBarrier;
+
+
+<span class="fc" id="L27">    public WorkingThread(int index, Map&lt;Integer, List&lt;Integer&gt;&gt; QueryInput, CyclicBarrier cyclicBarrier){</span>
+<span class="fc" id="L28">        this.index=index;</span>
+<span class="fc" id="L29">        this.QueryInput = QueryInput;</span>
+<span class="fc" id="L30">        this.fileName = &quot;Thread&quot;+this.index;</span>
+<span class="fc" id="L31">        this.cyclicBarrier = cyclicBarrier;</span>
+<span class="fc" id="L32">        readWriteLock = new ReadWriteLock();</span>
+
+<span class="fc" id="L34">    }</span>
+
+    /**
+     * Overriden run method of each WorkingThread object.
+     */
+    @Override
+    public void run(){
+        try{
+<span class="nc" id="L42">            cyclicBarrier.await();</span>
+<span class="nc" id="L43">        } catch(InterruptedException | BrokenBarrierException e){</span>
+<span class="nc" id="L44">            e.printStackTrace();</span>
+<span class="nc" id="L45">        }</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        for(int key : QueryInput.keySet()){</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            for(int parameterID: QueryInput.get(key)){</span>
+<span class="nc" id="L48">                    parseQuery(key,parameterID);</span>
+<span class="nc" id="L49">            }</span>
+<span class="nc" id="L50">        }</span>
+        try{
+<span class="nc" id="L52">            cyclicBarrier.await();</span>
+<span class="nc" id="L53">        } catch(InterruptedException | BrokenBarrierException e){</span>
+<span class="nc" id="L54">            e.printStackTrace();</span>
+<span class="nc" id="L55">        }</span>
+<span class="nc" id="L56">    }</span>
+
+    /**
+     * Parse different Query type and add wirtelock/readlock to current thread.
+     * @param key Type of Query(Integer);
+     * @param parameterID ParameterID read from input Query data file;
+     */
+    public void parseQuery(int key, int parameterID) {
+<span class="nc" id="L64">        String data = &quot;&quot;;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (key == 1) {</span>
+<span class="nc" id="L66">            readWriteLock.getWriteLock().lock();</span>
+            try {
+<span class="nc" id="L68">                data = readQuery1(parameterID, &quot;skier.dat&quot;);</span>
+            } finally {
+<span class="nc" id="L70">                readWriteLock.getWriteLock().unlock();</span>
+
+<span class="nc" id="L72">            }</span>
+
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        } else if(key==2){</span>
+<span class="nc" id="L75">           readWriteLock.getReadLock().lock();</span>
+            try {
+<span class="nc" id="L77">                data = readQuery2(parameterID, &quot;skier.dat&quot;);</span>
+            } finally {
+<span class="nc" id="L79">                readWriteLock.getReadLock().unlock();</span>
+
+<span class="nc" id="L81">            }</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        }else if (key == 3) {</span>
+<span class="nc" id="L83">            readWriteLock.getReadLock().lock();</span>
+
+            try {
+<span class="nc" id="L86">                data = readQuery3(parameterID, &quot;hour.dat&quot;);</span>
+            } finally {
+<span class="nc" id="L88">                readWriteLock.getReadLock().unlock();</span>
+
+<span class="nc" id="L90">            }</span>
+        } else{
+<span class="nc" id="L92">                readWriteLock.getReadLock().lock();</span>
+            try {
+<span class="nc" id="L94">                data = readQuery4(parameterID, &quot;lift.dat&quot;);</span>
+            } finally {
+<span class="nc" id="L96">                readWriteLock.getReadLock().unlock();</span>
+
+<span class="nc" id="L98">            }</span>
+        }
+<span class="nc" id="L100">            write(data);</span>
+<span class="nc" id="L101">        }</span>
+
+    /**
+     * Read query1 and generate String data that would be written into output
+     * ThreadN.txt files.
+     * @param parameterID ParameterID read from input Query data file;
+     * @param fileName Source data(.dat file) file name ;
+     * @return String data that would be written into output
+     */
+    public String readQuery1(int parameterID, String fileName){
+        String data;
+<span class="nc" id="L112">        SkierDataBase skierDataBase = new SkierDataBase(fileName);</span>
+<span class="nc" id="L113">        Skier skier = skierDataBase.getSkier(parameterID);</span>
+<span class="nc" id="L114">        skierDataBase.updateSkierNumOfView(skier);</span>
+
+<span class="nc" id="L116">        data=parameterID+&quot;,&quot;+skier.getLiftRidesCount()+&quot;,&quot;+skier.getVerticalMetres()+&quot;,&quot;+</span>
+<span class="nc" id="L117">                skier.getNumberOfViews()+System.lineSeparator();</span>
+<span class="nc" id="L118">        skierDataBase.close();</span>
+<span class="nc" id="L119">        return data;</span>
+    }
+    /**
+     * Read query2 and generate String data that would be written into output
+     * ThreadN.txt files.
+     * @param parameterID ParameterID read from input Query data file;
+     * @param fileName Source data(.dat file) file name ;
+     * @return String data that would be written into output
+     */
+    public String readQuery2(int parameterID, String fileName){
+<span class="nc" id="L129">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L130">        SkierDataBase skierDataBase = new SkierDataBase(fileName);</span>
+<span class="nc" id="L131">        Skier skier = skierDataBase.getSkier(parameterID);</span>
+<span class="nc" id="L132">        Map&lt;Integer, Lift&gt; liftMap = skier.getLiftMap().getMap();</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        for(int Time: liftMap.keySet()){</span>
+<span class="nc" id="L134">            sb.append(&quot;Time:&quot;).append(Time).append(&quot;  &quot;).append(&quot;LiftID:&quot;).</span>
+<span class="nc" id="L135">                    append(liftMap.get(Time).getLiftID()).append(System.lineSeparator());</span>
+
+<span class="nc" id="L137">        }</span>
+<span class="nc" id="L138">        skierDataBase.close();</span>
+
+<span class="nc" id="L140">       return sb.toString();</span>
+    }
+    /**
+     * Read query3 and generate String data that would be written into output
+     * ThreadN.txt files.
+     * @param parameterID ParameterID read from input Query data file;
+     * @param fileName Source data(.dat file) file name ;
+     * @return String data that would be written into output
+     */
+
+    public String readQuery3(int parameterID, String fileName){
+<span class="nc" id="L151">        StringBuilder sb = new StringBuilder();</span>
+
+<span class="nc" id="L153">        HourDataBase hourDataBase = new HourDataBase(fileName);</span>
+<span class="nc" id="L154">        Map&lt;Integer,Lift&gt; liftMap = hourDataBase.getHour(parameterID).getLiftMap();</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        for(int LiftID: liftMap.keySet()){</span>
+
+<span class="nc" id="L157">            sb.append(LiftID+&quot;:&quot;+liftMap.get(LiftID).getRidesCount());</span>
+<span class="nc" id="L158">            sb.append(System.lineSeparator());</span>
+<span class="nc" id="L159">        }</span>
+<span class="nc" id="L160">        hourDataBase.close();</span>
+<span class="nc" id="L161">       String data = sb.toString();</span>
+<span class="nc" id="L162">       return data;</span>
+    }
+    /**
+     * Read query4 and generate String data that would be written into output
+     * ThreadN.txt files.
+     * @param parameterID ParameterID read from input Query data file;
+     * @param fileName Source data(.dat file) file name ;
+     * @return String data that would be written into output
+     */
+    public String readQuery4(int parameterID, String fileName){
+<span class="nc" id="L172">        LiftDataBase liftDataBase = new LiftDataBase(fileName);</span>
+<span class="nc" id="L173">       String data = parameterID +&quot;:&quot;+String.valueOf(liftDataBase.getLift(parameterID).getRidesCount())</span>
+<span class="nc" id="L174">                +System.lineSeparator();</span>
+<span class="nc" id="L175">       return data;</span>
+    }
+
+    /**
+     * Write the String data into output ThreadN.txt file(Append Write)
+     * Previous content would not be override.
+     * @param data Each line of String data;
+     */
+    public void write(String data){
+<span class="nc" id="L184">        Writer.AppendWrite(fileName, data);</span>
+<span class="nc" id="L185">    }</span>
+
+    /**
+     * Return the QueryInput that the current thread is responsible for;
+     * @return The QueryInput that the current thread is responsible for;
+     */
+    public Map&lt;Integer,List&lt;Integer&gt;&gt; getQueryInput(){
+<span class="fc" id="L192">        return this.QueryInput;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Skier.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment for class CS5010</a> &gt; <a href="index.source.html" class="el_package">neu.edu.cs5010.dataProcess</a> &gt; <span class="el_source">Skier.java</span></div><h1>Skier.java</h1><pre class="source lang-java linenums">package neu.edu.cs5010.dataProcess;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Skier {
+    private int ID;
+    private int liftRidesCount;
+    private int verticalMetres;
+    private int numberOfViews;
+    private SkierLiftMap liftMap;
+
+
+<span class="fc" id="L14">    public Skier(int ID) {</span>
+<span class="fc" id="L15">        this.ID = ID;</span>
+<span class="fc" id="L16">        liftRidesCount = 0;</span>
+<span class="fc" id="L17">        verticalMetres = 0;</span>
+<span class="fc" id="L18">        numberOfViews = 0;</span>
+<span class="fc" id="L19">        liftMap= new SkierLiftMap();</span>
+<span class="fc" id="L20">    }</span>
+
+    /**
+     * compare this skier with another skier, if this user's  vertical metres bigger than another user, return 1;
+     * if this user's   vertical metres smaller than another user, return -1; if same, return 0;
+     * @param skier the Skier to compare with
+     * @return 1, -1, 0
+     */
+    public int compareTo(Skier skier) {
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (verticalMetres &gt; skier.getVerticalMetres()) {</span>
+<span class="nc" id="L30">            return 1;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        } else if(verticalMetres &lt; skier.getVerticalMetres()) {</span>
+<span class="nc" id="L32">            return -1;</span>
+        } else {
+<span class="nc" id="L34">            return 0;</span>
+        }
+    }
+    /**
+     * get this skier's unique ID
+     * @return int ID
+     */
+    public int getID() {
+<span class="fc" id="L42">        return ID;</span>
+    }
+
+    /**
+     * set LiftMap by the giving param
+     * @param liftMap SkierLiftMap
+     */
+    public void setLiftMap(SkierLiftMap liftMap) {
+<span class="fc" id="L50">        this.liftMap = liftMap;</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * get the LiftMap
+     * @return SkierLiftMap
+     */
+    public SkierLiftMap getLiftMap() {
+<span class="fc" id="L58">        return liftMap;</span>
+    }
+
+    /**
+     * set the number of views
+     * @param numberOfViews
+     */
+    public void setNumberOfViews(int numberOfViews) {
+<span class="fc" id="L66">        this.numberOfViews = numberOfViews;</span>
+<span class="fc" id="L67">    }</span>
+
+    /**
+     * get the number of lift rides they do each day
+     * @return int liftRidesCount
+     */
+    public int getLiftRidesCount() {
+<span class="fc" id="L74">        return liftRidesCount;</span>
+    }
+
+    /**
+     * set the number of lift rides they do each day
+     */
+    public void increaseLiftRidesCount() {
+<span class="nc" id="L81">        this.liftRidesCount += 1;</span>
+<span class="nc" id="L82">    }</span>
+
+    /**
+     * set the number of lift rides they do each day
+     */
+    public void setLiftRidesCount(int liftRidesCount) {
+<span class="fc" id="L88">        this.liftRidesCount = liftRidesCount;</span>
+<span class="fc" id="L89">    }</span>
+
+    /**
+     * get the total amount of vertical metres ski (equal to the total vertical rise of all lifts they ride)
+     * @return int verticalMetres
+     */
+    public int getVerticalMetres() {
+<span class="fc" id="L96">        return verticalMetres;</span>
+    }
+
+    /**
+     * increase the total amount of vertical metres ski by metres
+     * @param metres int
+     */
+    public void increaseVerticalMetres(int metres) {
+<span class="nc" id="L104">        this.verticalMetres += metres;</span>
+<span class="nc" id="L105">    }</span>
+
+    /**
+     * set the total amount of vertical metres ski by metres
+     * @param verticalMetres int
+     */
+    public void setVerticalMetres(int verticalMetres) {
+<span class="fc" id="L112">        this.verticalMetres = verticalMetres;</span>
+<span class="fc" id="L113">    }</span>
+
+    /**
+     * get the time of number of views
+     * @return int numberOfViews;
+     */
+    public int getNumberOfViews() {
+<span class="nc" id="L120">        return numberOfViews;</span>
+    }
+
+    /**
+     * increase the time of number of views by 1
+     */
+    public void increaseNumberOfViews() {
+<span class="nc" id="L127">        this.numberOfViews += 1;</span>
+<span class="nc" id="L128">    }</span>
+
+    /**
+     * Override the hashCode method of Skier object.
+     * @return integer hashcode
+     */
+    @Override
+    public int hashCode() {
+<span class="nc" id="L136">        return super.hashCode();</span>
+    }
+
+    /**
+     * Override the equals method of Skier object.
+     * @param obj the Skier Object
+     * @return true If two Skier objects are the same
+     */
+    @Override
+    public boolean equals(Object obj) {
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        if (this == obj) return true;</span>
+<span class="nc bnc" id="L147" title="All 4 branches missed.">        if (obj == null || getClass() != obj.getClass()) return false;</span>
+
+<span class="nc" id="L149">        Skier skier = (Skier)obj;</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        return ID == skier.getID() ? true : false;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

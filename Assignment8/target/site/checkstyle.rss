@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>Assignment for class CS5010 - Checkstyle report</title>
+    <link>${project.url}</link>
+    <description>Assignment for class CS5010 - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2017</copyright>
+    <item>
+      <title>File: 21,
+             Errors: 0,
+             Warnings: 1330,
+             Infos: 0
+      </title>
+            <link>${project.url}/checkstyle.html</link>
+      <description>
+        <p>Click <a href="${project.url}/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.SkierDataConsumer.java">neu/edu/cs5010/dataProcess/SkierDataConsumer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  52
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.database.HourDataBase.java">neu/edu/cs5010/database/HourDataBase.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  49
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.CsvInfo.java">neu/edu/cs5010/dataProcess/CsvInfo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  32
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.IO.Writer.java">neu/edu/cs5010/IO/Writer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  83
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.Hour.java">neu/edu/cs5010/dataProcess/Hour.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  19
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.SkierDataProducer.java">neu/edu/cs5010/dataProcess/SkierDataProducer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  43
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.SkierLiftMap.java">neu/edu/cs5010/dataProcess/SkierLiftMap.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  50
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.database.SkierDataBase.java">neu/edu/cs5010/database/SkierDataBase.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  84
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.database.LiftDataBase.java">neu/edu/cs5010/database/LiftDataBase.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  38
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.HourDataConsumer.java">neu/edu/cs5010/dataProcess/HourDataConsumer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  28
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.LiftDataConsumer.java">neu/edu/cs5010/dataProcess/LiftDataConsumer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  27
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.Skier.java">neu/edu/cs5010/dataProcess/Skier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  94
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.WorkingThread.java">neu/edu/cs5010/WorkingThread.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  196
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.LiftDataProducer.java">neu/edu/cs5010/dataProcess/LiftDataProducer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  33
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.SkiDataProcessor.java">neu/edu/cs5010/dataProcess/SkiDataProcessor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  201
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.QueryProcessor.java">neu/edu/cs5010/QueryProcessor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  130
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.Lift.java">neu/edu/cs5010/dataProcess/Lift.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  74
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.ReadWriteLock.ReadWriteLock.java">neu/edu/cs5010/ReadWriteLock/ReadWriteLock.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  26
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.IO.Reader.java">neu/edu/cs5010/IO/Reader.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  31
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.database.SkiDataBase.java">neu/edu/cs5010/database/SkiDataBase.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#neu.edu.cs5010.dataProcess.HourDataProducer.java">neu/edu/cs5010/dataProcess/HourDataProducer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  38
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
