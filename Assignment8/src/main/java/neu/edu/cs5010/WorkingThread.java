@@ -176,12 +176,12 @@ public class WorkingThread extends java.lang.Thread {
     }
 
     /**
-     * Write the String data into
-     * @param data
+     * Write the String data into output ThreadN.txt file(Append Write)
+     * Previous content would not be override.
+     * @param data Each line of String data;
      */
     public void write(String data){
         Writer.AppendWrite(fileName, data);
-       // Writer.OverriddenWrite(fileName,data);
     }
 
     /**

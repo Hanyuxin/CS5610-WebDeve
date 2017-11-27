@@ -18,19 +18,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WorkingThread.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WorkingThread.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/WorkingThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="49" column="9" lean-forward="false" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+            <state relative-caret-position="523">
+              <caret line="183" column="43" lean-forward="true" selection-start-line="183" selection-start-column="43" selection-end-line="183" selection-end-column="43" />
               <folding>
                 <element signature="method#parseQuery#0;class#WorkingThread#0" expanded="false" />
+                <element signature="e#6359#6360#0" expanded="true" />
+                <element signature="e#6409#6410#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Thread0" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Thread0" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Thread0">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-399426">
@@ -40,15 +42,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReadWriteLock.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/ReadWriteLock/ReadWriteLock.java">
+      <file leaf-file-name="Thread9" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Thread9">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
-              <folding>
-                <element signature="e#878#879#0" expanded="true" />
-                <element signature="e#911#912#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-2350">
+              <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Thread10" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Thread10">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-74200">
+              <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -211,9 +220,9 @@
         <option value="$PROJECT_DIR$/Thread11" />
         <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/ReadWriteLock/ReadWriteLock.java" />
         <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/IO/Reader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/WorkingThread.java" />
         <option value="$PROJECT_DIR$/Thread16" />
         <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/QueryProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/WorkingThread.java" />
       </list>
     </option>
   </component>
@@ -610,7 +619,7 @@
       <updated>1511497994540</updated>
       <workItem from="1511688423545" duration="15231000" />
       <workItem from="1511748046533" duration="4737000" />
-      <workItem from="1511753350825" duration="9882000" />
+      <workItem from="1511753350825" duration="10003000" />
     </task>
     <servers />
   </component>
@@ -638,7 +647,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39269000" />
+    <option name="totallyTimeSpent" value="39390000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
@@ -651,7 +660,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2781457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2781457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -785,14 +794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="758">
           <caret line="109" column="7" lean-forward="false" selection-start-line="109" selection-start-column="2" selection-end-line="109" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Thread9">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -945,14 +946,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Thread10">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-404208">
-          <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Thread14">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -1080,21 +1073,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/WorkingThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="49" column="9" lean-forward="false" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
-          <folding>
-            <element signature="method#parseQuery#0;class#WorkingThread#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Thread0">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-399426">
           <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Thread9">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2350">
+          <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Thread10">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-74200">
+          <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/WorkingThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="183" column="43" lean-forward="true" selection-start-line="183" selection-start-column="43" selection-end-line="183" selection-end-column="43" />
+          <folding>
+            <element signature="method#parseQuery#0;class#WorkingThread#0" expanded="false" />
+            <element signature="e#6359#6360#0" expanded="true" />
+            <element signature="e#6409#6410#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
