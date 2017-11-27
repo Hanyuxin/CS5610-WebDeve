@@ -57,7 +57,7 @@ public class SkierDataBase implements SkiDataBase {
         }
     }
 
-    private SkierLiftMap getLiftMap() {
+    public SkierLiftMap getLiftMap() {
         Map<Integer, Lift> map = new HashMap<>();
         for(int j = 0; j < SkierLiftMap.NUMBER; j++) {
             char[] s = new char[SkierLiftMap.SIGNLE_LENGTH];
