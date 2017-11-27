@@ -1,0 +1,19 @@
+
+in the dataProcess package, we have Hour, Lift, Skier as the base data structure
+each Object have a Consumer and a Producer to deal with the input csv date.
+CsvInfo is use to indicate the different column index in input csv file.
+SkierLiftMap is a data structure that use to store the time and the liftID information from different skier.
+SkiDataProcessor, is the main method to process the ski data and generate 4 dat file.
+in the database package,
+SkiDateBase, is a interface
+SkierDateBase, implement SkiDateBase, offer the method getSkier(int SkierID) with O(1) time.
+LiftDateBase, implement SkiDateBase,offer the method getLift(int LiftID) with O(1) time
+HourDateBase, implement SkiDateBase,offer the method getHour(int HourID) with O(1) time
+in the IO package,
+Reader, have a read method to read into List<String>
+Writer, have overriddenWrite method and appendWrite method
+int the ReadWriteLock package,
+ReadWriteLock, get read lock and write lock
+
+QueryProcessor, the main method to process input csv query file and output 20 thread files 
+WorkingThread, extends Thread,dealing with different query. 
