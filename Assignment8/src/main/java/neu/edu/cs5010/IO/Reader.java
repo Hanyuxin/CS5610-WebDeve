@@ -25,7 +25,7 @@ public class Reader {
      * @param fileName the fileName to read
      * @return the content in this fileName
      */
-    public static List<String> read(String fileName) {
+    public  List<String> read(String fileName) {
         File file = new File(fileName);
         BufferedReader bufferedReader = null;
         List<String> list = new ArrayList<>();
@@ -58,37 +58,43 @@ public class Reader {
      * @return Result String that need to be appended in result txt files;
      */
 
-    public static String readData(int queryID, int parameterID, String fileName ){
-        String data;
-        StringBuilder sb = new StringBuilder();
-
-        if(queryID==4){
-          LiftDataBase liftDataBase = new LiftDataBase(fileName);
-          data = parameterID +":"+String.valueOf(liftDataBase.getLift(parameterID).getRidesCount())
-                  +System.lineSeparator();
-        } else if(queryID==3){
-            HourDataBase hourDataBase = new HourDataBase(fileName);
-            for(Map.Entry entry: hourDataBase.getHour(parameterID).getLiftMap().entrySet()){
-               sb.append(entry.getKey()+":"+entry.getValue());
-               sb.append(System.lineSeparator());
-            }
-            data = sb.toString();
-        } else if(queryID==2){
-            SkierDataBase skierDataBase = new SkierDataBase(fileName);
-            Skier skier = skierDataBase.getSkier(parameterID);
-            for(Map.Entry entry: skier.getLiftMap().getMap().entrySet()){
-                sb.append(entry.getKey()+":"+entry.getValue());
-                sb.append(System.lineSeparator());
-            }
-            data = sb.toString();
-        } else{
-            SkierDataBase skierDataBase = new SkierDataBase(fileName);
-            Skier skier = skierDataBase.getSkier(parameterID);
-            skier.increaseNumberOfViews();
-            data=skier.getID()+","+skier.getLiftRidesCount()+","+skier.getVerticalMetres()+""+
-                    skier.getNumberOfViews()+System.lineSeparator();
-        }
-        return data;
-    }
+//    public static String readData(int queryID, int parameterID, String fileName ){
+//        String data;
+//        StringBuilder sb = new StringBuilder();
+//
+//        if(queryID==4){
+//          LiftDataBase liftDataBase = new LiftDataBase(fileName);
+//          data = parameterID +":"+String.valueOf(liftDataBase.getLift(parameterID).getRidesCount())
+//                  +System.lineSeparator();
+//        } else if(queryID==3){
+//            HourDataBase hourDataBase = new HourDataBase(fileName);
+//            for(Map.Entry entry: hourDataBase.getHour(parameterID).getLiftMap().entrySet()){
+//               sb.append(entry.getKey()+":"+entry.getValue());
+//               sb.append(System.lineSeparator());
+//            }
+//            hourDataBase.close();
+//            data = sb.toString();
+//        } else if(queryID==2){
+//            SkierDataBase skierDataBase = new SkierDataBase(fileName);
+//            Skier skier = skierDataBase.getSkier(parameterID);
+//
+//            for(Map.Entry entry: skier.getLiftMap().getMap().entrySet()){
+//                sb.append(entry.getKey()+":"+entry.getValue());
+//                sb.append(System.lineSeparator());
+//            }
+//            skierDataBase.close();
+//            data = sb.toString();
+//        } else{
+//            SkierDataBase skierDataBase = new SkierDataBase(fileName);
+//            Skier skier = skierDataBase.getSkier(parameterID);
+//            skierDataBase.updateSkierNumOfView(skier);
+//
+//            data=skier.getID()+","+skier.getLiftRidesCount()+","+skier.getVerticalMetres()+""+
+//                    skier.getNumberOfViews()+System.lineSeparator();
+//
+//            skierDataBase.close();
+//        }
+//        return data;
+//    }
 
 }

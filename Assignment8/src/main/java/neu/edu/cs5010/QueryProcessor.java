@@ -1,53 +1,70 @@
 package neu.edu.cs5010;
 
 import neu.edu.cs5010.IO.Reader;
+import neu.edu.cs5010.ReadWriteLock.ReadWriteLock;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class QueryProcessor {
-    private String inputFileName;
-    private List<String> input;
-    private Map<Integer, List<Integer>> QueryInput;
-    private int NumberOfQueries;
-    private int QueriesPerThread;
+    private static String inputFileName;
+    private static List<String> input;
 
-    private Thread[] threads;
+    private static int NumberOfQueries;
+    private static int QueriesPerThread;
+    private static CyclicBarrier cyclicBarrier;
+
+    private static List<WorkingThread> threads;
     public QueryProcessor(){
          inputFileName="";
          input= new LinkedList<>();
-         QueryInput=new HashMap<>();
-         threads = new Thread[20];
+
+         threads = new LinkedList<>();
+         this.cyclicBarrier = new CyclicBarrier(10*2+1);
     }
 
-    public void checkArgument(String[] args) {
-        if (args.length != 2)
+    public  void checkArgument(String[] args) {
+        if (args.length != 2) {
             throw new IllegalArgumentException("Please check your argument");
-        if (!args[0].contains(".csv"))
+        }
+        if (!args[0].contains(".csv")) {
             throw new IllegalArgumentException("The input test data file should be a csv file");
-        if(Integer.valueOf(args[1])%20>0)
+        }
+        if(Integer.valueOf(Integer.valueOf(args[1]))%20>0) {
             throw new IllegalArgumentException("Invalid Number of queries!");
+        }
         inputFileName = args[0];
         NumberOfQueries = Integer.valueOf(args[1]);
         QueriesPerThread = NumberOfQueries/20;
     }
 
-    public void generateThread(){
+    public  List<WorkingThread> generateThread(){
+        List<WorkingThread> threads = new LinkedList<>();
         for(int i=0; i<20; i++){
-            threads[i]= new Thread(i,getQueryPerThread(i));
+            threads.add(new WorkingThread(i,getQueryPerThread(i)));
         }
+        return threads;
 
     }
 
-    public Map<Integer, List<Integer>> getQueryPerThread(int index){
+    public List<String> test(){
+        Reader reader = new Reader();
+        input = reader.read(inputFileName);
+        return input;
+    }
+
+
+    public  Map<Integer, List<Integer>> getQueryPerThread(int index){
         Reader reader = new Reader();
         input = reader.read(inputFileName);
 
       int currIndex = index;
+      Map<Integer,List<Integer>> QueryInput = new HashMap<>();
        for(int i=currIndex*QueriesPerThread; i<(currIndex+1)*QueriesPerThread; i++){
              String data = input.get(i);
                String[] line = data.split(",");
@@ -61,20 +78,31 @@ public class QueryProcessor {
        return QueryInput;
     }
 
-    public void startThreads() throws InterruptedException{
-        generateThread();
+    public  void startThreads() throws InterruptedException{
+        threads= generateThread();
         ExecutorService executor = Executors.newCachedThreadPool();
-        for(int i=0; i<threads.length; i++){
-            ReadWriteLock lock = new ReadWriteLock();
-            lock.unlockRead(threads[i]);
-            lock.unlockWrite();
-            executor.submit(threads[i]);
-            lock.lockRead(threads[i]);
-            lock.lockWrite(threads[i]);
+        try{
+            for(int i=0; i<threads.size(); i++){
+                executor.execute(threads.get(i));
+            }
+            cyclicBarrier.await();
+            cyclicBarrier.await();
+        } catch(Exception e){
+            e.printStackTrace();
         }
-
         executor.shutdown();
 
+    }
+
+    public static void main(String[] args) throws InterruptedException{
+        QueryProcessor queryProcessor = new QueryProcessor();
+
+        queryProcessor.checkArgument(args);
+        System.out.println(NumberOfQueries);
+        System.out.println(QueriesPerThread);
+        System.out.println(inputFileName);
+        System.out.println(queryProcessor.test().size());
+        queryProcessor.generateThread();
     }
 
 

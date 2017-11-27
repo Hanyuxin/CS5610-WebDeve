@@ -59,7 +59,8 @@ public class SkiDataProcessor {
      * use Executors to manage multiple thread, use consumer and producer to deal with blocking Queue.
      */
     public void multiThreadsRun() {
-        input = Reader.read(inputFileName);
+        Reader reader = new Reader();
+        input = reader.read(inputFileName);
 
         CsvInfo csvInfo = new CsvInfo(input.get(0));
         ExecutorService executor = Executors.newCachedThreadPool();
