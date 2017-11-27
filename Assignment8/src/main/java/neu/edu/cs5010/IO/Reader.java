@@ -44,52 +44,5 @@ public class Reader {
         return list;
     }
 
-    /**
-     * Read the data from database to retrieve the reuslt information that need
-     * to be generated in output ThreadN.txt files.
-     * @param queryID Type of Queries(Integer);
-     * @param parameterID parameterID that is being queried;
-     * @param fileName Input .dat data flies;
-     * @return Result String that need to be appended in result txt files;
-     */
-
-//    public static String readData(int queryID, int parameterID, String fileName ){
-//        String data;
-//        StringBuilder sb = new StringBuilder();
-//
-//        if(queryID==4){
-//          LiftDataBase liftDataBase = new LiftDataBase(fileName);
-//          data = parameterID +":"+String.valueOf(liftDataBase.getLift(parameterID).getRidesCount())
-//                  +System.lineSeparator();
-//        } else if(queryID==3){
-//            HourDataBase hourDataBase = new HourDataBase(fileName);
-//            for(Map.Entry entry: hourDataBase.getHour(parameterID).getLiftMap().entrySet()){
-//               sb.append(entry.getKey()+":"+entry.getValue());
-//               sb.append(System.lineSeparator());
-//            }
-//            hourDataBase.close();
-//            data = sb.toString();
-//        } else if(queryID==2){
-//            SkierDataBase skierDataBase = new SkierDataBase(fileName);
-//            Skier skier = skierDataBase.getSkier(parameterID);
-//
-//            for(Map.Entry entry: skier.getLiftMap().getMap().entrySet()){
-//                sb.append(entry.getKey()+":"+entry.getValue());
-//                sb.append(System.lineSeparator());
-//            }
-//            skierDataBase.close();
-//            data = sb.toString();
-//        } else{
-//            SkierDataBase skierDataBase = new SkierDataBase(fileName);
-//            Skier skier = skierDataBase.getSkier(parameterID);
-//            skierDataBase.updateSkierNumOfView(skier);
-//
-//            data=skier.getID()+","+skier.getLiftRidesCount()+","+skier.getVerticalMetres()+""+
-//                    skier.getNumberOfViews()+System.lineSeparator();
-//
-//            skierDataBase.close();
-//        }
-//        return data;
-//    }
 
 }

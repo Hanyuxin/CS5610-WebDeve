@@ -24,25 +24,42 @@ public class WorkingThread extends java.lang.Thread {
     private CyclicBarrier cyclicBarrier;
 
 
-    public WorkingThread(int index, Map<Integer, List<Integer>> QueryInput){
+    public WorkingThread(int index, Map<Integer, List<Integer>> QueryInput, CyclicBarrier cyclicBarrier){
         this.index=index;
         this.QueryInput = QueryInput;
         this.fileName = "Thread"+this.index;
-        queryProcessor = new QueryProcessor();
-
+        this.cyclicBarrier = cyclicBarrier;
         readWriteLock = new ReadWriteLock();
 
     }
 
+    /**
+     * Overriden run method of each WorkingThread object.
+     */
     @Override
     public void run(){
+        try{
+            cyclicBarrier.await();
+        } catch(InterruptedException | BrokenBarrierException e){
+            e.printStackTrace();
+        }
         for(int key : QueryInput.keySet()){
             for(int parameterID: QueryInput.get(key)){
                     parseQuery(key,parameterID);
             }
         }
+        try{
+            cyclicBarrier.await();
+        } catch(InterruptedException | BrokenBarrierException e){
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Parse different Query type and add wirtelock/readlock to current thread.
+     * @param key Type of Query(Integer);
+     * @param parameterID ParameterID read from input Query data file;
+     */
     public void parseQuery(int key, int parameterID) {
         String data = "";
         if (key == 1) {
@@ -83,7 +100,13 @@ public class WorkingThread extends java.lang.Thread {
             write(data);
         }
 
-
+    /**
+     * Read query1 and generate String data that would be written into output
+     * ThreadN.txt files.
+     * @param parameterID ParameterID read from input Query data file;
+     * @param fileName Source data(.dat file) file name ;
+     * @return String data that would be written into output
+     */
     public String readQuery1(int parameterID, String fileName){
         String data;
         SkierDataBase skierDataBase = new SkierDataBase(fileName);
@@ -95,7 +118,13 @@ public class WorkingThread extends java.lang.Thread {
         skierDataBase.close();
         return data;
     }
-
+    /**
+     * Read query2 and generate String data that would be written into output
+     * ThreadN.txt files.
+     * @param parameterID ParameterID read from input Query data file;
+     * @param fileName Source data(.dat file) file name ;
+     * @return String data that would be written into output
+     */
     public String readQuery2(int parameterID, String fileName){
         StringBuilder sb = new StringBuilder();
         SkierDataBase skierDataBase = new SkierDataBase(fileName);
@@ -106,11 +135,17 @@ public class WorkingThread extends java.lang.Thread {
                     append(liftMap.get(Time).getLiftID()).append(System.lineSeparator());
 
         }
-//        String data = skier.getLiftMap().toString()+""+System.lineSeparator();
         skierDataBase.close();
 
        return sb.toString();
     }
+    /**
+     * Read query3 and generate String data that would be written into output
+     * ThreadN.txt files.
+     * @param parameterID ParameterID read from input Query data file;
+     * @param fileName Source data(.dat file) file name ;
+     * @return String data that would be written into output
+     */
 
     public String readQuery3(int parameterID, String fileName){
         StringBuilder sb = new StringBuilder();
@@ -126,7 +161,13 @@ public class WorkingThread extends java.lang.Thread {
        String data = sb.toString();
        return data;
     }
-
+    /**
+     * Read query4 and generate String data that would be written into output
+     * ThreadN.txt files.
+     * @param parameterID ParameterID read from input Query data file;
+     * @param fileName Source data(.dat file) file name ;
+     * @return String data that would be written into output
+     */
     public String readQuery4(int parameterID, String fileName){
         LiftDataBase liftDataBase = new LiftDataBase(fileName);
        String data = parameterID +":"+String.valueOf(liftDataBase.getLift(parameterID).getRidesCount())
@@ -134,7 +175,10 @@ public class WorkingThread extends java.lang.Thread {
        return data;
     }
 
-
+    /**
+     * Write the String data into
+     * @param data
+     */
     public void write(String data){
         Writer.AppendWrite(fileName, data);
        // Writer.OverriddenWrite(fileName,data);

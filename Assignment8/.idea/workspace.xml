@@ -18,14 +18,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WorkingThread.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WorkingThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/WorkingThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="42" column="9" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+            <state relative-caret-position="375">
+              <caret line="49" column="9" lean-forward="false" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
               <folding>
                 <element signature="method#parseQuery#0;class#WorkingThread#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Thread0" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Thread0">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-399426">
+              <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -46,8 +56,8 @@
       <file leaf-file-name="QueryProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/QueryProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2575">
-              <caret line="121" column="56" lean-forward="false" selection-start-line="121" selection-start-column="56" selection-end-line="121" selection-end-column="56" />
+            <state relative-caret-position="2525">
+              <caret line="101" column="13" lean-forward="false" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,21 +65,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Thread17" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Thread17">
+      <file leaf-file-name="HourDataBaseTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/neu/edu/cs5010/database/HourDataBaseTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-799608">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="475">
+              <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Writer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/IO/Writer.java">
+      <file leaf-file-name="Reader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/IO/Reader.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
-              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -78,8 +90,28 @@
       <file leaf-file-name="SkiDataProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/dataProcess/SkiDataProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="43" column="4" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="47" selection-end-column="7" />
+            <state relative-caret-position="-158">
+              <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LiftDataBase.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/database/LiftDataBase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LiftDataConsumer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/dataProcess/LiftDataConsumer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -153,7 +185,6 @@
         <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/SkiDataProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/database/HourDataBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/database/LiftDataBase.java" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/IO/Reader.java" />
         <option value="$PROJECT_DIR$/src/test/java/neu/edu/cs5010/database/SkierDataBaseTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/neu/edu/cs5010/database/HourDataBaseTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/database/SkierDataBase.java" />
@@ -170,18 +201,19 @@
         <option value="$PROJECT_DIR$/Thread12" />
         <option value="$PROJECT_DIR$/Thread6" />
         <option value="$PROJECT_DIR$/Thread5" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/WorkingThread.java" />
         <option value="$PROJECT_DIR$/Thread1" />
         <option value="$PROJECT_DIR$/skier.dat" />
         <option value="$PROJECT_DIR$/Thread0" />
         <option value="$PROJECT_DIR$/Thread17" />
         <option value="$PROJECT_DIR$/Thread13" />
-        <option value="$PROJECT_DIR$/Thread16" />
         <option value="$PROJECT_DIR$/Thread10" />
         <option value="$PROJECT_DIR$/Thread14" />
         <option value="$PROJECT_DIR$/Thread11" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/QueryProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/ReadWriteLock/ReadWriteLock.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/IO/Reader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/WorkingThread.java" />
+        <option value="$PROJECT_DIR$/Thread16" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/edu/cs5010/QueryProcessor.java" />
       </list>
     </option>
   </component>
@@ -198,7 +230,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-361" />
     <option name="y" value="16" />
     <option name="width" value="1346" />
@@ -280,16 +312,28 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="cs5010" type="462c0819:PsiDirectoryNode" />
-              <item name="IO" type="462c0819:PsiDirectoryNode" />
+              <item name="ReadWriteLock" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Assignment8" type="b2602c69:ProjectViewProjectNode" />
               <item name="Assignment8" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment8" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment8" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cs5010" type="462c0819:PsiDirectoryNode" />
-              <item name="ReadWriteLock" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment8" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment8" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -566,7 +610,7 @@
       <updated>1511497994540</updated>
       <workItem from="1511688423545" duration="15231000" />
       <workItem from="1511748046533" duration="4737000" />
-      <workItem from="1511753350825" duration="9094000" />
+      <workItem from="1511753350825" duration="9882000" />
     </task>
     <servers />
   </component>
@@ -594,10 +638,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38481000" />
+    <option name="totallyTimeSpent" value="39269000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -607,11 +651,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39624724" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2781457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26354167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25208333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -649,20 +693,11 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/SkiDataProcessor.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/LiftDataConsumer.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/database/LiftDataBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-27">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/dataProcess/Hour.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -778,14 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/dataProcess/LiftDataConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Thread2">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-16356">
@@ -852,14 +879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Thread15">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2139">
-          <caret line="16224" column="0" lean-forward="false" selection-start-line="16224" selection-start-column="0" selection-end-line="16224" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/dataProcess/SkierLiftMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -878,31 +897,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/neu/edu/cs5010/database/HourDataBaseTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Thread6">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-399558">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/IO/Reader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding>
-            <element signature="e#1564#1648#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -938,26 +937,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Thread16">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400050">
-          <caret line="16002" column="0" lean-forward="false" selection-start-line="16002" selection-start-column="0" selection-end-line="16002" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Thread8">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1599565">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Thread0">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -1010,14 +993,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/dataProcess/SkiDataProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="43" column="4" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="47" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/database/RawDataBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -1037,23 +1012,89 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Thread15">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405600">
+          <caret line="16224" column="0" lean-forward="false" selection-start-line="16224" selection-start-column="0" selection-end-line="16224" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/IO/Reader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Thread16">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4924">
+          <caret line="63997" column="7" lean-forward="true" selection-start-line="63997" selection-start-column="7" selection-end-line="63997" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/QueryProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2575">
-          <caret line="121" column="56" lean-forward="false" selection-start-line="121" selection-start-column="56" selection-end-line="121" selection-end-column="56" />
+        <state relative-caret-position="2525">
+          <caret line="101" column="13" lean-forward="false" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/neu/edu/cs5010/database/HourDataBaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/dataProcess/LiftDataConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/dataProcess/SkiDataProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-158">
+          <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/database/LiftDataBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/neu/edu/cs5010/WorkingThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="42" column="9" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+        <state relative-caret-position="375">
+          <caret line="49" column="9" lean-forward="false" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
           <folding>
             <element signature="method#parseQuery#0;class#WorkingThread#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Thread0">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-399426">
+          <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>

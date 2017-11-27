@@ -27,7 +27,7 @@ public class QueryProcessor  {
          threads = new LinkedList<>();
         executor = Executors.newCachedThreadPool();
 
-         this.cyclicBarrier = new CyclicBarrier(10*2+1);
+         this.cyclicBarrier = new CyclicBarrier(20);
     }
 
     /**
@@ -59,7 +59,7 @@ public class QueryProcessor  {
     public  List<WorkingThread> generateThread(){
         List<WorkingThread> threads = new LinkedList<>();
         for(int i=0; i<20; i++){
-            threads.add(new WorkingThread(i,getQueryPerThread(i)));
+            threads.add(new WorkingThread(i,getQueryPerThread(i),cyclicBarrier));
         }
         return threads;
 
@@ -97,22 +97,11 @@ public class QueryProcessor  {
     public  void startThreads() throws InterruptedException{
         threads= generateThread();
 
-
-            for(int i=0; i<threads.size(); i++) {
+            for(int i=0; i<threads.size(); i++){
                 executor.execute(threads.get(i));
             }
-           executor.shutdown();
+             executor.shutdown();
 
-//        try{
-//            for(int i=0; i<threads.size(); i++){
-//                executor.execute(threads.get(i));
-//            }
-//            cyclicBarrier.await();
-//            cyclicBarrier.await();
-//             executor.shutdown();
-//        } catch(InterruptedException  | BrokenBarrierException e){
-//            e.printStackTrace();
-//        }
         System.out.println("Elapsed Time:"+String.valueOf(System.currentTimeMillis()-time)+"ms");
 
     }
