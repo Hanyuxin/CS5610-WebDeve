@@ -1,7 +1,6 @@
-package neu.edu.cs5010;
+package neu.edu.cs5010.dataProcess;
 
 import neu.edu.cs5010.IO.Reader;
-import neu.edu.cs5010.IO.Writer;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,7 +12,7 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 /**
- * Hello world!
+ * generate 4 dat files
  *
  */
 public class SkiDataProcessor {

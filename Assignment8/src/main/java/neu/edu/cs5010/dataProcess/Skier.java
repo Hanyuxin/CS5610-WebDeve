@@ -1,4 +1,4 @@
-package neu.edu.cs5010;
+package neu.edu.cs5010.dataProcess;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,14 +42,26 @@ public class Skier {
         return ID;
     }
 
+    /**
+     * set LiftMap by the giving param
+     * @param liftMap SkierLiftMap
+     */
     public void setLiftMap(SkierLiftMap liftMap) {
         this.liftMap = liftMap;
     }
 
+    /**
+     * get the LiftMap
+     * @return SkierLiftMap
+     */
     public SkierLiftMap getLiftMap() {
         return liftMap;
     }
 
+    /**
+     * set the number of views
+     * @param numberOfViews
+     */
     public void setNumberOfViews(int numberOfViews) {
         this.numberOfViews = numberOfViews;
     }

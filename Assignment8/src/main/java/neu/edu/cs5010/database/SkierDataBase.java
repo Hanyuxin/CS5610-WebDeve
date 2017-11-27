@@ -1,8 +1,9 @@
 package neu.edu.cs5010.database;
 
-import neu.edu.cs5010.Lift;
-import neu.edu.cs5010.Skier;
-import neu.edu.cs5010.SkierLiftMap;
+
+import neu.edu.cs5010.dataProcess.Lift;
+import neu.edu.cs5010.dataProcess.Skier;
+import neu.edu.cs5010.dataProcess.SkierLiftMap;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,6 +25,11 @@ public class SkierDataBase implements SkiDataBase {
         }
     }
 
+    /**
+     * get Skier object with the giving skierID
+     * @param skierID int
+     * @return Skier
+     */
     public Skier getSkier(int skierID) {
         if (skierID < 1) throw new IllegalArgumentException("Error: Invalid ID");
 
@@ -45,6 +51,11 @@ public class SkierDataBase implements SkiDataBase {
         return skier;
     }
 
+    /**
+     * update this Skier number of view by add 1. first seek the file pos to this skier's the numberOfView, then
+     * update it
+     * @param skier Skier to update
+     */
     public void updateSkierNumOfView(Skier skier) {
         if (skier.getID() < 1) throw new IllegalArgumentException("Error: Invalid ID");
         try {
@@ -55,6 +66,11 @@ public class SkierDataBase implements SkiDataBase {
         }
     }
 
+    /**
+     * get LiftMap, for each SIGNLE_LENGTH, read file into a char array, and read time from the first 3 char, read
+     * liftID from the last 2 char. If the char contains '\0', means that there is no record.
+     * @return SkierLiftMap
+     */
     private SkierLiftMap getLiftMap() {
         Map<Integer, Lift> map = new HashMap<>();
         for(int j = 0; j < SkierLiftMap.NUMBER; j++) {
