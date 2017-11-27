@@ -50,6 +50,7 @@ public class Writer {
             bufferedWriter = new BufferedWriter(writer);
             bufferedWriter.write(str);
 
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

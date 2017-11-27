@@ -12,25 +12,24 @@ import neu.edu.cs5010.database.SkierDataBase;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 public class WorkingThread extends java.lang.Thread {
     private int index;
     private QueryProcessor queryProcessor;
     private Map<Integer, List<Integer>> QueryInput;
-    private Map<Integer, String> fileNameParser;
     private String fileName;
     private ReadWriteLock readWriteLock;
+    private CyclicBarrier cyclicBarrier;
+
 
     public WorkingThread(int index, Map<Integer, List<Integer>> QueryInput){
         this.index=index;
         this.QueryInput = QueryInput;
         this.fileName = "Thread"+this.index;
         queryProcessor = new QueryProcessor();
-        fileNameParser = new HashMap<>();
-        fileNameParser.put(1,"skier.dat");
-        fileNameParser.put(2,"skier.dat");
-        fileNameParser.put(3,"hour.dat");
-        fileNameParser.put(4,"lift.dat");
+
         readWriteLock = new ReadWriteLock();
 
     }
@@ -39,7 +38,7 @@ public class WorkingThread extends java.lang.Thread {
     public void run(){
         for(int key : QueryInput.keySet()){
             for(int parameterID: QueryInput.get(key)){
-                parseQuery(key,parameterID);
+                    parseQuery(key,parameterID);
             }
         }
     }
@@ -85,8 +84,6 @@ public class WorkingThread extends java.lang.Thread {
         }
 
 
-
-
     public String readQuery1(int parameterID, String fileName){
         String data;
         SkierDataBase skierDataBase = new SkierDataBase(fileName);
@@ -103,11 +100,16 @@ public class WorkingThread extends java.lang.Thread {
         StringBuilder sb = new StringBuilder();
         SkierDataBase skierDataBase = new SkierDataBase(fileName);
         Skier skier = skierDataBase.getSkier(parameterID);
+        Map<Integer, Lift> liftMap = skier.getLiftMap().getMap();
+        for(int Time: liftMap.keySet()){
+            sb.append("Time:").append(Time).append("  ").append("LiftID:").
+                    append(liftMap.get(Time).getLiftID()).append(System.lineSeparator());
 
-         String data = skier.getLiftMap().toDatFileString();
+        }
+//        String data = skier.getLiftMap().toString()+""+System.lineSeparator();
         skierDataBase.close();
 
-       return data;
+       return sb.toString();
     }
 
     public String readQuery3(int parameterID, String fileName){
