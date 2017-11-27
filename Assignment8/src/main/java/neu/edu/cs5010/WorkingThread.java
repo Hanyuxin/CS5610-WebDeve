@@ -1,8 +1,9 @@
 package neu.edu.cs5010;
 
-import neu.edu.cs5010.IO.Reader;
+
 import neu.edu.cs5010.IO.Writer;
 import neu.edu.cs5010.ReadWriteLock.ReadWriteLock;
+import neu.edu.cs5010.dataProcess.Skier;
 import neu.edu.cs5010.database.HourDataBase;
 import neu.edu.cs5010.database.LiftDataBase;
 import neu.edu.cs5010.database.SkierDataBase;

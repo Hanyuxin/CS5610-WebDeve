@@ -1,8 +1,10 @@
 package neu.edu.cs5010.database;
 
-import neu.edu.cs5010.Lift;
-import neu.edu.cs5010.Skier;
-import neu.edu.cs5010.SkierLiftMap;
+
+
+import neu.edu.cs5010.dataProcess.Lift;
+import neu.edu.cs5010.dataProcess.Skier;
+import neu.edu.cs5010.dataProcess.SkierLiftMap;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -1,7 +1,9 @@
 package neu.edu.cs5010.database;
 
-import neu.edu.cs5010.Hour;
-import neu.edu.cs5010.Lift;
+
+
+import neu.edu.cs5010.dataProcess.Hour;
+import neu.edu.cs5010.dataProcess.Lift;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
