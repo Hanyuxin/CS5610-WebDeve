@@ -45,55 +45,38 @@ public class WorkingThread extends java.lang.Thread {
     public void parseQuery(int key, int parameterID){
         String data="";
         if(key==1){
-
-            if(key==1) {
-                try {
-                    readWriteLock.lockWrite();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                    readWriteLock.getWriteLock().lock();
                 try {
                     data = readQuery1(parameterID, "skier.dat");
                 } finally {
-                    try {
-                        readWriteLock.unlockWrite();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                        readWriteLock.getWriteLock().unlock();
+
                 }
-            }
+
         } else if(key==2){
-            try {
-                readWriteLock.lockRead();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+           readWriteLock.getReadLock().lock();
             try {
                 data = readQuery2(parameterID, "skier.dat");
             } finally {
-                readWriteLock.unlockRead();
+                readWriteLock.getReadLock().unlock();
+
             }
         } else if(key==3){
-            try {
-                readWriteLock.lockRead();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                readWriteLock.getReadLock().lock();
+
             try {
                 data = readQuery3(parameterID, "hour.dat");
             } finally {
-                readWriteLock.unlockRead();
+                readWriteLock.getReadLock().unlock();
+
             }
         } else{
-            try {
-                readWriteLock.lockRead();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                readWriteLock.getReadLock().lock();
             try {
                 data = readQuery4(parameterID, "lift.dat");
             } finally {
-                readWriteLock.unlockRead();
+                readWriteLock.getReadLock().unlock();
+
             }
         }
         write(data);
@@ -153,7 +136,7 @@ public class WorkingThread extends java.lang.Thread {
 
     /**
      * Return the index of current threads;
-     * @return THe index of current threads;
+     * @return The index of current threads;
      */
     public int getIndex(){
         return this.index;

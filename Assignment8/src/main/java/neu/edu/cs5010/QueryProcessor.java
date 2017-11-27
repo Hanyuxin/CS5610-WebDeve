@@ -12,14 +12,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class QueryProcessor {
-    private static String inputFileName;
-    private static List<String> input;
+    private  String inputFileName;
+    private  List<String> input;
 
-    private static int NumberOfQueries;
-    private static int QueriesPerThread;
-    private static CyclicBarrier cyclicBarrier;
+    private  int NumberOfQueries;
+    private  int QueriesPerThread;
+    private  CyclicBarrier cyclicBarrier;
 
-    private static List<WorkingThread> threads;
+    private  List<WorkingThread> threads;
     public QueryProcessor(){
          inputFileName="";
          input= new LinkedList<>();
@@ -96,13 +96,10 @@ public class QueryProcessor {
 
     public static void main(String[] args) throws InterruptedException{
         QueryProcessor queryProcessor = new QueryProcessor();
-
         queryProcessor.checkArgument(args);
-        System.out.println(NumberOfQueries);
-        System.out.println(QueriesPerThread);
-        System.out.println(inputFileName);
         System.out.println(queryProcessor.test().size());
         queryProcessor.generateThread();
+        queryProcessor.startThreads();
     }
 
 
