@@ -3,6 +3,7 @@ package neu.edu.cs5010;
 
 import neu.edu.cs5010.IO.Writer;
 import neu.edu.cs5010.ReadWriteLock.ReadWriteLock;
+import neu.edu.cs5010.dataProcess.Lift;
 import neu.edu.cs5010.dataProcess.Skier;
 import neu.edu.cs5010.database.HourDataBase;
 import neu.edu.cs5010.database.LiftDataBase;
@@ -45,32 +46,33 @@ public class WorkingThread extends java.lang.Thread {
 
     public void parseQuery(int key, int parameterID) {
         String data = "";
-        if (key == 1) {
-            readWriteLock.getWriteLock().lock();
-            try {
-                data = readQuery1(parameterID, "skier.dat");
-            } finally {
-                readWriteLock.getWriteLock().unlock();
-
-            }
-
-        } else if(key==2){
-           readWriteLock.getReadLock().lock();
-            try {
-                data = readQuery2(parameterID, "skier.dat");
-            } finally {
-                readWriteLock.getReadLock().unlock();
-
-            }
-//        } else if(key==3){
-//                readWriteLock.getReadLock().lock();
-//
+//        if (key == 1) {
+//            readWriteLock.getWriteLock().lock();
 //            try {
-//                data = readQuery3(parameterID, "hour.dat");
+//                data = readQuery1(parameterID, "skier.dat");
+//            } finally {
+//                readWriteLock.getWriteLock().unlock();
+//
+//            }
+//
+//        } else if(key==2){
+//           readWriteLock.getReadLock().lock();
+//            try {
+//                data = readQuery2(parameterID, "skier.dat");
 //            } finally {
 //                readWriteLock.getReadLock().unlock();
 //
 //            }
+//        } else if(key==3){
+        if (key == 3) {
+            readWriteLock.getReadLock().lock();
+
+            try {
+                data = readQuery3(parameterID, "hour.dat");
+            } finally {
+                readWriteLock.getReadLock().unlock();
+
+            }
 //        } else{
 //                readWriteLock.getReadLock().lock();
 //            try {
@@ -83,6 +85,7 @@ public class WorkingThread extends java.lang.Thread {
             write(data);
         }
     }
+
 
 
     public String readQuery1(int parameterID, String fileName){
@@ -112,9 +115,12 @@ public class WorkingThread extends java.lang.Thread {
 
     public String readQuery3(int parameterID, String fileName){
         StringBuilder sb = new StringBuilder();
+     
         HourDataBase hourDataBase = new HourDataBase(fileName);
-        for(Map.Entry entry: hourDataBase.getHour(parameterID).getLiftMap().entrySet()){
-            sb.append(entry.getKey()+":"+entry.getValue());
+        Map<Integer,Lift> liftMap = hourDataBase.getHour(parameterID).getLiftMap();
+        for(int LiftID: liftMap.keySet()){
+
+            sb.append(LiftID+":"+liftMap.get(LiftID).getRidesCount());
             sb.append(System.lineSeparator());
         }
         hourDataBase.close();

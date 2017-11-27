@@ -45,9 +45,7 @@ public class SkierLiftMap {
         StringBuffer sb = new StringBuffer();
         for (int time : map.keySet()) {
             sb.append(String.format("%03d",time));
-            sb.append(":");
             sb.append(String.format("%02d",map.get(time).getLiftID()));
-            sb.append(System.lineSeparator());
         }
         return sb.toString();
     }
