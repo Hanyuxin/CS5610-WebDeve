@@ -100,7 +100,7 @@ public class SkiDataProcessor {
         write2SkierFile();
         write2LiftFile();
         write2HourFile();
-        write2RawFile();
+//        write2RawFile();
     }
 
     /**
@@ -124,7 +124,7 @@ public class SkiDataProcessor {
                 file.writeInt(skier.getLiftRidesCount());
                 file.writeInt(skier.getNumberOfViews());
 
-                StringBuffer sb = new StringBuffer(skier.getLiftMap().toString());
+                StringBuffer sb = new StringBuffer(skier.getLiftMap().toDatFileString());
                 sb.setLength(SkierLiftMap.SIGNLE_LENGTH * SkierLiftMap.NUMBER);
                 file.writeChars(sb.toString());
             } catch (IOException e) {

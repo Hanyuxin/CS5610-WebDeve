@@ -35,6 +35,15 @@ public class SkierLiftMap {
         this.map = map;
     }
 
+    public String toDatFileString(){
+        StringBuffer sb = new StringBuffer();
+        for (int time : map.keySet()) {
+            sb.append(String.format("%03d",time));
+            sb.append(String.format("%02d",map.get(time).getLiftID()));
+        }
+        return sb.toString();
+    }
+
     /**
      * Override the toString method, by add all entry to a string, time use 3 characters, and liftID use 2 character
      * @return String
