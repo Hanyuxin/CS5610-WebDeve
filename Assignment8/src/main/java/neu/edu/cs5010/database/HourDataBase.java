@@ -1,7 +1,7 @@
 package neu.edu.cs5010.database;
 
-import neu.edu.cs5010.Hour;
-import neu.edu.cs5010.Lift;
+import neu.edu.cs5010.dataProcess.Hour;
+import neu.edu.cs5010.dataProcess.Lift;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,6 +22,11 @@ public class HourDataBase implements SkiDataBase {
         }
     }
 
+    /**
+     * read from file to get this hourID's Hour object
+     * @param hourID
+     * @return Hour
+     */
     public Hour getHour(int hourID) {
         if(hourID < 1) throw new IllegalArgumentException("Error: Invalid ID");
 

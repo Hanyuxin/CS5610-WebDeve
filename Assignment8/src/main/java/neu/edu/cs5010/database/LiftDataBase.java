@@ -1,6 +1,7 @@
 package neu.edu.cs5010.database;
 
-import neu.edu.cs5010.Lift;
+
+import neu.edu.cs5010.dataProcess.Lift;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,6 +21,11 @@ public class LiftDataBase implements SkiDataBase{
         }
     }
 
+    /**
+     * get Lift object according to its liftID
+     * @param liftID int
+     * @return Lift
+     */
     public Lift getLift(int liftID) {
         if(liftID < 1) throw new IllegalArgumentException("Error: Invalid ID");
 

@@ -17,6 +17,7 @@ public class ReadWriteLock {
         while(! canGrantReadAccess(callingThread)){
             wait();
         }
+
         readingThreads.put(callingThread,
                 (readingThreads.get(callingThread) + 1));
         readingThread = callingThread;

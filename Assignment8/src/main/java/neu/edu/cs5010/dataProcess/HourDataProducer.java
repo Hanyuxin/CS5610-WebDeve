@@ -1,15 +1,14 @@
-package neu.edu.cs5010;
+package neu.edu.cs5010.dataProcess;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
-public class SkierDataProducer implements Runnable{
-    private BlockingQueue<int[]> skierQueue;
+public class HourDataProducer implements Runnable {
+    private BlockingQueue<int[]> hourQueue;
     private List<String> input;
 
-
-    public SkierDataProducer(BlockingQueue skierQueue, List<String> input) {
-        this.skierQueue = skierQueue;
+    public HourDataProducer(BlockingQueue<int[]> hourQueue, List<String> input) {
+        this.hourQueue = hourQueue;
         this.input = input;
     }
 
@@ -27,26 +26,25 @@ public class SkierDataProducer implements Runnable{
     @Override
     public void run() {
 
-        int skierPos = CsvInfo.getSkierPos();
+        int hourPos = CsvInfo.getHourPos();
         int liftPos = CsvInfo.getLiftPos();
-
         if (input.size() == 0) {
             throw new RuntimeException("There is no content in input file");
         }
 
         for (int i = 1; i < input.size(); i++) {
             String[] strs = input.get(i).split(",");
-            int skierID = Integer.parseInt(strs[skierPos]);
+            int hourID = Integer.parseInt(strs[hourPos]) / 60 + 1;
             int liftID = Integer.parseInt(strs[liftPos]);
             try {
-                skierQueue.put(new int[]{skierID, liftID});
+                hourQueue.put(new int[]{hourID, liftID});
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
         try {
-            skierQueue.put(new int[]{});
+            hourQueue.put(new int[]{});
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

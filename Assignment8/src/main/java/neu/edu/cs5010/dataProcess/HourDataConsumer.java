@@ -1,4 +1,4 @@
-package neu.edu.cs5010;
+package neu.edu.cs5010.dataProcess;
 
 import neu.edu.cs5010.IO.Writer;
 

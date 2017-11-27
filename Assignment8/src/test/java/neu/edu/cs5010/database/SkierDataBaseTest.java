@@ -1,7 +1,8 @@
 package neu.edu.cs5010.database;
 
-import neu.edu.cs5010.Skier;
-import neu.edu.cs5010.SkierLiftMap;
+
+import neu.edu.cs5010.dataProcess.Skier;
+import neu.edu.cs5010.dataProcess.SkierLiftMap;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

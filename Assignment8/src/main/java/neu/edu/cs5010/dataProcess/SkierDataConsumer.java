@@ -1,4 +1,4 @@
-package neu.edu.cs5010;
+package neu.edu.cs5010.dataProcess;
 
 import neu.edu.cs5010.IO.Writer;
 
@@ -60,8 +60,8 @@ public class SkierDataConsumer implements Runnable{
             map.get(pairs[0]).increaseLiftRidesCount();
 
             SkierLiftMap skierLiftMap = map.get(pairs[0]).getLiftMap();
-            skierLiftMap.getMap().putIfAbsent(pairs[1], new Lift(pairs[1]));
-            skierLiftMap.getMap().get(pairs[1]).increaseRidesCount();
+            skierLiftMap.getMap().putIfAbsent(pairs[2], new Lift(pairs[1]));
+            skierLiftMap.getMap().get(pairs[2]).increaseRidesCount();
         }
 
     }
