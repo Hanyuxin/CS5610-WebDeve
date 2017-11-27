@@ -46,25 +46,24 @@ public class WorkingThread extends java.lang.Thread {
 
     public void parseQuery(int key, int parameterID) {
         String data = "";
-//        if (key == 1) {
-//            readWriteLock.getWriteLock().lock();
-//            try {
-//                data = readQuery1(parameterID, "skier.dat");
-//            } finally {
-//                readWriteLock.getWriteLock().unlock();
-//
-//            }
-//
-//        } else if(key==2){
-//           readWriteLock.getReadLock().lock();
-//            try {
-//                data = readQuery2(parameterID, "skier.dat");
-//            } finally {
-//                readWriteLock.getReadLock().unlock();
-//
-//            }
-//        } else if(key==3){
-        if (key == 3) {
+        if (key == 1) {
+            readWriteLock.getWriteLock().lock();
+            try {
+                data = readQuery1(parameterID, "skier.dat");
+            } finally {
+                readWriteLock.getWriteLock().unlock();
+
+            }
+
+        } else if(key==2){
+           readWriteLock.getReadLock().lock();
+            try {
+                data = readQuery2(parameterID, "skier.dat");
+            } finally {
+                readWriteLock.getReadLock().unlock();
+
+            }
+        }else if (key == 3) {
             readWriteLock.getReadLock().lock();
 
             try {
@@ -73,18 +72,18 @@ public class WorkingThread extends java.lang.Thread {
                 readWriteLock.getReadLock().unlock();
 
             }
-//        } else{
-//                readWriteLock.getReadLock().lock();
-//            try {
-//                data = readQuery4(parameterID, "lift.dat");
-//            } finally {
-//                readWriteLock.getReadLock().unlock();
-//
-//            }
-//        }
+        } else{
+                readWriteLock.getReadLock().lock();
+            try {
+                data = readQuery4(parameterID, "lift.dat");
+            } finally {
+                readWriteLock.getReadLock().unlock();
+
+            }
+        }
             write(data);
         }
-    }
+
 
 
 
@@ -94,10 +93,8 @@ public class WorkingThread extends java.lang.Thread {
         Skier skier = skierDataBase.getSkier(parameterID);
         skierDataBase.updateSkierNumOfView(skier);
 
-//        data=parameterID+","+skier.getLiftRidesCount()+","+skier.getVerticalMetres()+","+
-//                skier.getNumberOfViews()+System.lineSeparator();
-        data ="sfdsfdsfsd";
-
+        data=parameterID+","+skier.getLiftRidesCount()+","+skier.getVerticalMetres()+","+
+                skier.getNumberOfViews()+System.lineSeparator();
         skierDataBase.close();
         return data;
     }
@@ -107,7 +104,7 @@ public class WorkingThread extends java.lang.Thread {
         SkierDataBase skierDataBase = new SkierDataBase(fileName);
         Skier skier = skierDataBase.getSkier(parameterID);
 
-         String data = skier.getLiftMap().toString();
+         String data = skier.getLiftMap().toDatFileString();
         skierDataBase.close();
 
        return data;
@@ -115,7 +112,7 @@ public class WorkingThread extends java.lang.Thread {
 
     public String readQuery3(int parameterID, String fileName){
         StringBuilder sb = new StringBuilder();
-     
+
         HourDataBase hourDataBase = new HourDataBase(fileName);
         Map<Integer,Lift> liftMap = hourDataBase.getHour(parameterID).getLiftMap();
         for(int LiftID: liftMap.keySet()){
@@ -137,8 +134,8 @@ public class WorkingThread extends java.lang.Thread {
 
 
     public void write(String data){
-       // Writer.AppendWrite(fileName, data);
-        Writer.OverriddenWrite(fileName,data);
+        Writer.AppendWrite(fileName, data);
+       // Writer.OverriddenWrite(fileName,data);
     }
 
     /**
