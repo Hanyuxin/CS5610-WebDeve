@@ -18,12 +18,12 @@ public class Hour {
      * @return int number from 0-6
      */
     public int getNumber() {
-<span class="nc" id="L21">        return number;</span>
+<span class="fc" id="L21">        return number;</span>
     }
 
     /**
      * get a map that contains all Lift that used in this hour
-     * @return Map&lt;Integer, Lift&gt;
+     * @return LiftMap of Hour object; Integer-Lift key-value pair.
      */
     public Map&lt;Integer, Lift&gt; getLiftMap() {
 <span class="fc" id="L29">        return liftMap;</span>
@@ -31,7 +31,7 @@ public class Hour {
 
     /**
      *
-     * @param liftMap Map&lt;Integer, Lift&gt;
+     * @param liftMap LiftMap of Hour object; Integer-Lift key-value pair.
      */
     public void setLiftMap(Map&lt;Integer, Lift&gt; liftMap) {
 <span class="fc" id="L37">        this.liftMap = liftMap;</span>

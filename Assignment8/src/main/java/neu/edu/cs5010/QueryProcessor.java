@@ -92,7 +92,7 @@ public class QueryProcessor  {
 
     /**
      * Start 20 WorkingThreads at the same time.
-     * @throws InterruptedException
+     * @throws InterruptedException Interrupted Exception.
      */
     public  void startThreads() throws InterruptedException{
         threads= generateThread();
@@ -109,7 +109,7 @@ public class QueryProcessor  {
     /**
      * start the entire QueryProcessor program.
      * @param args Command line arguments(String array).
-     * @throws InterruptedException
+     * @throws InterruptedException InterruptedException.
      */
     public static void main(String[] args) throws InterruptedException{
         QueryProcessor queryProcessor = new QueryProcessor();

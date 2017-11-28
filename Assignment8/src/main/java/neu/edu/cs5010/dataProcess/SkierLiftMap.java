@@ -1,8 +1,7 @@
 package neu.edu.cs5010.dataProcess;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 public class SkierLiftMap {
@@ -15,17 +14,14 @@ public class SkierLiftMap {
         map = new HashMap<>();
     }
 
-    /**
-     * set the inner Map<Integer, Lift>
-     * @param map Map<Integer, Lift>
-     */
+
     public SkierLiftMap(Map<Integer, Lift> map) {
         this.map = map;
     }
 
     /**
-     * get the inner Map<Integer, Lift>
-     * @return Map<Integer, Lift>
+     * Get the Map of LiftID and Lift object.
+     * @return  The Map of LiftID and Lift object.
      */
     public Map<Integer, Lift> getMap() {
         return map;
@@ -65,16 +61,21 @@ public class SkierLiftMap {
      */
     @Override
     public int hashCode() {
-        return map.hashCode();
+        return map != null ? map.hashCode() : 0;
     }
 
     /**
      * Override the equals method
-     * @param obj
-     * @return
+     * @return if two SkierLiftMap objects are actually equals.
      */
+
     @Override
-    public boolean equals(Object obj) {
-        return map.equals(obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SkierLiftMap that = (SkierLiftMap) o;
+
+        return map != null ? map.equals(that.map) : that.map == null;
     }
 }

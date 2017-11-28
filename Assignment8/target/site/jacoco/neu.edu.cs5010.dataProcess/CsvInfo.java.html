@@ -6,29 +6,29 @@ public class CsvInfo {
     private static int liftPos;
     private static int hourPos;
 
-<span class="nc" id="L9">    public CsvInfo(String header) {</span>
-<span class="nc" id="L10">        initialIndexes(header);</span>
-<span class="nc" id="L11">    }</span>
+<span class="fc" id="L9">    public CsvInfo(String header) {</span>
+<span class="fc" id="L10">        initialIndexes(header);</span>
+<span class="fc" id="L11">    }</span>
 
     /**
      *  first find the different columns index in the giving String
      * @param input String
      */
     private void initialIndexes(String input) {
-<span class="nc" id="L18">        String[] strs = input.split(&quot;,&quot;);</span>
-<span class="nc bnc" id="L19" title="All 2 branches missed.">        for (int i = 0; i &lt; strs.length; i++) {</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">            if (strs[i].contains(&quot;skier&quot;)) skierPos = i;</span>
-<span class="nc bnc" id="L21" title="All 2 branches missed.">            else if (strs[i].contains(&quot;lift&quot;)) liftPos = i;</span>
-<span class="nc bnc" id="L22" title="All 2 branches missed.">            else if (strs[i].contains(&quot;time&quot;)) hourPos = i;</span>
+<span class="fc" id="L18">        String[] strs = input.split(&quot;,&quot;);</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        for (int i = 0; i &lt; strs.length; i++) {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">            if (strs[i].contains(&quot;skier&quot;)) skierPos = i;</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">            else if (strs[i].contains(&quot;lift&quot;)) liftPos = i;</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">            else if (strs[i].contains(&quot;time&quot;)) hourPos = i;</span>
         }
-<span class="nc" id="L24">    }</span>
+<span class="fc" id="L24">    }</span>
 
     /**
      * get the column index of lift in the giving file
      * @return int liftPos
      */
     public static int getLiftPos() {
-<span class="nc" id="L31">        return liftPos;</span>
+<span class="fc" id="L31">        return liftPos;</span>
     }
 
     /**
@@ -36,7 +36,7 @@ public class CsvInfo {
      * @return int hourPos
      */
     public static int getHourPos() {
-<span class="nc" id="L39">        return hourPos;</span>
+<span class="fc" id="L39">        return hourPos;</span>
     }
 
     /**
@@ -44,7 +44,7 @@ public class CsvInfo {
      * @return int skierPos
      */
     public static int getSkierPos() {
-<span class="nc" id="L47">        return skierPos;</span>
+<span class="fc" id="L47">        return skierPos;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

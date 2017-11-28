@@ -38,12 +38,12 @@ public class Lift {
      */
     public int compareTo(Lift lift) {
 
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (ridesCount &gt; lift.getRidesCount()) {</span>
-<span class="nc" id="L42">            return 1;</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">        } else if (ridesCount &lt; lift.getRidesCount()) {</span>
-<span class="nc" id="L44">            return -1;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (ridesCount &gt; lift.getRidesCount()) {</span>
+<span class="fc" id="L42">            return 1;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        } else if (ridesCount &lt; lift.getRidesCount()) {</span>
+<span class="fc" id="L44">            return -1;</span>
         } else {
-<span class="nc" id="L46">            return 0;</span>
+<span class="fc" id="L46">            return 0;</span>
         }
     }
 
@@ -68,15 +68,15 @@ public class Lift {
      * @return int ridesCount
      */
     public int getRidesCount() {
-<span class="nc" id="L71">        return ridesCount;</span>
+<span class="fc" id="L71">        return ridesCount;</span>
     }
 
     /**
      * increase the total number of lift rides per day by 1
      */
     public void increaseRidesCount() {
-<span class="nc" id="L78">        this.ridesCount += 1;</span>
-<span class="nc" id="L79">    }</span>
+<span class="fc" id="L78">        this.ridesCount += 1;</span>
+<span class="fc" id="L79">    }</span>
 
     /**
      * set the total number of lift rides per day
@@ -87,21 +87,30 @@ public class Lift {
 <span class="fc" id="L87">    }</span>
 
     /**
+     * Override the equals method of Lift object.
+     * @return If two Lift objects are actually equals.
+     */
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (this == o) return true;</span>
+<span class="nc bnc" id="L96" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+
+<span class="nc" id="L98">        Lift lift = (Lift) o;</span>
+
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (liftID != lift.liftID) return false;</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        if (ridesCount != lift.ridesCount) return false;</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        return vertical == lift.vertical;</span>
+    }
+    /**
      * Override the hashCode method of Lift object.
      * @return integer hashcode
      */
     @Override
     public int hashCode() {
-<span class="fc" id="L95">        return super.hashCode();</span>
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (this == obj) return true;</span>
-<span class="nc bnc" id="L101" title="All 4 branches missed.">        if (obj == null || getClass() != obj.getClass()) return false;</span>
-
-<span class="nc" id="L103">        Lift lift = (Lift)obj;</span>
-<span class="nc bnc" id="L104" title="All 2 branches missed.">        return liftID == lift.getLiftID() ? true : false;</span>
+<span class="fc" id="L110">        int result = liftID;</span>
+<span class="fc" id="L111">        result = 31 * result + ridesCount;</span>
+<span class="fc" id="L112">        result = 31 * result + vertical;</span>
+<span class="fc" id="L113">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

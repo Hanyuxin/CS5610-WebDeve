@@ -17,21 +17,20 @@ import java.util.concurrent.CyclicBarrier;
 
 public class WorkingThread extends java.lang.Thread {
     private int index;
-    private QueryProcessor queryProcessor;
     private Map&lt;Integer, List&lt;Integer&gt;&gt; QueryInput;
     private String fileName;
     private ReadWriteLock readWriteLock;
     private CyclicBarrier cyclicBarrier;
 
 
-<span class="fc" id="L27">    public WorkingThread(int index, Map&lt;Integer, List&lt;Integer&gt;&gt; QueryInput, CyclicBarrier cyclicBarrier){</span>
-<span class="fc" id="L28">        this.index=index;</span>
-<span class="fc" id="L29">        this.QueryInput = QueryInput;</span>
-<span class="fc" id="L30">        this.fileName = &quot;Thread&quot;+this.index;</span>
-<span class="fc" id="L31">        this.cyclicBarrier = cyclicBarrier;</span>
-<span class="fc" id="L32">        readWriteLock = new ReadWriteLock();</span>
+<span class="fc" id="L26">    public WorkingThread(int index, Map&lt;Integer, List&lt;Integer&gt;&gt; QueryInput, CyclicBarrier cyclicBarrier){</span>
+<span class="fc" id="L27">        this.index=index;</span>
+<span class="fc" id="L28">        this.QueryInput = QueryInput;</span>
+<span class="fc" id="L29">        this.fileName = &quot;Thread&quot;+this.index;</span>
+<span class="fc" id="L30">        this.cyclicBarrier = cyclicBarrier;</span>
+<span class="fc" id="L31">        readWriteLock = new ReadWriteLock();</span>
 
-<span class="fc" id="L34">    }</span>
+<span class="fc" id="L33">    }</span>
 
     /**
      * Overriden run method of each WorkingThread object.
@@ -39,21 +38,21 @@ public class WorkingThread extends java.lang.Thread {
     @Override
     public void run(){
         try{
-<span class="nc" id="L42">            cyclicBarrier.await();</span>
-<span class="nc" id="L43">        } catch(InterruptedException | BrokenBarrierException e){</span>
-<span class="nc" id="L44">            e.printStackTrace();</span>
-<span class="nc" id="L45">        }</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">        for(int key : QueryInput.keySet()){</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">            for(int parameterID: QueryInput.get(key)){</span>
-<span class="nc" id="L48">                    parseQuery(key,parameterID);</span>
-<span class="nc" id="L49">            }</span>
-<span class="nc" id="L50">        }</span>
+<span class="fc" id="L41">            cyclicBarrier.await();</span>
+<span class="nc" id="L42">        } catch(InterruptedException | BrokenBarrierException e){</span>
+<span class="nc" id="L43">            e.printStackTrace();</span>
+<span class="fc" id="L44">        }</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for(int key : QueryInput.keySet()){</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            for(int parameterID: QueryInput.get(key)){</span>
+<span class="fc" id="L47">                    parseQuery(key,parameterID);</span>
+<span class="fc" id="L48">            }</span>
+<span class="fc" id="L49">        }</span>
         try{
-<span class="nc" id="L52">            cyclicBarrier.await();</span>
-<span class="nc" id="L53">        } catch(InterruptedException | BrokenBarrierException e){</span>
-<span class="nc" id="L54">            e.printStackTrace();</span>
-<span class="nc" id="L55">        }</span>
-<span class="nc" id="L56">    }</span>
+<span class="fc" id="L51">            cyclicBarrier.await();</span>
+<span class="nc" id="L52">        } catch(InterruptedException | BrokenBarrierException e){</span>
+<span class="nc" id="L53">            e.printStackTrace();</span>
+<span class="fc" id="L54">        }</span>
+<span class="fc" id="L55">    }</span>
 
     /**
      * Parse different Query type and add wirtelock/readlock to current thread.
@@ -61,44 +60,44 @@ public class WorkingThread extends java.lang.Thread {
      * @param parameterID ParameterID read from input Query data file;
      */
     public void parseQuery(int key, int parameterID) {
-<span class="nc" id="L64">        String data = &quot;&quot;;</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (key == 1) {</span>
-<span class="nc" id="L66">            readWriteLock.getWriteLock().lock();</span>
+<span class="fc" id="L63">        String data = &quot;&quot;;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (key == 1) {</span>
+<span class="fc" id="L65">            readWriteLock.getWriteLock().lock();</span>
             try {
-<span class="nc" id="L68">                data = readQuery1(parameterID, &quot;skier.dat&quot;);</span>
+<span class="fc" id="L67">                data = readQuery1(parameterID, &quot;skier.dat&quot;);</span>
             } finally {
-<span class="nc" id="L70">                readWriteLock.getWriteLock().unlock();</span>
+<span class="pc" id="L69">                readWriteLock.getWriteLock().unlock();</span>
 
-<span class="nc" id="L72">            }</span>
+<span class="fc" id="L71">            }</span>
 
-<span class="nc bnc" id="L74" title="All 2 branches missed.">        } else if(key==2){</span>
-<span class="nc" id="L75">           readWriteLock.getReadLock().lock();</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        } else if(key==2){</span>
+<span class="fc" id="L74">           readWriteLock.getReadLock().lock();</span>
             try {
-<span class="nc" id="L77">                data = readQuery2(parameterID, &quot;skier.dat&quot;);</span>
+<span class="fc" id="L76">                data = readQuery2(parameterID, &quot;skier.dat&quot;);</span>
             } finally {
-<span class="nc" id="L79">                readWriteLock.getReadLock().unlock();</span>
+<span class="pc" id="L78">                readWriteLock.getReadLock().unlock();</span>
 
-<span class="nc" id="L81">            }</span>
-<span class="nc bnc" id="L82" title="All 2 branches missed.">        }else if (key == 3) {</span>
-<span class="nc" id="L83">            readWriteLock.getReadLock().lock();</span>
+<span class="fc" id="L80">            }</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        }else if (key == 3) {</span>
+<span class="fc" id="L82">            readWriteLock.getReadLock().lock();</span>
 
             try {
-<span class="nc" id="L86">                data = readQuery3(parameterID, &quot;hour.dat&quot;);</span>
+<span class="fc" id="L85">                data = readQuery3(parameterID, &quot;hour.dat&quot;);</span>
             } finally {
-<span class="nc" id="L88">                readWriteLock.getReadLock().unlock();</span>
+<span class="pc" id="L87">                readWriteLock.getReadLock().unlock();</span>
 
-<span class="nc" id="L90">            }</span>
+<span class="fc" id="L89">            }</span>
         } else{
-<span class="nc" id="L92">                readWriteLock.getReadLock().lock();</span>
+<span class="fc" id="L91">                readWriteLock.getReadLock().lock();</span>
             try {
-<span class="nc" id="L94">                data = readQuery4(parameterID, &quot;lift.dat&quot;);</span>
+<span class="fc" id="L93">                data = readQuery4(parameterID, &quot;lift.dat&quot;);</span>
             } finally {
-<span class="nc" id="L96">                readWriteLock.getReadLock().unlock();</span>
+<span class="pc" id="L95">                readWriteLock.getReadLock().unlock();</span>
 
-<span class="nc" id="L98">            }</span>
+<span class="fc" id="L97">            }</span>
         }
-<span class="nc" id="L100">            write(data);</span>
-<span class="nc" id="L101">        }</span>
+<span class="fc" id="L99">            write(data);</span>
+<span class="fc" id="L100">        }</span>
 
     /**
      * Read query1 and generate String data that would be written into output
@@ -109,14 +108,14 @@ public class WorkingThread extends java.lang.Thread {
      */
     public String readQuery1(int parameterID, String fileName){
         String data;
-<span class="nc" id="L112">        SkierDataBase skierDataBase = new SkierDataBase(fileName);</span>
-<span class="nc" id="L113">        Skier skier = skierDataBase.getSkier(parameterID);</span>
-<span class="nc" id="L114">        skierDataBase.updateSkierNumOfView(skier);</span>
+<span class="fc" id="L111">        SkierDataBase skierDataBase = new SkierDataBase(fileName);</span>
+<span class="fc" id="L112">        Skier skier = skierDataBase.getSkier(parameterID);</span>
+<span class="fc" id="L113">        skierDataBase.updateSkierNumOfView(skier);</span>
 
-<span class="nc" id="L116">        data=parameterID+&quot;,&quot;+skier.getLiftRidesCount()+&quot;,&quot;+skier.getVerticalMetres()+&quot;,&quot;+</span>
-<span class="nc" id="L117">                skier.getNumberOfViews()+System.lineSeparator();</span>
-<span class="nc" id="L118">        skierDataBase.close();</span>
-<span class="nc" id="L119">        return data;</span>
+<span class="fc" id="L115">        data=parameterID+&quot;,&quot;+skier.getLiftRidesCount()+&quot;,&quot;+skier.getVerticalMetres()+&quot;,&quot;+</span>
+<span class="fc" id="L116">                skier.getNumberOfViews()+System.lineSeparator();</span>
+<span class="fc" id="L117">        skierDataBase.close();</span>
+<span class="fc" id="L118">        return data;</span>
     }
     /**
      * Read query2 and generate String data that would be written into output
@@ -126,18 +125,18 @@ public class WorkingThread extends java.lang.Thread {
      * @return String data that would be written into output
      */
     public String readQuery2(int parameterID, String fileName){
-<span class="nc" id="L129">        StringBuilder sb = new StringBuilder();</span>
-<span class="nc" id="L130">        SkierDataBase skierDataBase = new SkierDataBase(fileName);</span>
-<span class="nc" id="L131">        Skier skier = skierDataBase.getSkier(parameterID);</span>
-<span class="nc" id="L132">        Map&lt;Integer, Lift&gt; liftMap = skier.getLiftMap().getMap();</span>
-<span class="nc bnc" id="L133" title="All 2 branches missed.">        for(int Time: liftMap.keySet()){</span>
-<span class="nc" id="L134">            sb.append(&quot;Time:&quot;).append(Time).append(&quot;  &quot;).append(&quot;LiftID:&quot;).</span>
-<span class="nc" id="L135">                    append(liftMap.get(Time).getLiftID()).append(System.lineSeparator());</span>
+<span class="fc" id="L128">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L129">        SkierDataBase skierDataBase = new SkierDataBase(fileName);</span>
+<span class="fc" id="L130">        Skier skier = skierDataBase.getSkier(parameterID);</span>
+<span class="fc" id="L131">        Map&lt;Integer, Lift&gt; liftMap = skier.getLiftMap().getMap();</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        for(int Time: liftMap.keySet()){</span>
+<span class="fc" id="L133">            sb.append(&quot;Time:&quot;).append(Time).append(&quot;  &quot;).append(&quot;LiftID:&quot;).</span>
+<span class="fc" id="L134">                    append(liftMap.get(Time).getLiftID()).append(System.lineSeparator());</span>
 
-<span class="nc" id="L137">        }</span>
-<span class="nc" id="L138">        skierDataBase.close();</span>
+<span class="fc" id="L136">        }</span>
+<span class="fc" id="L137">        skierDataBase.close();</span>
 
-<span class="nc" id="L140">       return sb.toString();</span>
+<span class="fc" id="L139">       return sb.toString();</span>
     }
     /**
      * Read query3 and generate String data that would be written into output
@@ -148,18 +147,18 @@ public class WorkingThread extends java.lang.Thread {
      */
 
     public String readQuery3(int parameterID, String fileName){
-<span class="nc" id="L151">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L150">        StringBuilder sb = new StringBuilder();</span>
 
-<span class="nc" id="L153">        HourDataBase hourDataBase = new HourDataBase(fileName);</span>
-<span class="nc" id="L154">        Map&lt;Integer,Lift&gt; liftMap = hourDataBase.getHour(parameterID).getLiftMap();</span>
-<span class="nc bnc" id="L155" title="All 2 branches missed.">        for(int LiftID: liftMap.keySet()){</span>
+<span class="fc" id="L152">        HourDataBase hourDataBase = new HourDataBase(fileName);</span>
+<span class="fc" id="L153">        Map&lt;Integer,Lift&gt; liftMap = hourDataBase.getHour(parameterID).getLiftMap();</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        for(int LiftID: liftMap.keySet()){</span>
 
-<span class="nc" id="L157">            sb.append(LiftID+&quot;:&quot;+liftMap.get(LiftID).getRidesCount());</span>
-<span class="nc" id="L158">            sb.append(System.lineSeparator());</span>
-<span class="nc" id="L159">        }</span>
-<span class="nc" id="L160">        hourDataBase.close();</span>
-<span class="nc" id="L161">       String data = sb.toString();</span>
-<span class="nc" id="L162">       return data;</span>
+<span class="fc" id="L156">            sb.append(LiftID+&quot;:&quot;+liftMap.get(LiftID).getRidesCount());</span>
+<span class="fc" id="L157">            sb.append(System.lineSeparator());</span>
+<span class="fc" id="L158">        }</span>
+<span class="fc" id="L159">        hourDataBase.close();</span>
+<span class="fc" id="L160">       String data = sb.toString();</span>
+<span class="fc" id="L161">       return data;</span>
     }
     /**
      * Read query4 and generate String data that would be written into output
@@ -169,10 +168,10 @@ public class WorkingThread extends java.lang.Thread {
      * @return String data that would be written into output
      */
     public String readQuery4(int parameterID, String fileName){
-<span class="nc" id="L172">        LiftDataBase liftDataBase = new LiftDataBase(fileName);</span>
-<span class="nc" id="L173">       String data = parameterID +&quot;:&quot;+String.valueOf(liftDataBase.getLift(parameterID).getRidesCount())</span>
-<span class="nc" id="L174">                +System.lineSeparator();</span>
-<span class="nc" id="L175">       return data;</span>
+<span class="fc" id="L171">        LiftDataBase liftDataBase = new LiftDataBase(fileName);</span>
+<span class="fc" id="L172">       String data = parameterID +&quot;:&quot;+String.valueOf(liftDataBase.getLift(parameterID).getRidesCount())</span>
+<span class="fc" id="L173">                +System.lineSeparator();</span>
+<span class="fc" id="L174">       return data;</span>
     }
 
     /**
@@ -181,15 +180,15 @@ public class WorkingThread extends java.lang.Thread {
      * @param data Each line of String data;
      */
     public void write(String data){
-<span class="nc" id="L184">        Writer.AppendWrite(fileName, data);</span>
-<span class="nc" id="L185">    }</span>
+<span class="fc" id="L183">        Writer.AppendWrite(fileName, data);</span>
+<span class="fc" id="L184">    }</span>
 
     /**
      * Return the QueryInput that the current thread is responsible for;
      * @return The QueryInput that the current thread is responsible for;
      */
     public Map&lt;Integer,List&lt;Integer&gt;&gt; getQueryInput(){
-<span class="fc" id="L192">        return this.QueryInput;</span>
+<span class="fc" id="L191">        return this.QueryInput;</span>
     }
 }
 

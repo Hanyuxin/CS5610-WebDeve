@@ -1,7 +1,5 @@
 package neu.edu.cs5010.dataProcess;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Skier {
     private int ID;
@@ -60,7 +58,7 @@ public class Skier {
 
     /**
      * set the number of views
-     * @param numberOfViews
+     * @param numberOfViews Number of views of current Skier Object.
      */
     public void setNumberOfViews(int numberOfViews) {
         this.numberOfViews = numberOfViews;
@@ -83,6 +81,7 @@ public class Skier {
 
     /**
      * set the number of lift rides they do each day
+     * @param liftRidesCount Lift Rides count of current Skier Object.
      */
     public void setLiftRidesCount(int liftRidesCount) {
         this.liftRidesCount = liftRidesCount;
@@ -127,27 +126,35 @@ public class Skier {
         this.numberOfViews += 1;
     }
 
+
+    /**
+     * Override the equals method of Skier object.
+     * @return true If two Skier objects are the same
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Skier skier = (Skier) o;
+
+        if (ID != skier.ID) return false;
+        if (liftRidesCount != skier.liftRidesCount) return false;
+        if (verticalMetres != skier.verticalMetres) return false;
+        if (numberOfViews != skier.numberOfViews) return false;
+        return liftMap != null ? liftMap.equals(skier.liftMap) : skier.liftMap == null;
+    }
     /**
      * Override the hashCode method of Skier object.
      * @return integer hashcode
      */
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int result = ID;
+        result = 31 * result + liftRidesCount;
+        result = 31 * result + verticalMetres;
+        result = 31 * result + numberOfViews;
+        result = 31 * result + (liftMap != null ? liftMap.hashCode() : 0);
+        return result;
     }
-
-    /**
-     * Override the equals method of Skier object.
-     * @param obj the Skier Object
-     * @return true If two Skier objects are the same
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        Skier skier = (Skier)obj;
-        return ID == skier.getID() ? true : false;
-    }
-
 }

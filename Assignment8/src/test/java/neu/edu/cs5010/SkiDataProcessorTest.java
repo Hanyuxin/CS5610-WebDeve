@@ -1,11 +1,12 @@
 package neu.edu.cs5010;
 
+
 import neu.edu.cs5010.dataProcess.SkiDataProcessor;
 import org.junit.Test;
 
 
 public class SkiDataProcessorTest {
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void mainTest1() {
         SkiDataProcessor.main(null);
     }

@@ -1,10 +1,6 @@
 package neu.edu.cs5010.dataProcess;
 
-import neu.edu.cs5010.IO.Writer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 

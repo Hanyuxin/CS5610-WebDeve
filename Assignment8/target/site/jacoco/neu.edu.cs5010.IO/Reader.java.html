@@ -25,20 +25,20 @@ public class Reader {
 <span class="fc" id="L25">        BufferedReader bufferedReader = null;</span>
 <span class="fc" id="L26">        List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
         try {
-<span class="nc" id="L28">            bufferedReader = new BufferedReader(new FileReader(file));</span>
+<span class="fc" id="L28">            bufferedReader = new BufferedReader(new FileReader(file));</span>
             String temp;
-<span class="nc bnc" id="L30" title="All 2 branches missed.">            while ((temp = bufferedReader.readLine()) != null) {</span>
-<span class="nc" id="L31">                list.add(temp);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">            while ((temp = bufferedReader.readLine()) != null) {</span>
+<span class="fc" id="L31">                list.add(temp);</span>
             }
-<span class="fc" id="L33">        } catch (IOException e) {</span>
-<span class="fc" id="L34">            e.printStackTrace();</span>
+<span class="nc" id="L33">        } catch (IOException e) {</span>
+<span class="nc" id="L34">            e.printStackTrace();</span>
         } finally {
 <span class="pc bpc" id="L36" title="5 of 6 branches missed.">            if (bufferedReader != null) {</span>
                 try {
-<span class="nc" id="L38">                    bufferedReader.close();</span>
+<span class="pc" id="L38">                    bufferedReader.close();</span>
 <span class="nc" id="L39">                } catch (IOException e) {</span>
 <span class="nc" id="L40">                    e.printStackTrace();</span>
-<span class="nc" id="L41">                }</span>
+<span class="pc" id="L41">                }</span>
             }
         }
 <span class="fc" id="L44">        return list;</span>

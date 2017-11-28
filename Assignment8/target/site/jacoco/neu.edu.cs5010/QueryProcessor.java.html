@@ -77,14 +77,14 @@ public class QueryProcessor  {
 
 <span class="fc" id="L78">      int currIndex = index;</span>
 <span class="fc" id="L79">      Map&lt;Integer,List&lt;Integer&gt;&gt; QueryInput = new HashMap&lt;&gt;();</span>
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">       for(int i=currIndex*QueriesPerThread; i&lt;(currIndex+1)*QueriesPerThread; i++){</span>
-<span class="nc" id="L81">             String data = input.get(i);</span>
-<span class="nc" id="L82">               String[] line = data.split(&quot;,&quot;);</span>
-<span class="nc" id="L83">               int key = Integer.valueOf(line[0]);</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">               if(!QueryInput.containsKey(key)){</span>
-<span class="nc" id="L85">                   QueryInput.put(key, new LinkedList&lt;&gt;());</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">       for(int i=currIndex*QueriesPerThread; i&lt;(currIndex+1)*QueriesPerThread; i++){</span>
+<span class="fc" id="L81">             String data = input.get(i);</span>
+<span class="fc" id="L82">               String[] line = data.split(&quot;,&quot;);</span>
+<span class="fc" id="L83">               int key = Integer.valueOf(line[0]);</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">               if(!QueryInput.containsKey(key)){</span>
+<span class="fc" id="L85">                   QueryInput.put(key, new LinkedList&lt;&gt;());</span>
                }
-<span class="nc" id="L87">               QueryInput.get(key).add(Integer.valueOf(line[1]));</span>
+<span class="fc" id="L87">               QueryInput.get(key).add(Integer.valueOf(line[1]));</span>
 
        }
 <span class="fc" id="L90">       return QueryInput;</span>
@@ -92,24 +92,24 @@ public class QueryProcessor  {
 
     /**
      * Start 20 WorkingThreads at the same time.
-     * @throws InterruptedException
+     * @throws InterruptedException Interrupted Exception.
      */
     public  void startThreads() throws InterruptedException{
-<span class="nc" id="L98">        threads= generateThread();</span>
+<span class="fc" id="L98">        threads= generateThread();</span>
 
-<span class="nc bnc" id="L100" title="All 2 branches missed.">            for(int i=0; i&lt;threads.size(); i++){</span>
-<span class="nc" id="L101">                executor.execute(threads.get(i));</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">            for(int i=0; i&lt;threads.size(); i++){</span>
+<span class="fc" id="L101">                executor.execute(threads.get(i));</span>
             }
-<span class="nc" id="L103">             executor.shutdown();</span>
+<span class="fc" id="L103">             executor.shutdown();</span>
 
-<span class="nc" id="L105">        System.out.println(&quot;Elapsed Time:&quot;+String.valueOf(System.currentTimeMillis()-time)+&quot;ms&quot;);</span>
+<span class="fc" id="L105">        System.out.println(&quot;Elapsed Time:&quot;+String.valueOf(System.currentTimeMillis()-time)+&quot;ms&quot;);</span>
 
-<span class="nc" id="L107">    }</span>
+<span class="fc" id="L107">    }</span>
 
     /**
      * start the entire QueryProcessor program.
      * @param args Command line arguments(String array).
-     * @throws InterruptedException
+     * @throws InterruptedException InterruptedException.
      */
     public static void main(String[] args) throws InterruptedException{
 <span class="nc" id="L115">        QueryProcessor queryProcessor = new QueryProcessor();</span>

@@ -23,7 +23,7 @@ public class Hour {
 
     /**
      * get a map that contains all Lift that used in this hour
-     * @return Map<Integer, Lift>
+     * @return LiftMap of Hour object; Integer-Lift key-value pair.
      */
     public Map<Integer, Lift> getLiftMap() {
         return liftMap;
@@ -31,7 +31,7 @@ public class Hour {
 
     /**
      *
-     * @param liftMap Map<Integer, Lift>
+     * @param liftMap LiftMap of Hour object; Integer-Lift key-value pair.
      */
     public void setLiftMap(Map<Integer, Lift> liftMap) {
         this.liftMap = liftMap;

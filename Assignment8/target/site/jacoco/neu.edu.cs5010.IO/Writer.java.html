@@ -42,30 +42,30 @@ import java.io.*;
      * @param str       the content that write to file
      */
     public static void AppendWrite(String fileName, String str) {
-<span class="nc" id="L45">        FileWriter writer = null;</span>
-<span class="nc" id="L46">        BufferedWriter bufferedWriter = null;</span>
+<span class="fc" id="L45">        FileWriter writer = null;</span>
+<span class="fc" id="L46">        BufferedWriter bufferedWriter = null;</span>
         try {
 
-<span class="nc" id="L49">            writer = new FileWriter(fileName,true);</span>
-<span class="nc" id="L50">            bufferedWriter = new BufferedWriter(writer);</span>
-<span class="nc" id="L51">            bufferedWriter.write(str);</span>
+<span class="fc" id="L49">            writer = new FileWriter(fileName,true);</span>
+<span class="fc" id="L50">            bufferedWriter = new BufferedWriter(writer);</span>
+<span class="fc" id="L51">            bufferedWriter.write(str);</span>
 
 
 <span class="nc" id="L54">        } catch (IOException e) {</span>
 <span class="nc" id="L55">            e.printStackTrace();</span>
         } finally {
 <span class="nc" id="L57">            try {</span>
-<span class="nc bnc" id="L58" title="All 6 branches missed.">                if (bufferedWriter != null) {</span>
-<span class="nc" id="L59">                    bufferedWriter.close();</span>
+<span class="pc bpc" id="L58" title="5 of 6 branches missed.">                if (bufferedWriter != null) {</span>
+<span class="pc" id="L59">                    bufferedWriter.close();</span>
                 }
-<span class="nc bnc" id="L61" title="All 6 branches missed.">                if (writer != null) {</span>
-<span class="nc" id="L62">                    writer.close();</span>
+<span class="pc bpc" id="L61" title="5 of 6 branches missed.">                if (writer != null) {</span>
+<span class="pc" id="L62">                    writer.close();</span>
                 }
 <span class="nc" id="L64">            } catch (IOException e) {</span>
 <span class="nc" id="L65">                e.printStackTrace();</span>
-<span class="nc" id="L66">            }</span>
+<span class="pc" id="L66">            }</span>
 <span class="nc" id="L67">        }</span>
-<span class="nc" id="L68">    }</span>
+<span class="fc" id="L68">    }</span>
 
     /**
      * Use FileOutputStream to write byte array to the giving file
