@@ -45,8 +45,8 @@ public class PlayYahtzee {
       PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
       BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-      BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
-      UserInputHandler handler = new UserInputHandler(userInput);
+      BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+      UserInputHandler handler = new UserInputHandler(stdIn);
       String fromServer;
       String fromUser;
 

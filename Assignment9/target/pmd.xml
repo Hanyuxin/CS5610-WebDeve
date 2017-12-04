@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="5.3.5" timestamp="2017-12-04T13:08:30.232">
+<file name="G:\PDP\Assignment9\src\main\java\neu\edu\cs5010\PlayYahtzee.java">
+<violation beginline="31" endline="31" begincolumn="7" endcolumn="71" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="PlayYahtzee" method="checkArgument" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="32" endline="33" begincolumn="10" endcolumn="84" rule="IfStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="PlayYahtzee" method="checkArgument" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfStmtsMustUseBraces" priority="3">
+Avoid using if statements without curly braces
+</violation>
+<violation beginline="46" endline="46" begincolumn="22" endcolumn="23" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="PlayYahtzee" method="run" variable="in" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like in
+</violation>
+</file>
+<file name="G:\PDP\Assignment9\src\main\java\neu\edu\cs5010\UserInputHandler.java">
+<violation beginline="10" endline="10" begincolumn="15" endcolumn="26" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="UserInputHandler" variable="DICE_END_POS" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'DICE_END_POS' is not final.
+</violation>
+<violation beginline="10" endline="10" begincolumn="11" endcolumn="31" rule="SuspiciousConstantFieldName" ruleset="Naming" package="neu.edu.cs5010" class="UserInputHandler" variable="DICE_END_POS" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#SuspiciousConstantFieldName" priority="3">
+The field name indicates a constant but its modifiers do not
+</violation>
+<violation beginline="10" endline="10" begincolumn="15" endcolumn="26" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="UserInputHandler" variable="DICE_END_POS" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Variables should start with a lowercase character, 'DICE_END_POS' starts with uppercase character.
+</violation>
+</file>
+</pmd>

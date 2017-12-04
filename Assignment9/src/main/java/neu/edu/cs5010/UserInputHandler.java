@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class UserInputHandler {
 
   private BufferedReader input;
-  private int DICE_END_POS = 6;
+  private int DICE_END_POS = 5;
 
   public UserInputHandler(BufferedReader input) {
     this.input = input;
@@ -17,7 +17,7 @@ public class UserInputHandler {
    * handle the Server input information, and return the user input information
    * @param input String
    * @return User input String
-   * @throws IOException
+   * @throws IOException because the inner call method
    */
   public String handler(String input) throws IOException {
     String[] inputArray = input.split(": ");
@@ -39,7 +39,7 @@ public class UserInputHandler {
    * @return user input information
    * @throws IOException the readLine method in BufferedReader throws
    */
-  public String chooseDice(String str) throws IOException {
+  private String chooseDice(String str) throws IOException {
     System.out.println("Your dice numbers are " + str);
     System.out.println("Please write the dice's index(1-based) that you want to keep, if you want to change all, press enter," +
             " remember to add blank between numbers");
@@ -48,7 +48,7 @@ public class UserInputHandler {
     String diceIndexToKeepString = input.readLine();
     System.out.println(diceIndexToKeepString);
     if (diceIndexToKeepString.length() == 0) {
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < DICE_END_POS; i++) {
         result.append(" 0");
       }
       return result.toString();
@@ -57,7 +57,7 @@ public class UserInputHandler {
     String[] diceIndexToKeep = diceIndexToKeepString.split(" ");
     Arrays.sort(diceIndexToKeep);
     int index = 0;
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 1; i <= DICE_END_POS; i++) {
       if (index < diceIndexToKeep.length && i == Integer.parseInt(diceIndexToKeep[index])) {
         result.append(" " + 1);
         index++;
@@ -80,7 +80,7 @@ public class UserInputHandler {
     StringBuilder currentDice = new StringBuilder();
     StringBuilder score = new StringBuilder();
     StringBuilder result = new StringBuilder();
-    for (int i = 0; i < DICE_END_POS; i++) {
+    for (int i = 0; i <= DICE_END_POS; i++) {
       currentDice.append( " " + inputs[i]);
     }
     System.out.println("Current Dices are : " + currentDice.toString());

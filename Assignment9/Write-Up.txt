@@ -1,0 +1,4 @@
+The way to run this project is first run server locally, then run PlayYahtzee at least twice. In the PlayYahtzee, it will create a Socket to connect with server, and read server information and console information. To be more user friendly, the UserInputHandler is to process the user information.
+
+The UserInputHandlerTest is to test UserInputHandler class, and simulate the user input from a test file.
+The PlayYahtzeeTest is to test to PlayYahtzee class, but if not open Server, it will throw exception
