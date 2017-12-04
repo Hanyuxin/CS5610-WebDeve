@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Yahtzee (2)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/Yahtzee_v1_1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
