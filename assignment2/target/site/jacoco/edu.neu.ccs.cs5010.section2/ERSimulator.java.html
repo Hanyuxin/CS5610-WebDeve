@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ERSimulator.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment for class CS5010</a> &gt; <a href="index.source.html" class="el_package">edu.neu.ccs.cs5010.section2</a> &gt; <span class="el_source">ERSimulator.java</span></div><h1>ERSimulator.java</h1><pre class="source lang-java linenums">package edu.neu.ccs.cs5010.section2;
+
+import java.util.Scanner;
+
+class ERSimulator {
+  private int roomNumber;
+  private Room[] rooms;
+  private int arriveTimeLow;
+  private int arriveTimeHigh;
+  private long simulationLength;
+  private MyPriorityQueue&lt;Patient&gt; pQueue;
+  private PatientGenerator patientGenerator;
+  private Patient[] preSetPatient;
+  private int type;
+  private int availableRoom;
+  private static int patientNumber;
+<span class="nc" id="L17">  private static int RANDOM = 0;</span>
+<span class="nc" id="L18">  private static int PRESET = 1;</span>
+
+
+<span class="nc" id="L21">  public ERSimulator(long simulationLength, int arriveTimeLow, int arriveTimeHigh) {</span>
+<span class="nc" id="L22">    userInput();</span>
+<span class="nc" id="L23">    this.arriveTimeLow = arriveTimeLow;</span>
+<span class="nc" id="L24">    this.arriveTimeHigh = arriveTimeHigh;</span>
+<span class="nc" id="L25">    this.pQueue = new MyPriorityQueue&lt;Patient&gt;();</span>
+<span class="nc" id="L26">    this.patientGenerator = new PatientGenerator(arriveTimeLow, arriveTimeHigh);</span>
+<span class="nc" id="L27">    this.simulationLength = simulationLength;</span>
+<span class="nc" id="L28">    rooms = new Room[roomNumber];</span>
+<span class="nc" id="L29">    availableRoom = roomNumber - 1;</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">    for (int i = 0; i &lt; roomNumber; i++) {</span>
+<span class="nc" id="L31">      rooms[i] = new Room();</span>
+    }
+<span class="nc bnc" id="L33" title="All 2 branches missed.">    if (type == RANDOM) {</span>
+<span class="nc" id="L34">      Patient patient = patientGenerator.next();</span>
+<span class="nc" id="L35">      patient.setArriveTime(0);</span>
+<span class="nc" id="L36">      patient.setID(0);</span>
+<span class="nc" id="L37">      pQueue.insert(patient);</span>
+<span class="nc" id="L38">      System.out.println(&quot;Patient &quot; + patient.getID() + &quot;, Urge Level is &quot; + patient.getUrgeLevel()</span>
+<span class="nc" id="L39">              + &quot;, Treatment Time is &quot; + patient.getTreatment()</span>
+<span class="nc" id="L40">              + &quot;. Arrive in &quot; + patient.getArriveTime());</span>
+<span class="nc" id="L41">    } else {</span>
+<span class="nc" id="L42">      pQueue.insert(preSetPatient[0]);</span>
+    }
+<span class="nc" id="L44">  }</span>
+
+  /**
+   * Interact with User, get the room number and the type of execution
+   */
+  private void userInput() {
+<span class="nc" id="L50">    System.out.println(&quot;Please input the room number:&quot;);</span>
+<span class="nc" id="L51">    Scanner scanner = new Scanner(System.in);</span>
+<span class="nc" id="L52">    String s = scanner.next();</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    while (!s.matches(&quot;[1-9][0-9]*&quot;)) {</span>
+<span class="nc" id="L54">      System.out.println(&quot;Please check your input and input again!&quot;);</span>
+<span class="nc" id="L55">      s = scanner.next();</span>
+    }
+<span class="nc" id="L57">    roomNumber = Integer.parseInt(s);</span>
+<span class="nc" id="L58">    System.out.println(&quot;Please choose the Type of simulation&quot;);</span>
+<span class="nc" id="L59">    System.out.println(&quot;[A].Random    [B].PreSet&quot;);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">    while (s.matches(&quot;([ABab])&quot;)) {</span>
+<span class="nc" id="L61">      System.out.println(&quot;Please check your input and input again!&quot;);</span>
+<span class="nc" id="L62">      s = scanner.next();</span>
+    }
+<span class="nc" id="L64">    String choice = scanner.next();</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">    if (choice.toLowerCase().equals(&quot;b&quot;)) {</span>
+<span class="nc" id="L66">      type = PRESET;</span>
+<span class="nc" id="L67">      System.out.println(&quot;Here is the preset patients:&quot;);</span>
+<span class="nc" id="L68">      System.out.println(&quot;Patient 0: Arrive At 0, Urge Level 3, Treatment Time 30&quot;);</span>
+<span class="nc" id="L69">      System.out.println(&quot;Patient 1: Arrive At 3, Urge Level 8, Treatment Time 23&quot;);</span>
+<span class="nc" id="L70">      System.out.println(&quot;Patient 2: Arrive At 8, Urge Level 4, Treatment Time 6&quot;);</span>
+<span class="nc" id="L71">      System.out.println();</span>
+<span class="nc" id="L72">      preSetPatient = new Patient[3];</span>
+<span class="nc" id="L73">      preSetPatient[0] = new Patient(0, 3, 30);</span>
+<span class="nc" id="L74">      preSetPatient[0].setID(0);</span>
+<span class="nc" id="L75">      preSetPatient[1] = new Patient(3, 8, 23);</span>
+<span class="nc" id="L76">      preSetPatient[1].setID(1);</span>
+<span class="nc" id="L77">      preSetPatient[2] = new Patient(8, 4, 6);</span>
+<span class="nc" id="L78">      preSetPatient[2].setID(2);</span>
+    } else {
+<span class="nc" id="L80">      type = RANDOM;</span>
+    }
+<span class="nc" id="L82">  }</span>
+
+  /**
+   * Get the next available Room
+   * @return the room number
+   */
+  private int nextAvailableRoom() {
+<span class="nc" id="L89">    long t = simulationLength;</span>
+<span class="nc" id="L90">    int roomID = 0;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">    for (int i = 0; i &lt; roomNumber; i++) {</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">      if (rooms[i].getFinishTreat() &lt; t) {</span>
+<span class="nc" id="L93">        t = rooms[i].getFinishTreat();</span>
+<span class="nc" id="L94">        roomID = i;</span>
+      }
+    }
+<span class="nc" id="L97">    return roomID;</span>
+  }
+
+  /**
+   * Get the next arrive Patient based on last patient information
+   * @param patient last patient
+   * @return new patient
+   */
+  private Patient nextArrivePatient(Patient patient) {
+<span class="nc" id="L106">    Patient p = patientGenerator.next();</span>
+<span class="nc" id="L107">    p.setArriveTime(patient.getArriveTime() + p.getArriveTime());</span>
+<span class="nc" id="L108">    return p;</span>
+  }
+
+  /**
+   * Output depart information
+   * @param patient the depart patient
+   */
+  private void toDepartString(Patient patient) {
+<span class="nc" id="L116">    System.out.println(&quot;Patient &quot; + patient.getID() + &quot; depart in &quot; + patient.getArriveTime());</span>
+<span class="nc" id="L117">  }</span>
+
+  /**
+   * Output ready to Treat information
+   * @param patient
+   */
+  private void toReadyTreatString(Patient patient) {
+<span class="nc" id="L124">    System.out.println(&quot;Patient &quot; + patient.getID() + &quot; now to be treat&quot;);</span>
+<span class="nc" id="L125">  }</span>
+
+  /**
+   * Output treat information
+   *
+   * @param p Patient
+   */
+  private void toNowTreatString(Patient p) {
+<span class="nc" id="L133">    System.out.println(&quot;Patient &quot; + p.getID() + &quot;, Urge Level is &quot; + p.getUrgeLevel()</span>
+<span class="nc" id="L134">            +&quot;, Treatment Time is &quot; + p.getTreatment()</span>
+<span class="nc" id="L135">            + &quot;. Arrive in &quot; + p.getArriveTime());</span>
+<span class="nc" id="L136">    System.out.println(&quot;Patient &quot; + p.getID() + &quot; now to be treat&quot;);</span>
+<span class="nc" id="L137">  }</span>
+
+  /**
+   * Add new patient to priority queue
+   * @param patient
+   */
+  private void addNewPatient(Patient patient) {
+<span class="nc" id="L144">    Patient p = nextArrivePatient(patient);</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">    if (p.getArriveTime() &lt; simulationLength) {</span>
+<span class="nc" id="L146">      patientNumber++;</span>
+    }
+<span class="nc" id="L148">    p.setID(patientNumber);</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">    while (availableRoom &gt; 0) {</span>
+<span class="nc" id="L150">      toNowTreatString(p);</span>
+<span class="nc" id="L151">      Treat(p);</span>
+<span class="nc" id="L152">      availableRoom--;</span>
+<span class="nc" id="L153">      p = nextArrivePatient(p);</span>
+<span class="nc" id="L154">      patientNumber++;</span>
+<span class="nc" id="L155">      p.setID(patientNumber);</span>
+    }
+<span class="nc" id="L157">    toNowTreatString(p);</span>
+<span class="nc" id="L158">    pQueue.insert(p);</span>
+<span class="nc" id="L159">  }</span>
+
+  /**
+   * If the type is preSet, add the patient from the preSet array
+   * @param patient Patient
+   * @param isAdd   Check whether all element have inset in priority queue
+   * @return boolean
+   */
+  private boolean addPreSet(Patient patient, boolean isAdd) {
+<span class="nc" id="L168">    int n = patient.getID();</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">    if (n &lt; preSetPatient.length - 1) {</span>
+<span class="nc" id="L170">      n++;</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">      while (availableRoom &gt; 0) {</span>
+<span class="nc" id="L172">        Patient p = preSetPatient[n];</span>
+<span class="nc" id="L173">        System.out.println(&quot;Patient &quot; + p.getID() + &quot;, Urge Level is &quot; + p.getUrgeLevel() + &quot;&quot;</span>
+<span class="nc" id="L174">                +&quot;, Treatment Time is &quot; + p.getTreatment() + &quot;. Arrive in &quot; + p.getArriveTime());</span>
+<span class="nc" id="L175">        Treat(p);</span>
+<span class="nc" id="L176">        n++;</span>
+<span class="nc" id="L177">        availableRoom--;</span>
+<span class="nc" id="L178">      }</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">      if (!isAdd) {</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        while (n &lt; preSetPatient.length) {</span>
+<span class="nc" id="L181">          pQueue.insert(preSetPatient[n]);</span>
+<span class="nc" id="L182">          n++;</span>
+        }
+<span class="nc" id="L184">        isAdd = true;</span>
+      }
+    }
+<span class="nc" id="L187">    return isAdd;</span>
+  }
+
+  /**
+   * the main function to run the Simulation
+   */
+  public void runSimulation() {
+<span class="nc" id="L194">    boolean isAdd = false;</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">    while (!pQueue.isEmpty()) {</span>
+<span class="nc" id="L196">      Patient patient = pQueue.remove();</span>
+<span class="nc" id="L197">      int DEPART = 1;</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">      if (patient.getType() == DEPART) {</span>
+<span class="nc" id="L199">        toDepartString(patient);</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">        if (type == RANDOM) {</span>
+<span class="nc" id="L201">          addNewPatient(patient);</span>
+        }
+      } else {
+<span class="nc" id="L204">        toReadyTreatString(patient);</span>
+<span class="nc" id="L205">        Treat(patient);</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">        if (type == RANDOM) {</span>
+<span class="nc" id="L207">          addNewPatient(patient);</span>
+        }
+<span class="nc bnc" id="L209" title="All 2 branches missed.">        if (type == PRESET) {</span>
+<span class="nc" id="L210">          isAdd = addPreSet(patient, isAdd);</span>
+        }
+      }
+<span class="nc" id="L213">    }</span>
+<span class="nc" id="L214">  }</span>
+
+  /**
+   * Treat patient and update the properties of examination rooms
+   * @param patient
+   */
+  private void Treat(Patient patient) {
+<span class="nc" id="L221">    int roomID = nextAvailableRoom();</span>
+<span class="nc" id="L222">    System.out.println(&quot;Room &quot; + roomID + &quot; now treat patient &quot; + patient.getID());</span>
+<span class="nc" id="L223">    int waitTime = 0;</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">    if (rooms[roomID].getFinishTreat() == 0) {</span>
+<span class="nc" id="L225">      rooms[roomID].setFinishTreat(patient.getArriveTime());</span>
+    } else {
+<span class="nc bnc" id="L227" title="All 2 branches missed.">      long time = patient.getArriveTime() &gt; rooms[roomID].getFinishTreat()</span>
+<span class="nc" id="L228">              ? patient.getArriveTime() : rooms[roomID].getFinishTreat();</span>
+<span class="nc" id="L229">      rooms[roomID].setFinishTreat(time);</span>
+<span class="nc" id="L230">      waitTime = (int) (rooms[roomID].getFinishTreat() - patient.getArriveTime());</span>
+    }
+<span class="nc bnc" id="L232" title="All 2 branches missed.">    if (patient.getUrgeLevel() &gt; 8) {</span>
+<span class="nc" id="L233">      rooms[roomID].setLowUrgePatient(rooms[roomID].getLowUrgePatient() + 1);</span>
+<span class="nc" id="L234">      rooms[roomID].setLowUrgeWait(rooms[roomID].getLowUrgeWait() + waitTime);</span>
+<span class="nc bnc" id="L235" title="All 2 branches missed.">    } else if (patient.getUrgeLevel() &lt; 5) {</span>
+<span class="nc" id="L236">      rooms[roomID].setHighUrgePatient(rooms[roomID].getHighUrgePatient() + 1);</span>
+<span class="nc" id="L237">      rooms[roomID].setHighUrgeWait(rooms[roomID].getHighUrgeWait() + waitTime);</span>
+    }
+<span class="nc" id="L239">    rooms[roomID].setFinishTreat(rooms[roomID].getFinishTreat() + patient.getTreatment());</span>
+<span class="nc" id="L240">    rooms[roomID].setTotalPatientCount(rooms[roomID].getTotalPatientCount() + 1);</span>
+<span class="nc" id="L241">    rooms[roomID].setTotalPatientWait(rooms[roomID].getTotalPatientWait() + waitTime);</span>
+<span class="nc" id="L242">    rooms[roomID].setTotalService(rooms[roomID].getTotalService() + patient.getTreatment());</span>
+
+<span class="nc" id="L244">    Patient newPatient = new Patient(patient.getID(), rooms[roomID].getFinishTreat(),</span>
+<span class="nc" id="L245">            0, patient.getTreatment());</span>
+<span class="nc" id="L246">    newPatient.setType(1);</span>
+<span class="nc" id="L247">    pQueue.insert(newPatient);</span>
+
+<span class="nc" id="L249">  }</span>
+
+  /**
+   * Print the summary result
+   */
+  public void printResult() {
+<span class="nc" id="L255">    int patientNumber = 0;</span>
+<span class="nc" id="L256">    long totalWait = 0;</span>
+<span class="nc" id="L257">    long totalLowUrgeWait = 0;</span>
+<span class="nc" id="L258">    long totalLowUrgeNumber = 0;</span>
+<span class="nc" id="L259">    long totalHighUrgeWait = 0;</span>
+<span class="nc" id="L260">    long totalHighUrgeNumber = 0;</span>
+<span class="nc" id="L261">    long totalTreatment = 0;</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">    for (int i = 0; i &lt; roomNumber; i++) {</span>
+<span class="nc" id="L263">      patientNumber += rooms[i].getTotalPatientCount();</span>
+<span class="nc" id="L264">      totalWait += rooms[i].getTotalPatientWait();</span>
+<span class="nc" id="L265">      totalTreatment += rooms[i].getTotalService();</span>
+<span class="nc" id="L266">      totalLowUrgeWait += rooms[i].getLowUrgeWait();</span>
+<span class="nc" id="L267">      totalHighUrgeWait += rooms[i].getHighUrgeWait();</span>
+<span class="nc" id="L268">      totalLowUrgeNumber += rooms[i].getLowUrgePatient();</span>
+<span class="nc" id="L269">      totalLowUrgeNumber += rooms[i].getLowUrgePatient();</span>
+    }
+<span class="nc" id="L271">    System.out.println();</span>
+<span class="nc" id="L272">    System.out.println(&quot;*******Summary*******&quot;);</span>
+<span class="nc" id="L273">    System.out.println(&quot;Total examination rooms are in the system: &quot; + roomNumber);</span>
+<span class="nc" id="L274">    System.out.println(&quot;Simulation Time: &quot; + ((double) simulationLength) / 60 + &quot; hours&quot;);</span>
+<span class="nc" id="L275">    System.out.println(&quot;Total Patient Number: &quot; + patientNumber);</span>
+<span class="nc" id="L276">    System.out.println(&quot;Total Wait Time: &quot; + totalWait + &quot; minutes&quot;);</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">    double averageLowUrgeWait = totalLowUrgeNumber == 0 ? 0 : totalLowUrgeWait / totalLowUrgeNumber;</span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">    double averageHighUrgeWait = totalHighUrgeNumber == 0</span>
+            ? 0 : totalHighUrgeWait / totalHighUrgeNumber;
+<span class="nc bnc" id="L280" title="All 2 branches missed.">    double averageTime = patientNumber == 0 ? 0 : totalWait / patientNumber;</span>
+<span class="nc" id="L281">    System.out.println(&quot;Average wait for patients with urgency levels(1-4): &quot;</span>
+            + averageHighUrgeWait);
+<span class="nc" id="L283">    System.out.println(&quot;Average wait for patients with urgency levels(8-9): &quot;</span>
+            + averageLowUrgeWait);
+<span class="nc" id="L285">    System.out.println(&quot;Average wait time: &quot; + averageTime + &quot; minutes&quot;);</span>
+<span class="nc" id="L286">    System.out.println(&quot;Average duration of treatment: &quot;</span>
+            + totalTreatment / patientNumber + &quot; minutes&quot;);
+<span class="nc bnc" id="L288" title="All 2 branches missed.">    for (int i = 0; i &lt; roomNumber; i++) {</span>
+<span class="nc" id="L289">      double roomPercent = 100 * rooms[i].getTotalService() / totalTreatment;</span>
+<span class="nc" id="L290">      System.out.println();</span>
+<span class="nc" id="L291">      System.out.println(&quot;Examination Room &quot; + i + &quot; serve &quot;</span>
+<span class="nc" id="L292">              + rooms[i].getTotalPatientCount() + &quot; patients&quot;);</span>
+<span class="nc" id="L293">      System.out.println(&quot;Examination Room &quot; + i + &quot; serve time &quot; + rooms[i].getTotalService());</span>
+<span class="nc" id="L294">      System.out.println(&quot;Examination Room &quot; + i + &quot; used percent &quot; + roomPercent);</span>
+    }
+<span class="nc" id="L296">    System.out.println(&quot;Thank you!&quot;);</span>
+<span class="nc" id="L297">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

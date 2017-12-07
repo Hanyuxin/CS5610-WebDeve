@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>HalloweenNeighborhoodTraversal.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment for class CS5010</a> &gt; <a href="index.source.html" class="el_package">neu.edu.cs5010</a> &gt; <span class="el_source">HalloweenNeighborhoodTraversal.java</span></div><h1>HalloweenNeighborhoodTraversal.java</h1><pre class="source lang-java linenums">package neu.edu.cs5010;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * main class
+ *
+ */
+<span class="fc" id="L12">public class HalloweenNeighborhoodTraversal {</span>
+
+
+    public static void main( String[] args ) {
+<span class="fc" id="L16">        HalloweenNeighborhoodTraversal traversal = new HalloweenNeighborhoodTraversal();</span>
+
+<span class="fc" id="L18">        traversal.checkArgument(args);</span>
+
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        for (int i = 1; i &lt; args.length; i++) {</span>
+
+<span class="fc" id="L22">            String fileContent = IOLibrary.read(args[i]);</span>
+<span class="fc" id="L23">            List&lt;Candy&gt; candyList = traversal.getCandyList(fileContent);</span>
+<span class="fc" id="L24">            StringBuilder output = new StringBuilder();</span>
+<span class="fc" id="L25">            boolean valid = true;</span>
+<span class="fc" id="L26">            output.append(&quot;Candy type, Candy size, Household type&quot;).append(System.lineSeparator());</span>
+
+<span class="fc bfc" id="L28" title="All 2 branches covered.">            for ( Candy candy : candyList) {</span>
+
+                //In order to continue next CSV file
+<span class="fc bfc" id="L31" title="All 2 branches covered.">                if (candy == null) {</span>
+<span class="fc" id="L32">                    valid = false;</span>
+<span class="fc" id="L33">                    break;</span>
+                }
+
+<span class="fc" id="L36">                MansionVistor mansionVistor = new MansionVistor();</span>
+<span class="fc" id="L37">                candy.accept(mansionVistor);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">                if (mansionVistor.getMansion() != null) {</span>
+<span class="fc" id="L39">                    output.append(mansionVistor.getMansion()).append(System.lineSeparator());</span>
+<span class="fc" id="L40">                    continue;</span>
+                }
+
+<span class="fc" id="L43">                TownhomeVisitor townhomeVisitor = new TownhomeVisitor();</span>
+<span class="fc" id="L44">                candy.accept(townhomeVisitor);</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">                if (townhomeVisitor.getTownhome() != null){</span>
+<span class="fc" id="L46">                    output.append(townhomeVisitor.getTownhome()).append(System.lineSeparator());</span>
+<span class="fc" id="L47">                    continue;</span>
+                }
+
+<span class="fc" id="L50">                DetachedHouseVistor detachedHouseVistor = new DetachedHouseVistor();</span>
+<span class="fc" id="L51">                candy.accept(detachedHouseVistor);</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">                if (detachedHouseVistor.getDetachedHouse() != null) {</span>
+<span class="fc" id="L53">                    output.append(detachedHouseVistor.getDetachedHouse()).append(System.lineSeparator());</span>
+<span class="fc" id="L54">                    continue;</span>
+                }
+
+<span class="fc" id="L57">                DuplexVisitor duplexVisitor = new DuplexVisitor();</span>
+<span class="fc" id="L58">                candy.accept(duplexVisitor);</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">                if (duplexVisitor.getDuplex() != null) {</span>
+<span class="fc" id="L60">                    output.append(duplexVisitor.getDuplex()).append(System.lineSeparator());</span>
+<span class="fc" id="L61">                    continue;</span>
+                }
+
+<span class="nc" id="L64">                System.out.println(&quot;Error: There is no &quot; + candy.getClass().getSimpleName()</span>
+<span class="nc" id="L65">                        + &quot; of Size &quot; + candy.getSize() );</span>
+<span class="nc" id="L66">                valid = false;</span>
+<span class="nc" id="L67">                break;</span>
+            }
+
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            if (valid)</span>
+<span class="fc" id="L71">                IOLibrary.write(traversal.getOutPutFileName(args[i]),output.toString());</span>
+        }
+<span class="fc" id="L73">    }</span>
+
+    /**
+     *  Check argument, if nothing input, throw  IllegalArgumentException
+     * @param args command input argument
+     */
+    private void checkArgument(String[] args) {
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (args.length == 0) {</span>
+<span class="fc" id="L81">            throw new IllegalArgumentException(&quot;Please input correct argument&quot;);</span>
+        } else {
+<span class="fc" id="L83">            checkCVSArgument(args);</span>
+        }
+<span class="fc" id="L85">    }</span>
+
+
+    /**
+     * Check argument, if nothing input, throw  IllegalArgumentException
+     * @param args command input argument
+     */
+    private void checkCVSArgument(String[] args) {
+
+<span class="fc" id="L94">        int n = Integer.parseInt(args[0]);</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        if (args.length != n + 1) {</span>
+<span class="fc" id="L96">            throw new IllegalArgumentException(&quot;Not enough CSV file&quot;);</span>
+        }
+
+<span class="fc" id="L99">    }</span>
+
+    /**
+     * use the input file Name to get the output file name
+     * @param input Input file Name
+     * @return output file name
+     */
+    private String getOutPutFileName(String input) {
+
+<span class="fc" id="L108">        String index = input.substring(&quot;DreamCandy&quot;.length(),input.length() - &quot;.csv&quot;.length());</span>
+<span class="fc" id="L109">        return &quot;DreamTravesal &quot;+ index + &quot;.txt&quot;;</span>
+
+    }
+
+
+    /** use &quot;,&quot; to split the input file content to get individual candy. And for each candy, use &quot;size&quot; to
+     * split to get the candy size and type. and then pass the type and size to getCandy method
+     * @param fileContent the input file content
+     * @return a  candy list that this child want
+     */
+    private List&lt;Candy&gt; getCandyList(String fileContent) {
+
+<span class="fc" id="L121">        String[] candies = fileContent.split(&quot;,&quot;);</span>
+
+<span class="fc" id="L123">        List&lt;Candy&gt; list = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L125" title="All 2 branches covered.">        for(String candy: candies) {</span>
+<span class="fc" id="L126">            candy = candy.toLowerCase();</span>
+<span class="fc" id="L127">            String[] str = candy.split(&quot; size &quot;);</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">            if (str.length == 1) {</span>
+<span class="fc" id="L129">                list.add(getCandy(str[0].trim(), &quot;regular&quot;));</span>
+<span class="fc" id="L130">            } else list.add(getCandy(str[1].trim(),str[0].trim()));</span>
+        }
+
+<span class="fc" id="L133">        return list;</span>
+    }
+
+    /**
+     * In order to avoid large switch-case block, use reflex to get Candy
+     * @param candyName this candy type
+     * @param candySize this candy size
+     * @return Candy
+     */
+    private Candy getCandy(String candyName, String candySize) {
+
+<span class="fc" id="L144">        int index = candyName.lastIndexOf(&quot; &quot;);</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        if (index == -1) {candyName = candyName.substring(0,1).toUpperCase() + candyName.substring(1);}</span>
+<span class="fc" id="L146">        else candyName = candyName.substring(0,1).toUpperCase() + candyName.substring(1,index) +</span>
+<span class="fc" id="L147">                candyName.substring(index+1,index+2).toUpperCase() + candyName.substring(index+2);</span>
+
+<span class="fc" id="L149">        String candyClassName = &quot;neu.edu.cs5010.&quot; + candyName + &quot;Candy&quot;;</span>
+
+<span class="fc" id="L151">        Candy candy = null;</span>
+        try {
+<span class="fc" id="L153">            Class newCandy = Class.forName(candyClassName);</span>
+<span class="fc" id="L154">            Constructor constructor = newCandy.getConstructor(String.class);</span>
+<span class="fc" id="L155">            candy = (Candy)constructor.newInstance(candySize);</span>
+<span class="fc" id="L156">        } catch (ClassNotFoundException e) {</span>
+<span class="fc" id="L157">            System.out.println(&quot;Invalid Candy Name &quot; + candyName);</span>
+<span class="nc" id="L158">        } catch (NoSuchMethodException e) {</span>
+<span class="nc" id="L159">            e.printStackTrace();</span>
+<span class="nc" id="L160">        } catch (IllegalAccessException e) {</span>
+<span class="nc" id="L161">            e.printStackTrace();</span>
+<span class="nc" id="L162">        } catch (InstantiationException e) {</span>
+<span class="nc" id="L163">            e.printStackTrace();</span>
+<span class="nc" id="L164">        } catch (InvocationTargetException e) {</span>
+<span class="nc" id="L165">            e.printStackTrace();</span>
+<span class="pc" id="L166">        }</span>
+<span class="fc" id="L167">        return candy;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

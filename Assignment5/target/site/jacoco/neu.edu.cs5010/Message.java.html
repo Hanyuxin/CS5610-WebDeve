@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Message.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment for class CS5010</a> &gt; <a href="index.source.html" class="el_package">neu.edu.cs5010</a> &gt; <span class="el_source">Message.java</span></div><h1>Message.java</h1><pre class="source lang-java linenums">package neu.edu.cs5010;
+
+import java.util.Random;
+
+public class Message {
+
+<span class="fc" id="L7">    private static int MESSAGE_BOUND = 30001;</span>
+
+    private Random random;
+    private int content;
+    private boolean isValid;
+
+<span class="fc" id="L13">    public Message(double fraction){</span>
+<span class="fc" id="L14">        random = new Random();</span>
+<span class="fc" id="L15">        content = random.nextInt(MESSAGE_BOUND);</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        isValid = random.nextDouble()&lt;fraction ? true : false;</span>
+<span class="fc" id="L17">    }</span>
+
+    /**
+     * get the value of the message
+     * @return Message value
+     */
+    public int getContent() {
+<span class="fc" id="L24">        return content;</span>
+    }
+
+    /**
+     * get this message is valid or not
+     * @return whether this message is valid
+     */
+    public boolean isValid() {
+<span class="fc" id="L32">        return isValid;</span>
+    }
+
+    /**
+     * get the transaction type
+     * @return TransactionType
+     */
+    public TransactionType getTransactionType() {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if(content%10 &lt; 5) return TransactionType.Deposit;</span>
+<span class="fc" id="L41">        else return TransactionType.Withdrawal;</span>
+    }
+
+    /**
+     * get the number of transaction
+     * @return number
+     */
+    public int getNumber() {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if(!isValid) return -1;</span>
+<span class="fc" id="L50">        return content/10;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

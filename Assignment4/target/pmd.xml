@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="5.3.5" timestamp="2017-10-21T22:40:40.133">
+<file name="G:\PDP\Assignment4\src\main\java\neu\edu\cs5010\Candy.java">
+<violation beginline="4" endline="4" begincolumn="12" endcolumn="15" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="Candy" variable="size" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Variables that are final and static should be all capitals, 'size' is not all capitals.
+</violation>
+</file>
+<file name="G:\PDP\Assignment4\src\main\java\neu\edu\cs5010\CandyVisitor.java">
+<violation beginline="5" endline="5" begincolumn="12" endcolumn="20" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="CandyVisitor" variable="superSize" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Variables that are final and static should be all capitals, 'superSize' is not all capitals.
+</violation>
+<violation beginline="6" endline="6" begincolumn="12" endcolumn="19" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="CandyVisitor" variable="kingSize" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Variables that are final and static should be all capitals, 'kingSize' is not all capitals.
+</violation>
+<violation beginline="7" endline="7" begincolumn="12" endcolumn="18" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="CandyVisitor" variable="funSize" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Variables that are final and static should be all capitals, 'funSize' is not all capitals.
+</violation>
+<violation beginline="8" endline="8" begincolumn="12" endcolumn="22" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="CandyVisitor" variable="regularSize" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Variables that are final and static should be all capitals, 'regularSize' is not all capitals.
+</violation>
+</file>
+<file name="G:\PDP\Assignment4\src\main\java\neu\edu\cs5010\HalloweenNeighborhoodTraversal.java">
+<violation beginline="67" endline="67" begincolumn="17" endcolumn="22" rule="AvoidBranchingStatementAsLastInLoop" ruleset="Basic" package="neu.edu.cs5010" class="HalloweenNeighborhoodTraversal" method="main" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/basic.html#AvoidBranchingStatementAsLastInLoop" priority="2">
+Avoid using a branching statement as the last in a loop.
+</violation>
+<violation beginline="70" endline="71" begincolumn="13" endcolumn="88" rule="IfStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="HalloweenNeighborhoodTraversal" method="main" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfStmtsMustUseBraces" priority="3">
+Avoid using if statements without curly braces
+</violation>
+<violation beginline="94" endline="94" begincolumn="13" endcolumn="13" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="HalloweenNeighborhoodTraversal" method="checkCVSArgument" variable="n" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like n
+</violation>
+<violation beginline="130" endline="130" begincolumn="20" endcolumn="67" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="HalloweenNeighborhoodTraversal" method="getCandyList" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="146" endline="147" begincolumn="14" endcolumn="98" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="HalloweenNeighborhoodTraversal" method="getCandy" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+</file>
+<file name="G:\PDP\Assignment4\src\main\java\neu\edu\cs5010\IOLibrary.java">
+<violation beginline="15" endline="15" begincolumn="23" endcolumn="24" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="IOLibrary" method="read" variable="sb" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like sb
+</violation>
+</file>
+</pmd>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SecureBankVerificationSimulator.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment for class CS5010</a> &gt; <a href="index.source.html" class="el_package">neu.edu.cs5010</a> &gt; <span class="el_source">SecureBankVerificationSimulator.java</span></div><h1>SecureBankVerificationSimulator.java</h1><pre class="source lang-java linenums">package neu.edu.cs5010;
+
+import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+public class SecureBankVerificationSimulator {
+
+    private Random random;
+    private static int transitionNumber;
+    private String fileContent;
+    private PriorityQueue&lt;Client&gt; queue;
+    private Set&lt;Integer&gt; depositRej;
+    private Set&lt;Integer&gt; withdrawalRej;
+    private Map&lt;BigInteger[],List&lt;Integer&gt;&gt; map;
+    private List&lt;List&lt;Integer&gt;&gt; sameKey;
+    private Client[] clientArray;
+    private int clientUpperBound;
+    private int  verifications;
+    private double fraction;
+    private String outputFileName;
+
+<span class="fc" id="L24">    public SecureBankVerificationSimulator(){</span>
+<span class="fc" id="L25">        transitionNumber = 0;</span>
+<span class="fc" id="L26">        random = new Random();</span>
+<span class="fc" id="L27">        queue = new PriorityQueue&lt;&gt;(11,</span>
+<span class="fc" id="L28">                (a, b) -&gt; (a.getTransitions() - b.getTransitions()));</span>
+<span class="fc" id="L29">        depositRej = new HashSet&lt;&gt;();</span>
+<span class="fc" id="L30">        withdrawalRej = new HashSet&lt;&gt;();</span>
+<span class="fc" id="L31">        map = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L32">        sameKey = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L34">    }</span>
+
+    public static void main(String[] args) {
+<span class="fc" id="L37">        SecureBankVerificationSimulator simulator = new SecureBankVerificationSimulator();</span>
+<span class="fc" id="L38">        simulator.checkArgument(args);</span>
+<span class="fc" id="L39">        simulator.simulate();</span>
+<span class="fc" id="L40">        simulator.summary();</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Check whether the input arguments are vaild
+     * @param args input arguments
+     */
+    private void checkArgument(String[] args) {
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if(args.length != 4) {</span>
+<span class="fc" id="L49">            throw new IllegalArgumentException(&quot;Please input correct argument&quot;);</span>
+        }
+
+<span class="fc" id="L52">        clientUpperBound = Integer.parseInt(args[0]);</span>
+<span class="fc" id="L53">        verifications = Integer.parseInt(args[1]);</span>
+<span class="fc" id="L54">        fraction = Double.parseDouble(args[2]);</span>
+<span class="fc" id="L55">        outputFileName = args[3];</span>
+
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if(clientUpperBound &gt; 50000) {</span>
+<span class="fc" id="L58">            throw new IllegalArgumentException(&quot;Number of unique bank clients should be less than 50000&quot;);</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        } if(verifications &gt; 10000) {</span>
+<span class="fc" id="L60">            throw new IllegalArgumentException(&quot;Number of unique verifications should be less than 10000&quot;);</span>
+<span class="pc bpc" id="L61" title="2 of 4 branches missed.">        } if(fraction &gt; 1 || fraction &lt; 0) {</span>
+<span class="nc" id="L62">            throw  new IllegalArgumentException(&quot;Fraction of invalid messages should be in the range [0-1]&quot;);</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">        } if(outputFileName.length() == 0) {</span>
+<span class="nc" id="L64">            throw new IllegalArgumentException(&quot;Output file name is not valid&quot;);</span>
+        }
+<span class="fc" id="L66">    }</span>
+
+    private void simulate(){
+
+<span class="fc" id="L70">        clientArray = new Client[clientUpperBound];</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        for(int i = 0; i &lt; clientUpperBound; i++) {</span>
+<span class="fc" id="L72">            Client client = new Client(clientUpperBound, fraction);</span>
+<span class="fc" id="L73">            clientArray[i] = client;</span>
+        }
+
+<span class="fc" id="L76">        fileContent = &quot;Transaction number, Date, Time, Client ID, Message, Digital signature, &quot; +</span>
+                &quot;Verified, Transactions status.&quot;;
+
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        for (transitionNumber = 0; transitionNumber &lt; verifications; transitionNumber++) {</span>
+<span class="fc" id="L80">            Client client = clientArray[random.nextInt(clientUpperBound)];</span>
+<span class="fc" id="L81">            client.setTransitions(client.getTransitions()+1);</span>
+<span class="fc" id="L82">            RSA_signature signature = new RSA_signature(client);</span>
+<span class="fc" id="L83">            RSA_verification rsa_verification = new RSA_verification(signature,client);</span>
+<span class="fc" id="L84">            fileContent += toString(client,signature,rsa_verification);</span>
+
+<span class="fc bfc" id="L86" title="All 2 branches covered.">            if (getTransactionsStatus(client,rsa_verification).equals(&quot;deposit rejected&quot;)) {</span>
+<span class="fc" id="L87">                depositRej.add(client.getClientID());</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">            } else if (getTransactionsStatus(client,rsa_verification).equals(&quot;withdrawal rejected&quot;)) {</span>
+<span class="fc" id="L89">                withdrawalRej.add(client.getClientID());</span>
+            }
+
+<span class="fc" id="L92">            BigInteger[] publicKey = client.getRsAgenerator().getPublicKey();</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">            if (!map.containsKey(publicKey)) {</span>
+<span class="fc" id="L94">                map.put(publicKey, new ArrayList&lt;&gt;());</span>
+            }
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">            if(!map.get(publicKey).contains(client.getClientID()))</span>
+<span class="fc" id="L97">                map.get(publicKey).add(client.getClientID());</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">            if(map.get(publicKey).size()&gt;1)</span>
+<span class="nc" id="L99">                sameKey.add(map.get(publicKey));</span>
+
+
+<span class="fc" id="L102">            queue.offer(client);</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">            if (queue.size() &gt; 10) {</span>
+<span class="fc" id="L104">                queue.poll();</span>
+            }
+
+        }
+<span class="fc" id="L108">        IOLibrary.write(outputFileName,fileContent);</span>
+<span class="fc" id="L109">    }</span>
+
+    public void summary() {
+<span class="fc" id="L112">        System.out.println(&quot;***********************************&quot;);</span>
+<span class="fc" id="L113">        System.out.println(&quot;The number of distinct transactions with different IDs, but the same public key:&quot;);</span>
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">        for (List&lt;Integer&gt; list : sameKey) {</span>
+<span class="nc" id="L115">            System.out.println(list);</span>
+<span class="nc" id="L116">        }</span>
+
+<span class="fc" id="L118">        System.out.println(&quot;Top ten unique users with the largest number of transactions during the simulation&quot;);</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        for (Client i : queue) {</span>
+<span class="fc" id="L120">            System.out.println(i.getClientID());</span>
+<span class="fc" id="L121">        }</span>
+<span class="fc" id="L122">        System.out.println(&quot;List of all IDs with rejected deposit transactions&quot;);</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        for (int i : depositRej) {</span>
+<span class="fc" id="L124">            System.out.println(i);</span>
+<span class="fc" id="L125">        }</span>
+<span class="fc" id="L126">        System.out.println(&quot;List of all IDs with rejected withdrawal transactions&quot;);</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        for (int i : withdrawalRej) {</span>
+<span class="fc" id="L128">            System.out.println(i);</span>
+<span class="fc" id="L129">        }</span>
+<span class="fc" id="L130">    }</span>
+    /**
+     * Return Current date in format Month-Day-Year
+     * @return Current date
+     */
+    private String getDate() {
+<span class="fc" id="L136">        Date date = new Date();</span>
+<span class="fc" id="L137">        DateFormat format = new SimpleDateFormat(&quot;MM-dd-yyyy&quot;);</span>
+<span class="fc" id="L138">        return format.format(date);</span>
+    }
+
+    /**
+     * get current time in format Hour: Minute: Second
+     * @return Current time
+     */
+    private String getTime() {
+<span class="fc" id="L146">        Date date = new Date();</span>
+<span class="fc" id="L147">        DateFormat format = new SimpleDateFormat(&quot;HH:mm:ss&quot;);</span>
+<span class="fc" id="L148">        return format.format(date);</span>
+    }
+
+    private String getTransactionsStatus(Client client, RSA_verification verification) {
+<span class="fc" id="L152">        int number = client.getMessage().getNumber();</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">        if(client.getMessage().getTransactionType() == TransactionType.Deposit) {</span>
+<span class="fc bfc" id="L154" title="All 4 branches covered.">            if (!verification.isVerified()|| number &gt; client.getDepositLimit()) {</span>
+<span class="fc" id="L155">                return &quot;deposit rejected&quot;;</span>
+<span class="fc" id="L156">            } else return &quot;deposit accepted&quot;;</span>
+        } else {
+<span class="fc bfc" id="L158" title="All 4 branches covered.">            if(!verification.isVerified() || number &gt; client.getWithdrawLimit()) return &quot;withdrawal rejected&quot;;</span>
+<span class="fc" id="L159">            else return &quot;withdrawal accepted&quot;;</span>
+        }
+
+    }
+
+    public String toString(Client client, RSA_signature signature, RSA_verification verification) {
+<span class="fc" id="L165">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L166">        sb.append(transitionNumber).append(&quot;, &quot;).append(getDate()).append(&quot;, &quot;).append(getTime()).append(&quot;, &quot;)</span>
+<span class="fc" id="L167">                .append(client.getClientID()).append(&quot;, &quot;).append(client.getMessage().getContent()).append(&quot;, &quot;)</span>
+<span class="fc" id="L168">                .append(signature.getSignature().toString()).append(&quot;, &quot;).append(verification.isVerified())</span>
+<span class="fc" id="L169">                .append(&quot;, &quot;).append(getTransactionsStatus(client,verification));</span>
+<span class="fc" id="L170">        System.out.println(sb.toString());</span>
+<span class="fc" id="L171">        return sb.toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

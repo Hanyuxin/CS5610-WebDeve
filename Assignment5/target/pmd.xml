@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="5.3.5" timestamp="2017-10-29T16:59:37.024">
+<file name="G:\PDP\assignment\src\main\java\neu\edu\cs5010\Client.java">
+<violation beginline="6" endline="6" begincolumn="17" endcolumn="29" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="Client" variable="DEPOSIT_BOUND" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'DEPOSIT_BOUND' is not final.
+</violation>
+<violation beginline="6" endline="6" begincolumn="13" endcolumn="37" rule="SuspiciousConstantFieldName" ruleset="Naming" package="neu.edu.cs5010" class="Client" variable="DEPOSIT_BOUND" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#SuspiciousConstantFieldName" priority="3">
+The field name indicates a constant but its modifiers do not
+</violation>
+<violation beginline="6" endline="6" begincolumn="17" endcolumn="29" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="Client" variable="DEPOSIT_BOUND" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Variables should start with a lowercase character, 'DEPOSIT_BOUND' starts with uppercase character.
+</violation>
+<violation beginline="7" endline="7" begincolumn="17" endcolumn="30" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="Client" variable="WITHDRAW_BOUND" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'WITHDRAW_BOUND' is not final.
+</violation>
+<violation beginline="7" endline="7" begincolumn="13" endcolumn="38" rule="SuspiciousConstantFieldName" ruleset="Naming" package="neu.edu.cs5010" class="Client" variable="WITHDRAW_BOUND" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#SuspiciousConstantFieldName" priority="3">
+The field name indicates a constant but its modifiers do not
+</violation>
+<violation beginline="7" endline="7" begincolumn="17" endcolumn="30" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="Client" variable="WITHDRAW_BOUND" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Variables should start with a lowercase character, 'WITHDRAW_BOUND' starts with uppercase character.
+</violation>
+</file>
+<file name="G:\PDP\assignment\src\main\java\neu\edu\cs5010\Message.java">
+<violation beginline="7" endline="7" begincolumn="24" endcolumn="36" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="Message" variable="MESSAGE_BOUND" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'MESSAGE_BOUND' is not final.
+</violation>
+<violation beginline="7" endline="7" begincolumn="20" endcolumn="45" rule="SuspiciousConstantFieldName" ruleset="Naming" package="neu.edu.cs5010" class="Message" variable="MESSAGE_BOUND" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#SuspiciousConstantFieldName" priority="3">
+The field name indicates a constant but its modifiers do not
+</violation>
+<violation beginline="7" endline="7" begincolumn="24" endcolumn="36" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="Message" variable="MESSAGE_BOUND" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Variables should start with a lowercase character, 'MESSAGE_BOUND' starts with uppercase character.
+</violation>
+<violation beginline="11" endline="11" begincolumn="13" endcolumn="28" rule="AvoidFieldNameMatchingMethodName" ruleset="Naming" package="neu.edu.cs5010" class="Message" variable="isValid" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#AvoidFieldNameMatchingMethodName" priority="3">
+Field isValid has the same name as a method
+</violation>
+<violation beginline="40" endline="40" begincolumn="28" endcolumn="58" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="Message" method="getTransactionType" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="41" endline="41" begincolumn="14" endcolumn="47" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="Message" method="getTransactionType" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="49" endline="49" begincolumn="9" endcolumn="31" rule="IfStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="Message" method="getNumber" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfStmtsMustUseBraces" priority="3">
+Avoid using if statements without curly braces
+</violation>
+</file>
+<file name="G:\PDP\assignment\src\main\java\neu\edu\cs5010\RSA_keyGenerator.java">
+<violation beginline="8" endline="8" begincolumn="24" endcolumn="24" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="RSA_keyGenerator" variable="n" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like n
+</violation>
+<violation beginline="9" endline="9" begincolumn="24" endcolumn="24" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="RSA_keyGenerator" variable="e" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like e
+</violation>
+<violation beginline="10" endline="10" begincolumn="24" endcolumn="24" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="RSA_keyGenerator" variable="d" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like d
+</violation>
+<violation beginline="16" endline="16" begincolumn="20" endcolumn="20" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="RSA_keyGenerator" method="RSA_keyGenerator" variable="p" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like p
+</violation>
+<violation beginline="17" endline="17" begincolumn="20" endcolumn="20" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="RSA_keyGenerator" method="RSA_keyGenerator" variable="q" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like q
+</violation>
+</file>
+<file name="G:\PDP\assignment\src\main\java\neu\edu\cs5010\SecureBankVerificationSimulator.java">
+<violation beginline="28" endline="28" begincolumn="18" endcolumn="18" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="SecureBankVerificationSimulator" method="SecureBankVerificationSimulator" variable="a" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like a
+</violation>
+<violation beginline="28" endline="28" begincolumn="21" endcolumn="21" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="SecureBankVerificationSimulator" method="SecureBankVerificationSimulator" variable="b" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like b
+</violation>
+<violation beginline="83" endline="83" begincolumn="30" endcolumn="45" rule="VariableNamingConventions" ruleset="Naming" package="neu.edu.cs5010" class="SecureBankVerificationSimulator" method="simulate" variable="rsa_verification" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#VariableNamingConventions" priority="1">
+Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'rsa_verification' is not final.
+</violation>
+<violation beginline="96" endline="97" begincolumn="13" endcolumn="61" rule="IfStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="SecureBankVerificationSimulator" method="simulate" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfStmtsMustUseBraces" priority="3">
+Avoid using if statements without curly braces
+</violation>
+<violation beginline="98" endline="99" begincolumn="13" endcolumn="48" rule="IfStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="SecureBankVerificationSimulator" method="simulate" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfStmtsMustUseBraces" priority="3">
+Avoid using if statements without curly braces
+</violation>
+<violation beginline="156" endline="156" begincolumn="20" endcolumn="45" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="SecureBankVerificationSimulator" method="getTransactionsStatus" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="158" endline="158" begincolumn="82" endcolumn="110" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="SecureBankVerificationSimulator" method="getTransactionsStatus" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="159" endline="159" begincolumn="18" endcolumn="46" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="neu.edu.cs5010" class="SecureBankVerificationSimulator" method="getTransactionsStatus" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="165" endline="165" begincolumn="23" endcolumn="24" rule="ShortVariable" ruleset="Naming" package="neu.edu.cs5010" class="SecureBankVerificationSimulator" method="toString" variable="sb" externalInfoUrl="https://pmd.github.io/pmd-5.3.5/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like sb
+</violation>
+</file>
+</pmd>

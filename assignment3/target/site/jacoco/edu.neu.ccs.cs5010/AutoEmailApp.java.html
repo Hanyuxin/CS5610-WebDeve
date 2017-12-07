@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AutoEmailApp.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment for class CS5010</a> &gt; <a href="index.source.html" class="el_package">edu.neu.ccs.cs5010</a> &gt; <span class="el_source">AutoEmailApp.java</span></div><h1>AutoEmailApp.java</h1><pre class="source lang-java linenums">package edu.neu.ccs.cs5010;
+
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+<span class="fc" id="L7">public class AutoEmailApp {</span>
+<span class="fc" id="L8">  private static String CsvName = null, dir = null, template = null, event = null;</span>
+
+  public static void main(String[] args) {
+<span class="fc" id="L11">    AutoEmailApp app = new AutoEmailApp();</span>
+<span class="fc" id="L12">    boolean check = app.checkArgument(args);</span>
+<span class="pc bpc" id="L13" title="1 of 2 branches missed.">    if (check) {</span>
+<span class="nc" id="L14">      ReadCSV readCSV = new ReadCSV(CsvName);</span>
+<span class="nc" id="L15">      GenerateEmail g = new GenerateEmail(readCSV.getInformation(), template, event, readCSV.getDeparture(), readCSV.getDestination(), dir);</span>
+<span class="nc" id="L16">      g.writer();</span>
+<span class="nc" id="L17">      System.out.println(&quot;Success! Please check &quot; + dir + &quot; dictionary!&quot;);</span>
+//            SendEmail sendEmail = new SendEmail(dir+File.separator+&quot;email0.txt&quot;);
+//            sendEmail.send();
+    }
+<span class="fc" id="L21">  }</span>
+
+  private boolean checkArgument(String[] args) {
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">    if (args.length == 0) {</span>
+<span class="nc" id="L25">      System.out.println(&quot;Please insert argument!&quot;);</span>
+<span class="nc" id="L26">      printUsage();</span>
+<span class="nc" id="L27">      return false;</span>
+    }
+<span class="fc" id="L29">    Pattern emailPattern = Pattern.compile(&quot;\\w*\\W*\\w+(.txt)&quot;);</span>
+<span class="fc" id="L30">    Pattern csvPattern = Pattern.compile(&quot;(Flight)\\d+(From)[A-Z][a-z]+(To)[A-Z][a-z]+(.csv)&quot;);</span>
+<span class="fc" id="L31">    Pattern csvWrongPattern = Pattern.compile(&quot;(Flight)\\d+(.csv)&quot;);</span>
+<span class="fc" id="L32">    Pattern dirPattern = Pattern.compile(&quot;\\w+&quot;);</span>
+<span class="fc" id="L33">    StringBuilder lostInforamtion = new StringBuilder();</span>
+<span class="fc" id="L34">    boolean isError = false;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">    for (int i = 0; i &lt; args.length; i++) {</span>
+<span class="pc bpc" id="L36" title="1 of 4 branches missed.">      if (i == args.length - 1 &amp;&amp; args[i].indexOf(&quot;-&quot;) != -1) {</span>
+<span class="fc" id="L37">        printError(lostInforamtion.toString());</span>
+<span class="fc" id="L38">        printUsage();</span>
+<span class="fc" id="L39">        return false;</span>
+      }
+<span class="fc bfc" id="L41" title="All 2 branches covered.">      if (args[i].equals(&quot;--csv-file&quot;)) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (csvPattern.matcher(args[i + 1]).matches())</span>
+<span class="fc" id="L43">          CsvName = args[++i];</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        else if (csvWrongPattern.matcher(args[i + 1]).matches())</span>
+<span class="fc" id="L45">          printCsvError();</span>
+        else {
+<span class="fc" id="L47">          lostInforamtion.append(args[i]).append(&quot; &quot;);</span>
+<span class="fc" id="L48">          isError = true;</span>
+        }
+<span class="fc bfc" id="L50" title="All 2 branches covered.">      } else if (args[i].equals(&quot;--email-template&quot;)) {</span>
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">        if (emailPattern.matcher(args[i + 1]).matches())</span>
+<span class="nc" id="L52">          template = args[++i];</span>
+        else {
+<span class="fc" id="L54">          lostInforamtion.append(args[i]).append(&quot; &quot;);</span>
+<span class="fc" id="L55">          isError = true;</span>
+        }
+<span class="fc bfc" id="L57" title="All 2 branches covered.">      } else if (args[i].equals(&quot;--event&quot;)) {</span>
+<span class="pc bpc" id="L58" title="3 of 4 branches missed.">        if (!args[i + 1].equals(&quot;arrival&quot;) &amp;&amp; !args[i + 1].equals(&quot;departure&quot;)) {</span>
+<span class="nc" id="L59">          lostInforamtion.append(args[i]).append(&quot; &quot;);</span>
+<span class="nc" id="L60">          isError = true;</span>
+<span class="fc" id="L61">        } else event = args[++i];</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">      } else if (args[i].equals(&quot;--output-dir&quot;)) {</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">        if (dirPattern.matcher(args[i + 1]).matches()) {</span>
+<span class="nc" id="L64">          dir = args[++i];</span>
+        } else {
+<span class="fc" id="L66">          lostInforamtion.append(args[i]).append(&quot; &quot;);</span>
+<span class="fc" id="L67">          isError = true;</span>
+        }
+      }
+    }
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">    if (isError) {</span>
+<span class="fc" id="L72">      printError(lostInforamtion.toString());</span>
+<span class="fc" id="L73">      printUsage();</span>
+<span class="fc" id="L74">      return false;</span>
+    }
+<span class="nc" id="L76">    return true;</span>
+  }
+
+  private void printError(String error) {
+<span class="fc" id="L80">    System.out.println(&quot;Error: &quot; + error + &quot; were given without providing appropriate arguments:&quot;);</span>
+<span class="fc" id="L81">  }</span>
+
+  private void printCsvError() {
+<span class="fc" id="L84">    System.out.println(&quot;Error: --csv-file argument does not contain departure-city and destination-city&quot;);</span>
+<span class="fc" id="L85">  }</span>
+
+  public void printUsage() {
+<span class="fc" id="L88">    IOLibrary ioLibrary = new IOLibrary();</span>
+<span class="fc" id="L89">    System.out.println(ioLibrary.readFile(new File(&quot;usage.txt&quot;)));</span>
+<span class="fc" id="L90">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

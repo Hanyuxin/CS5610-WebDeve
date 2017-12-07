@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Room.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment for class CS5010</a> &gt; <a href="index.source.html" class="el_package">edu.neu.ccs.cs5010.section2</a> &gt; <span class="el_source">Room.java</span></div><h1>Room.java</h1><pre class="source lang-java linenums">package edu.neu.ccs.cs5010.section2;
+
+<span class="fc" id="L3">public class Room {</span>
+<span class="fc" id="L4">  private long finishTreat = 0; //the time when the room finish a treatment</span>
+<span class="fc" id="L5">  private int totalPatientCount = 0; //the total number of patient who use this room</span>
+<span class="fc" id="L6">  private int totalPatientWait = 0;//the total time patient wait of this room</span>
+<span class="fc" id="L7">  private int highUrgeWait = 0;//the high urgency level patient wait of this room</span>
+<span class="fc" id="L8">  private int lowUrgeWait = 0;//the low urgency level patient wait of this room</span>
+<span class="fc" id="L9">  private int highUrgePatient = 0; //the total number of high urge Patient</span>
+<span class="fc" id="L10">  private int lowUrgePatient = 0; //the total number of low urge Patient</span>
+<span class="fc" id="L11">  private long totalService = 0; //the total time this room in service</span>
+
+  long getFinishTreat() {
+<span class="fc" id="L14">    return finishTreat;</span>
+  }
+
+  void setFinishTreat(long finishTreat) {
+<span class="fc" id="L18">    this.finishTreat = finishTreat;</span>
+<span class="fc" id="L19">  }</span>
+
+  int getTotalPatientCount() {
+<span class="fc" id="L22">    return totalPatientCount;</span>
+  }
+
+  void setTotalPatientCount(int count) {
+<span class="fc" id="L26">    this.totalPatientCount = count;</span>
+<span class="fc" id="L27">  }</span>
+
+  int getTotalPatientWait() {
+<span class="fc" id="L30">    return totalPatientWait;</span>
+  }
+
+  void setTotalPatientWait(int time) {
+<span class="fc" id="L34">    totalPatientWait = time;</span>
+<span class="fc" id="L35">  }</span>
+
+  int getHighUrgeWait() {
+<span class="fc" id="L38">    return highUrgeWait;</span>
+  }
+
+  void setHighUrgeWait(int time) {
+<span class="fc" id="L42">    highUrgeWait = time;</span>
+<span class="fc" id="L43">  }</span>
+
+  int getLowUrgeWait() {
+<span class="fc" id="L46">    return lowUrgeWait;</span>
+  }
+
+  void setLowUrgeWait(int lowUrgeWait) {
+<span class="fc" id="L50">    this.lowUrgeWait = lowUrgeWait;</span>
+<span class="fc" id="L51">  }</span>
+
+  int getHighUrgePatient() {
+<span class="fc" id="L54">    return highUrgePatient;</span>
+  }
+
+  void setHighUrgePatient(int highUrgePatient) {
+<span class="fc" id="L58">    this.highUrgePatient = highUrgePatient;</span>
+<span class="fc" id="L59">  }</span>
+
+  int getLowUrgePatient() {
+<span class="fc" id="L62">    return lowUrgePatient;</span>
+  }
+
+  void setLowUrgePatient(int lowUrgePatient) {
+<span class="fc" id="L66">    this.lowUrgePatient = lowUrgePatient;</span>
+<span class="fc" id="L67">  }</span>
+
+  long getTotalService() {
+<span class="fc" id="L70">    return totalService;</span>
+  }
+
+  void setTotalService(long totalService) {
+<span class="fc" id="L74">    this.totalService = totalService;</span>
+<span class="fc" id="L75">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

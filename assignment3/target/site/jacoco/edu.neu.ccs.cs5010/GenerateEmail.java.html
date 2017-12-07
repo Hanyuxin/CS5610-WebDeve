@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GenerateEmail.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment for class CS5010</a> &gt; <a href="index.source.html" class="el_package">edu.neu.ccs.cs5010</a> &gt; <span class="el_source">GenerateEmail.java</span></div><h1>GenerateEmail.java</h1><pre class="source lang-java linenums">package edu.neu.ccs.cs5010;
+
+import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class GenerateEmail {
+
+<span class="fc" id="L13">  private static String SEPARATOR = System.lineSeparator();</span>
+  private File file;
+  private String contents;
+  private List&lt;String&gt; informations;
+  private String event;
+  private String departure;
+  private String destination;
+  private String dir;
+
+
+<span class="fc" id="L23">  public GenerateEmail(List&lt;String&gt; informations, String template, String event, String departure, String destination, String dir) {</span>
+<span class="fc" id="L24">    file = new File(template);</span>
+<span class="fc" id="L25">    this.informations = informations;</span>
+<span class="fc" id="L26">    this.event = event;</span>
+<span class="fc" id="L27">    this.departure = departure;</span>
+<span class="fc" id="L28">    this.destination = destination;</span>
+<span class="fc" id="L29">    this.dir = dir;</span>
+<span class="fc" id="L30">    createDir();</span>
+<span class="fc" id="L31">    getContents();</span>
+<span class="fc" id="L32">  }</span>
+
+  /**
+   * create the dictionary, if already exists, do noting
+   */
+  private void createDir() {
+<span class="fc" id="L38">    File dirFile = new File(dir);</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">    if (dirFile.exists()) return;</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">    if (!dir.endsWith(File.separator))</span>
+<span class="nc" id="L41">      dir = dir + File.separator;</span>
+<span class="nc" id="L42">    dirFile.mkdirs();</span>
+<span class="nc" id="L43">  }</span>
+
+  /**
+   * get the content of template email text
+   */
+  private void getContents() {
+<span class="fc" id="L49">    IOLibrary ioLibrary = new IOLibrary();</span>
+<span class="fc" id="L50">    contents = ioLibrary.readFile(file);</span>
+<span class="fc" id="L51">  }</span>
+
+  /**
+   * writer to different files
+   */
+  public void writer() {
+<span class="fc" id="L57">    int count = 0;</span>
+<span class="fc" id="L58">    CSVParser csvParser = new CSVParser(informations.get(0));</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">    for (int k = 1; k &lt; informations.size(); k++) {</span>
+<span class="fc" id="L60">      Information i = new Information(informations.get(k), csvParser.getFirstNameIndex(), csvParser.getLastNameIndex(), csvParser.getEmailIndex(), csvParser.getRewardIndex());</span>
+<span class="fc" id="L61">      String fileName = dir + File.separator + &quot;email&quot; + count + &quot;.txt&quot;;</span>
+<span class="fc" id="L62">      writer(fileName, i);</span>
+<span class="fc" id="L63">      count++;</span>
+    }
+<span class="fc" id="L65">  }</span>
+
+  /**
+   * Write one file with the given fileName and information
+   *
+   * @param fileName
+   * @param i        Information
+   */
+  private void writer(String fileName, Information i) {
+<span class="fc" id="L74">    FileWriter writer = null;</span>
+<span class="fc" id="L75">    BufferedWriter bufferedWriter = null;</span>
+    try {
+<span class="fc" id="L77">      writer = new FileWriter(fileName);</span>
+<span class="fc" id="L78">      bufferedWriter = new BufferedWriter(writer);</span>
+<span class="fc" id="L79">      String res = getReplaceContent(i.getFirstName(), i.getLastName(), i.getEmail(), i.getRewards());</span>
+<span class="fc" id="L80">      bufferedWriter.write(res);</span>
+
+<span class="nc" id="L82">    } catch (IOException e) {</span>
+<span class="nc" id="L83">      e.printStackTrace();</span>
+    } finally {
+<span class="nc" id="L85">      try {</span>
+<span class="pc bpc" id="L86" title="5 of 6 branches missed.">        if (bufferedWriter != null) {</span>
+<span class="pc" id="L87">          bufferedWriter.close();</span>
+        }
+<span class="pc bpc" id="L89" title="5 of 6 branches missed.">        if (writer != null) {</span>
+<span class="pc" id="L90">          writer.close();</span>
+        }
+<span class="nc" id="L92">      } catch (IOException e) {</span>
+<span class="nc" id="L93">        e.printStackTrace();</span>
+<span class="pc" id="L94">      }</span>
+<span class="nc" id="L95">    }</span>
+
+<span class="fc" id="L97">  }</span>
+
+  /**
+   * use regular expression to replace content
+   *
+   * @param firstName
+   * @param lastName
+   * @param email
+   * @param rewards
+   * @return
+   */
+  public String getReplaceContent(String firstName, String lastName, String email, String rewards) {
+<span class="fc" id="L109">    String regex = &quot;\\[\\[[a-zA-Z]+([_-])?[a-zA-Z]+]]&quot;;</span>
+<span class="fc" id="L110">    Pattern p = Pattern.compile(regex);</span>
+<span class="fc" id="L111">    Matcher matcher = p.matcher(contents);</span>
+<span class="fc" id="L112">    StringBuffer sb = new StringBuffer();</span>
+<span class="fc" id="L113">    StringBuffer tail = new StringBuffer();</span>
+
+<span class="fc bfc" id="L115" title="All 2 branches covered.">    while (matcher.find()) {</span>
+<span class="fc" id="L116">      String placeholder = matcher.group();</span>
+<span class="pc bpc" id="L117" title="10 of 34 branches missed.">      switch (placeholder) {</span>
+        case &quot;[[Date]]&quot;:
+<span class="fc" id="L119">          matcher.appendReplacement(sb, getCurrentTime());</span>
+<span class="fc" id="L120">          break;</span>
+        case &quot;[[email]]&quot;:
+<span class="fc" id="L122">          matcher.appendReplacement(sb, email);</span>
+<span class="fc" id="L123">          break;</span>
+        case &quot;[[event]]&quot;:
+<span class="fc" id="L125">          matcher.appendReplacement(sb, event);</span>
+<span class="fc" id="L126">          break;</span>
+        case &quot;[[first_name]]&quot;:
+<span class="fc" id="L128">          matcher.appendReplacement(sb, firstName);</span>
+<span class="fc" id="L129">          break;</span>
+        case &quot;[[last_name]]&quot;:
+<span class="fc" id="L131">          matcher.appendReplacement(sb, lastName);</span>
+<span class="fc" id="L132">          break;</span>
+        case &quot;[[departure-city]]&quot;:
+<span class="fc" id="L134">          matcher.appendReplacement(sb, departure);</span>
+<span class="fc" id="L135">          break;</span>
+        case &quot;[[destination-city]]&quot;:
+<span class="fc" id="L137">          matcher.appendReplacement(sb, destination);</span>
+<span class="fc" id="L138">          break;</span>
+        case &quot;[[rewards]]&quot;:
+<span class="fc" id="L140">          matcher.appendReplacement(sb, rewards);</span>
+      }
+<span class="fc" id="L142">    }</span>
+<span class="fc" id="L143">    matcher.appendTail(tail);</span>
+<span class="fc" id="L144">    return sb.append(tail.toString()).toString();</span>
+  }
+
+  /**
+   * get Current time with the hour:minutes:seconds Month-Day-Years format
+   *
+   * @return String time
+   */
+  private String getCurrentTime() {
+<span class="fc" id="L153">    Date date = new Date();</span>
+<span class="fc" id="L154">    DateFormat format = new SimpleDateFormat(&quot;HH:mm:ss MM-dd-yyyy&quot;);</span>
+<span class="fc" id="L155">    return format.format(date);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

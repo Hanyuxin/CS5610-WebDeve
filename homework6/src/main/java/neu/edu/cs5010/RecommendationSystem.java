@@ -41,7 +41,7 @@ public class RecommendationSystem {
         system.write();
     }
 
-    public void checkArgument(String[] args) {
+    private void checkArgument(String[] args) {
         if (args.length < 3) throw new IllegalArgumentException("Not Enough Argument");
 
         if(!args[0].contains(".csv") || !args[1].contains(".csv") || !args[2].contains(".csv")) {
@@ -77,13 +77,14 @@ public class RecommendationSystem {
      * according to processingFlag, if it is "s", start from the smallest one, if it is "end", start from the largest
      * one, if it is "r", randomly pick one index.
      */
-    public void run() {
-
+    private void run() {
         criteria = new RecommendationCriteria[] {new NewbiesMimic(), new FriendOfFriend(),
-                new FollowInfluencer(limit), new SameCityDiffGenderNearAge()};
-
+                new FollowInfluencer(limit), new BranchOut()};
+//        Bonus part
+//        criteria = new RecommendationCriteria[] {new NewbiesMimic(), new FriendOfFriend(),
+//                new FollowInfluencer(limit), new SameCityDiffGenderNearAge()};
         Neighborhood neighborhood = new Neighborhood(nodeFileName, edgeFileName);
-        int size = neighborhood.getUserList().size();
+        int size = Neighborhood.getUserList().size();
         switch (processingFlag) {
             case "s" :
                 for (int i = 1; i <= numberOfUsersToProcess; i++) {
@@ -153,20 +154,12 @@ public class RecommendationSystem {
      * sort all the user that been recommend by their recommend times in descdending ways. And output to the
      * console the top ten one
      */
-    public void frequentlyRecommended() {
+    private void frequentlyRecommended() {
         List<User> list = new ArrayList<>(recommendedUser);
         list.sort((a,b) -> (b.compareTo(a)));
         for (int i = 0; i < 10 && i< list.size(); i++) {
             System.out.println("No." + i + " " + list.get(i).toConsoleString());
         }
-    }
-
-    /**
-     * getRecommendation method returns the recommendation list for each User object;
-     * @return The recommendation List of users for each User object;
-     */
-    public Map<User, List<User>> getRecommendation(){
-        return recommend;
     }
 
     /**
@@ -184,42 +177,7 @@ public class RecommendationSystem {
     /**
      * Write information to the output file
      */
-    public void write() {
+    private void write() {
         IOLibrary.write(outputFileName,outputString.toString());
-    }
-
-
-    /**
-     * Override equals method in RecommendationSystem class.
-     * @param o The RecommendationSystem object.
-     * @return If two RecommendationSystem objects are the same;
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RecommendationSystem that = (RecommendationSystem) o;
-
-        if (numberOfUsersToProcess != that.numberOfUsersToProcess) return false;
-        if (numberOfRecommendations != that.numberOfRecommendations) return false;
-
-        if (!Arrays.equals(criteria, that.criteria)) return false;
-        if (recommend != null ? !recommend.equals(that.recommend) : that.recommend != null) return false;
-        return recommendedUser != null ? recommendedUser.equals(that.recommendedUser) : that.recommendedUser == null;
-    }
-
-    /**
-     * Override the hashCode method in RecommendationSystem class.
-     * @return The hashCode of RecommendationSystem object.
-     */
-    @Override
-    public int hashCode() {
-        int result = numberOfUsersToProcess;
-        result = 31 * result + numberOfRecommendations;
-        result = 31 * result + Arrays.hashCode(criteria);
-        result = 31 * result + (recommend != null ? recommend.hashCode() : 0);
-        result = 31 * result + (recommendedUser != null ? recommendedUser.hashCode() : 0);
-        return result;
     }
 }
