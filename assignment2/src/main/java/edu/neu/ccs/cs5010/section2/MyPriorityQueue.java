@@ -32,19 +32,19 @@ public class MyPriorityQueue<E extends Comparable<E>> implements IPriorityQueue<
 
   /**
    * Override the equals method
-   * @param o O
+   * @param object O
    * @return true or not
    */
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
+  public boolean equals(Object object) {
+    if (this == object) {
       return true;
     }
-    if (!(o instanceof MyPriorityQueue)) {
+    if (!(object instanceof MyPriorityQueue)) {
       return false;
     }
 
-    MyPriorityQueue<?> that = (MyPriorityQueue<?>) o;
+    MyPriorityQueue<?> that = (MyPriorityQueue<?>) object;
 
     return list != null ? list.equals(that.list) : that.list == null;
   }
@@ -60,10 +60,10 @@ public class MyPriorityQueue<E extends Comparable<E>> implements IPriorityQueue<
 
   /**
    * insert a new element
-   * @param e the element insert
+   * @param element the element insert
    */
-  public void insert(E e) {
-    list.add(e);
+  public void insert(E element) {
+    list.add(element);
     adjust();
   }
 
@@ -75,9 +75,9 @@ public class MyPriorityQueue<E extends Comparable<E>> implements IPriorityQueue<
     if (isEmpty()) {
       throw new NoSuchElementException();
     }
-    E e = list.get(0);
+    E element = list.get(0);
     list.remove(0);
-    return e;
+    return element;
   }
 
   /**
@@ -125,8 +125,8 @@ public class MyPriorityQueue<E extends Comparable<E>> implements IPriorityQueue<
    */
   public List testReverseTraversal() {
     List<E> reverseList = new LinkedList<>();
-    for (E e : list) {
-      reverseList.add(0, e);
+    for (E element : list) {
+      reverseList.add(0, element);
     }
     return reverseList;
   }

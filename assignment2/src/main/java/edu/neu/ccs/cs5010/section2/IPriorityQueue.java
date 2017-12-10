@@ -6,9 +6,9 @@ public interface IPriorityQueue<E> {
 
   /**
    * Insert a new element to IPriorityQueue
-   * @param e E
+   * @param element E
    */
-  void insert(E e);
+  void insert(E element);
 
   /**
    * remove and return the first Element

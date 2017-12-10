@@ -14,11 +14,13 @@ public class QueueTest {
   public void setup(){
     queue = new MyQueue();
   }
+
   @Test
   public void testEnqueue(){
     IQueue queue1 = queue.enqueue(1).enqueue(2);
     assertEquals("After enqueue two number, the front of queue should be 1",1,queue1.front());
   }
+
   @Test
   public void testDequeue(){
     IQueue queue1 = queue.enqueue(1).enqueue(2).dequeue();

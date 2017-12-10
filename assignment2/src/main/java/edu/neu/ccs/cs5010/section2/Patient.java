@@ -29,24 +29,24 @@ public class Patient implements Comparable<Patient> {
 
   /**
    * Compare the patient with a given patient, if their urgeLevel is same, return the differ in arrive time, else return the differ in urgeLevel
-   * @param p Patient to compare with
+   * @param patient Patient to compare with
    * @return 0, 1, 0
    */
   @Override
-  public int compareTo(Patient p) {
-    if (this.urgeLevel == p.getUrgeLevel()) {
-      return (int) (p.getArriveTime() - arriveTime);
+  public int compareTo(Patient patient) {
+    if (getUrgeLevel()== patient.getUrgeLevel()) {
+      return (int) (patient.getArriveTime() - getArriveTime());
     } else {
-      return p.getUrgeLevel() - urgeLevel;
+      return patient.getUrgeLevel() - getUrgeLevel();
     }
   }
 
   /**
    * Set the ID of patient
-   * @param i ID
+   * @param number ID
    */
-  void setID(int i) {
-    ID = i;
+  void setID(int number) {
+    ID = number;
   }
 
   /**

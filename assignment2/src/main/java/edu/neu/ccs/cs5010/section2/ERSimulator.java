@@ -14,8 +14,8 @@ class ERSimulator {
   private int type;
   private int availableRoom;
   private static int patientNumber;
-  private static int RANDOM = 0;
-  private static int PRESET = 1;
+  private static final int RANDOM = 0;
+  private static final int PRESET = 1;
 
 
   public ERSimulator(long simulationLength, int arriveTimeLow, int arriveTimeHigh) {
@@ -43,23 +43,24 @@ class ERSimulator {
     }
   }
 
+
   /**
    * Interact with User, get the room number and the type of execution
    */
   private void userInput() {
     System.out.println("Please input the room number:");
     Scanner scanner = new Scanner(System.in);
-    String s = scanner.next();
-    while (!s.matches("[1-9][0-9]*")) {
+    String str = scanner.next();
+    while (!str.matches("[1-9][0-9]*")) {
       System.out.println("Please check your input and input again!");
-      s = scanner.next();
+      str = scanner.next();
     }
-    roomNumber = Integer.parseInt(s);
+    roomNumber = Integer.parseInt(str);
     System.out.println("Please choose the Type of simulation");
     System.out.println("[A].Random    [B].PreSet");
-    while (s.matches("([ABab])")) {
+    while (str.matches("([ABab])")) {
       System.out.println("Please check your input and input again!");
-      s = scanner.next();
+      str = scanner.next();
     }
     String choice = scanner.next();
     if (choice.toLowerCase().equals("b")) {
@@ -81,16 +82,15 @@ class ERSimulator {
     }
   }
 
-  /**
-   * Get the next available Room
+  /**Get the next available Room
    * @return the room number
    */
   private int nextAvailableRoom() {
-    long t = simulationLength;
+    long temp = simulationLength;
     int roomID = 0;
     for (int i = 0; i < roomNumber; i++) {
-      if (rooms[i].getFinishTreat() < t) {
-        t = rooms[i].getFinishTreat();
+      if (rooms[i].getFinishTreat() < temp) {
+        temp = rooms[i].getFinishTreat();
         roomID = i;
       }
     }
@@ -103,9 +103,9 @@ class ERSimulator {
    * @return new patient
    */
   private Patient nextArrivePatient(Patient patient) {
-    Patient p = patientGenerator.next();
-    p.setArriveTime(patient.getArriveTime() + p.getArriveTime());
-    return p;
+    Patient pat = patientGenerator.next();
+    pat.setArriveTime(patient.getArriveTime() + pat.getArriveTime());
+    return pat;
   }
 
   /**
@@ -127,13 +127,13 @@ class ERSimulator {
   /**
    * Output treat information
    *
-   * @param p Patient
+   * @param patient Patient
    */
-  private void toNowTreatString(Patient p) {
-    System.out.println("Patient " + p.getID() + ", Urge Level is " + p.getUrgeLevel()
-            +", Treatment Time is " + p.getTreatment()
-            + ". Arrive in " + p.getArriveTime());
-    System.out.println("Patient " + p.getID() + " now to be treat");
+  private void toNowTreatString(Patient patient) {
+    System.out.println("Patient " + patient.getID() + ", Urge Level is " + patient.getUrgeLevel()
+            +", Treatment Time is " + patient.getTreatment()
+            + ". Arrive in " + patient.getArriveTime());
+    System.out.println("Patient " + patient.getID() + " now to be treat");
   }
 
   /**
@@ -141,21 +141,21 @@ class ERSimulator {
    * @param patient
    */
   private void addNewPatient(Patient patient) {
-    Patient p = nextArrivePatient(patient);
-    if (p.getArriveTime() < simulationLength) {
+    Patient nextArrivePatient = nextArrivePatient(patient);
+    if (nextArrivePatient.getArriveTime() < simulationLength) {
       patientNumber++;
     }
-    p.setID(patientNumber);
+    nextArrivePatient.setID(patientNumber);
     while (availableRoom > 0) {
-      toNowTreatString(p);
-      Treat(p);
+      toNowTreatString(nextArrivePatient);
+      Treat(nextArrivePatient);
       availableRoom--;
-      p = nextArrivePatient(p);
+      nextArrivePatient = nextArrivePatient(nextArrivePatient);
       patientNumber++;
-      p.setID(patientNumber);
+      nextArrivePatient.setID(patientNumber);
     }
-    toNowTreatString(p);
-    pQueue.insert(p);
+    toNowTreatString(nextArrivePatient);
+    pQueue.insert(nextArrivePatient);
   }
 
   /**
@@ -165,21 +165,21 @@ class ERSimulator {
    * @return boolean
    */
   private boolean addPreSet(Patient patient, boolean isAdd) {
-    int n = patient.getID();
-    if (n < preSetPatient.length - 1) {
-      n++;
+    int number = patient.getID();
+    if (number < preSetPatient.length - 1) {
+      number++;
       while (availableRoom > 0) {
-        Patient p = preSetPatient[n];
+        Patient p = preSetPatient[number];
         System.out.println("Patient " + p.getID() + ", Urge Level is " + p.getUrgeLevel() + ""
                 +", Treatment Time is " + p.getTreatment() + ". Arrive in " + p.getArriveTime());
         Treat(p);
-        n++;
+        number++;
         availableRoom--;
       }
       if (!isAdd) {
-        while (n < preSetPatient.length) {
-          pQueue.insert(preSetPatient[n]);
-          n++;
+        while (number < preSetPatient.length) {
+          pQueue.insert(preSetPatient[number]);
+          number++;
         }
         isAdd = true;
       }
@@ -274,7 +274,8 @@ class ERSimulator {
     System.out.println("Simulation Time: " + ((double) simulationLength) / 60 + " hours");
     System.out.println("Total Patient Number: " + patientNumber);
     System.out.println("Total Wait Time: " + totalWait + " minutes");
-    double averageLowUrgeWait = totalLowUrgeNumber == 0 ? 0 : totalLowUrgeWait / totalLowUrgeNumber;
+    double averageLowUrgeWait = totalLowUrgeNumber == 0
+            ? 0.0 : (double)totalLowUrgeWait / totalLowUrgeNumber;
     double averageHighUrgeWait = totalHighUrgeNumber == 0
             ? 0 : totalHighUrgeWait / totalHighUrgeNumber;
     double averageTime = patientNumber == 0 ? 0 : totalWait / patientNumber;
