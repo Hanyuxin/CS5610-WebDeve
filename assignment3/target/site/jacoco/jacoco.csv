@@ -1,9 +1,9 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 Assignment for class CS5010,edu.neu.ccs.cs5010,Information,0,44,0,0,0,11,0,5,0,5
-Assignment for class CS5010,edu.neu.ccs.cs5010,SendEmail,219,0,14,0,53,0,11,0,4,0
-Assignment for class CS5010,edu.neu.ccs.cs5010,ReadCSV,27,102,5,3,4,26,3,5,0,4
-Assignment for class CS5010,edu.neu.ccs.cs5010,GenerateEmail,55,312,23,31,10,65,18,24,0,8
-Assignment for class CS5010,edu.neu.ccs.cs5010,AutoEmailApp,72,228,9,23,12,47,8,15,0,7
-Assignment for class CS5010,edu.neu.ccs.cs5010,IOLibrary,27,37,5,3,4,10,3,3,0,2
+Assignment for class CS5010,edu.neu.ccs.cs5010,SendEmail,227,0,14,0,55,0,11,0,4,0
+Assignment for class CS5010,edu.neu.ccs.cs5010,ReadCSV,27,107,5,3,4,28,3,5,0,4
+Assignment for class CS5010,edu.neu.ccs.cs5010,GenerateEmail,47,310,18,30,10,66,15,23,0,7
+Assignment for class CS5010,edu.neu.ccs.cs5010,AutoEmailApp,72,228,9,23,13,47,8,15,0,7
+Assignment for class CS5010,edu.neu.ccs.cs5010,IOLibrary,27,45,5,3,4,12,3,3,0,2
 Assignment for class CS5010,edu.neu.ccs.cs5010,CSVParser,0,85,4,16,0,19,4,15,0,6
 Assignment for class CS5010,edu.neu.ccs.cs5010,SendEmail.new Authenticator() {...},20,0,0,0,2,0,2,0,2,0

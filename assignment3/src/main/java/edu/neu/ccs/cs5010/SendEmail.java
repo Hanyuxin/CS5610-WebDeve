@@ -3,8 +3,11 @@ package edu.neu.ccs.cs5010;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +28,9 @@ public class SendEmail {
   private void readText() {
     BufferedReader bufferedReader = null;
     try {
-      bufferedReader = new BufferedReader(new FileReader(file));
+      InputStream inputStream = new FileInputStream(file);
+      Reader rder = new InputStreamReader(inputStream, "UTF-8");
+      bufferedReader = new BufferedReader(rder);
       Pattern emailPattern = Pattern.compile("To:");
       Pattern subjectPattern = Pattern.compile("Subject:");
       String temp;

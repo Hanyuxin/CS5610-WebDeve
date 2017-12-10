@@ -7,46 +7,64 @@ public class CSVParser {
   private int emailIndex;
   private int rewardIndex;
 
-<span class="fc" id="L10">  public CSVParser(String line) {</span>
-<span class="fc" id="L11">    String[] placeHolder = line.split(&quot;\&quot;&quot;);</span>
-<span class="fc" id="L12">    getIndex(placeHolder);</span>
-<span class="fc" id="L13">  }</span>
+  /** Constructor
+   * @param line String
+   */
+<span class="fc" id="L13">  public CSVParser(String line) {</span>
+<span class="fc" id="L14">    String[] placeHolder = line.split(&quot;\&quot;&quot;);</span>
+<span class="fc" id="L15">    getIndex(placeHolder);</span>
+<span class="fc" id="L16">  }</span>
 
+  /**get Index of diffent place holder
+   * @param placeHolder String[]
+   */
   private void getIndex(String[] placeHolder) {
-<span class="fc bfc" id="L16" title="All 2 branches covered.">    for (int i = 0; i &lt; placeHolder.length; i++) {</span>
-<span class="pc bpc" id="L17" title="4 of 18 branches missed.">      switch (placeHolder[i]) {</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">    for (int i = 0; i &lt; placeHolder.length; i++) {</span>
+<span class="pc bpc" id="L23" title="4 of 18 branches missed.">      switch (placeHolder[i]) {</span>
         case &quot;first_name&quot;:
-<span class="fc" id="L19">          firstNameIndex = i;</span>
-<span class="fc" id="L20">          break;</span>
-        case &quot;last_name&quot;:
-<span class="fc" id="L22">          lastNameIndex = i;</span>
-<span class="fc" id="L23">          break;</span>
-        case &quot;email&quot;:
-<span class="fc" id="L25">          emailIndex = i;</span>
+<span class="fc" id="L25">          firstNameIndex = i;</span>
 <span class="fc" id="L26">          break;</span>
-        case &quot;rewards&quot;:
-<span class="fc" id="L28">          rewardIndex = i;</span>
+        case &quot;last_name&quot;:
+<span class="fc" id="L28">          lastNameIndex = i;</span>
 <span class="fc" id="L29">          break;</span>
+        case &quot;email&quot;:
+<span class="fc" id="L31">          emailIndex = i;</span>
+<span class="fc" id="L32">          break;</span>
+        case &quot;rewards&quot;:
+<span class="fc" id="L34">          rewardIndex = i;</span>
+<span class="fc" id="L35">          break;</span>
         default:
           break;
       }
     }
-<span class="fc" id="L34">  }</span>
+<span class="fc" id="L40">  }</span>
 
+  /**emailIndex
+   * @return emailIndex
+   */
   public int getEmailIndex() {
-<span class="fc" id="L37">    return emailIndex;</span>
+<span class="fc" id="L46">    return emailIndex;</span>
   }
 
+  /**firstNameIndex
+   * @return firstNameIndex
+   */
   public int getFirstNameIndex() {
-<span class="fc" id="L41">    return firstNameIndex;</span>
+<span class="fc" id="L53">    return firstNameIndex;</span>
   }
 
+  /**lastNameIndex
+   * @return lastNameIndex
+   */
   public int getLastNameIndex() {
-<span class="fc" id="L45">    return lastNameIndex;</span>
+<span class="fc" id="L60">    return lastNameIndex;</span>
   }
 
+  /**rewardIndex
+   * @return rewardIndex
+   */
   public int getRewardIndex() {
-<span class="fc" id="L49">    return rewardIndex;</span>
+<span class="fc" id="L67">    return rewardIndex;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -2,19 +2,24 @@ package edu.neu.ccs.cs5010;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 public class IOLibrary {
 
   public String readFile(File file) {
     BufferedReader bufferedReader = null;
-    StringBuilder sb = new StringBuilder();
+    StringBuilder stringBuilder = new StringBuilder();
     try {
-      bufferedReader = new BufferedReader(new FileReader(file));
+      InputStream inputStream = new FileInputStream(file);
+      Reader rder = new InputStreamReader(inputStream, "UTF-8");
+      bufferedReader = new BufferedReader(rder);
       String temp;
       while ((temp = bufferedReader.readLine()) != null) {
-        sb.append(temp).append(System.lineSeparator());
+        stringBuilder.append(temp).append(System.lineSeparator());
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -27,6 +32,6 @@ public class IOLibrary {
         }
       }
     }
-    return sb.toString();
+    return stringBuilder.toString();
   }
 }

@@ -3,8 +3,11 @@ package edu.neu.ccs.cs5010;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,7 +17,6 @@ import java.util.regex.Pattern;
 
 public class GenerateEmail {
 
-  private static String SEPARATOR = System.lineSeparator();
   private File file;
   private String contents;
   private List<String> informations;
@@ -64,27 +66,27 @@ public class GenerateEmail {
     int count = 0;
     CSVParser csvParser = new CSVParser(informations.get(0));
     for (int k = 1; k < informations.size(); k++) {
-      Information i = new Information(informations.get(k), csvParser.getFirstNameIndex(), csvParser.getLastNameIndex(),
+      Information information = new Information(informations.get(k), csvParser.getFirstNameIndex(), csvParser.getLastNameIndex(),
               csvParser.getEmailIndex(), csvParser.getRewardIndex());
       String fileName = dir + File.separator + "email" + count + ".txt";
-      writer(fileName, i);
+      writer(fileName, information);
       count++;
     }
   }
 
   /**
    * Write one file with the given fileName and information
-   *
-   * @param fileName
-   * @param i        Information
+   * @param fileName        String
+   * @param information     Information
    */
-  private void writer(String fileName, Information i) {
-    FileWriter writer = null;
+  private void writer(String fileName, Information information) {
     BufferedWriter bufferedWriter = null;
     try {
-      writer = new FileWriter(fileName);
-      bufferedWriter = new BufferedWriter(writer);
-      String res = getReplaceContent(i.getFirstName(), i.getLastName(), i.getEmail(), i.getRewards());
+      OutputStream inputStream = new FileOutputStream(fileName);
+      Writer rder = new OutputStreamWriter(inputStream, "UTF-8");
+      bufferedWriter = new BufferedWriter(rder);
+      String res = getReplaceContent(information.getFirstName(), information.getLastName(),
+              information.getEmail(), information.getRewards());
       bufferedWriter.write(res);
 
     } catch (IOException e) {
@@ -93,9 +95,6 @@ public class GenerateEmail {
       try {
         if (bufferedWriter != null) {
           bufferedWriter.close();
-        }
-        if (writer != null) {
-          writer.close();
         }
       } catch (IOException e) {
         e.printStackTrace();
@@ -106,17 +105,16 @@ public class GenerateEmail {
 
   /**
    * use regular expression to replace content
-   *
-   * @param firstName
-   * @param lastName
-   * @param email
-   * @param rewards
-   * @return String
+   * @param firstName String
+   * @param lastName String
+   * @param email String
+   * @param rewards String
+   * @return String replaced
    */
   public String getReplaceContent(String firstName, String lastName, String email, String rewards) {
     String regex = "\\[\\[[a-zA-Z]+([_-])?[a-zA-Z]+]]";
-    Pattern p = Pattern.compile(regex);
-    Matcher matcher = p.matcher(contents);
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(contents);
     StringBuffer sb = new StringBuffer();
     StringBuffer tail = new StringBuffer();
 
@@ -156,7 +154,6 @@ public class GenerateEmail {
 
   /**
    * get Current time with the hour:minutes:seconds Month-Day-Years format
-   *
    * @return String time
    */
   private String getCurrentTime() {

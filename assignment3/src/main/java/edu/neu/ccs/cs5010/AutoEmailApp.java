@@ -5,21 +5,26 @@ import java.io.File;
 import java.util.regex.Pattern;
 
 public class AutoEmailApp {
-  private static String CsvName = null, dir = null, template = null, event = null;
+  private static String csvName = null, dir = null, template = null, event = null;
 
   public static void main(String[] args) {
     AutoEmailApp app = new AutoEmailApp();
     boolean check = app.checkArgument(args);
     if (check) {
-      ReadCSV readCSV = new ReadCSV(CsvName);
-      GenerateEmail g = new GenerateEmail(readCSV.getInformation(), template, event, readCSV.getDeparture(), readCSV.getDestination(), dir);
-      g.writer();
+      ReadCSV readCSV = new ReadCSV(csvName);
+      GenerateEmail generateEmail = new GenerateEmail(readCSV.getInformation(), template, event,
+              readCSV.getDeparture(), readCSV.getDestination(), dir);
+      generateEmail.writer();
       System.out.println("Success! Please check " + dir + " dictionary!");
 //            SendEmail sendEmail = new SendEmail(dir+File.separator+"email0.txt");
 //            sendEmail.send();
     }
   }
 
+  /**check the arguement
+   * @param args Command line input
+   * @return true or false
+   */
   private boolean checkArgument(String[] args) {
     if (args.length == 0) {
       System.out.println("Please insert argument!");
@@ -39,18 +44,18 @@ public class AutoEmailApp {
         return false;
       }
       if (args[i].equals("--csv-file")) {
-        if (csvPattern.matcher(args[i + 1]).matches())
-          CsvName = args[++i];
-        else if (csvWrongPattern.matcher(args[i + 1]).matches())
+        if (csvPattern.matcher(args[i + 1]).matches()) {
+          csvName = args[++i];
+        } else if (csvWrongPattern.matcher(args[i + 1]).matches()) {
           printCsvError();
-        else {
+        } else {
           lostInforamtion.append(args[i]).append(" ");
           isError = true;
         }
       } else if (args[i].equals("--email-template")) {
-        if (emailPattern.matcher(args[i + 1]).matches())
+        if (emailPattern.matcher(args[i + 1]).matches()) {
           template = args[++i];
-        else {
+        } else {
           lostInforamtion.append(args[i]).append(" ");
           isError = true;
         }
@@ -58,7 +63,9 @@ public class AutoEmailApp {
         if (!args[i + 1].equals("arrival") && !args[i + 1].equals("departure")) {
           lostInforamtion.append(args[i]).append(" ");
           isError = true;
-        } else event = args[++i];
+        } else {
+          event = args[++i];
+        }
       } else if (args[i].equals("--output-dir")) {
         if (dirPattern.matcher(args[i + 1]).matches()) {
           dir = args[++i];
@@ -76,14 +83,23 @@ public class AutoEmailApp {
     return true;
   }
 
+  /**print err
+   * @param error String
+   */
   private void printError(String error) {
     System.out.println("Error: " + error + " were given without providing appropriate arguments:");
   }
 
+  /**
+   * printCsvError
+   */
   private void printCsvError() {
     System.out.println("Error: --csv-file argument does not contain departure-city and destination-city");
   }
 
+  /**
+   * printUsage
+   */
   public void printUsage() {
     IOLibrary ioLibrary = new IOLibrary();
     System.out.println(ioLibrary.readFile(new File("usage.txt")));
