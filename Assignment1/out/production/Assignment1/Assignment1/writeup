@@ -1,3 +1,0 @@
-Problem 4: I create a new project named Assignment1, and a new package also named Assignment1, and then create a new Java Class named RandomHomeWork. In this class, I have a main method and a public class getCources.
-Problem 5: I copy the Fibonacci.java in package Assignment1, and create a new package under Assignment1 named test, and then copy the FibonacciTest.java in test. I run FibonacciTest and find 4 problems. I go back to Fibonacci.java to change the n<=0 to n<0, and n<=2 to n<2 and the subtract to plus.
-Problem 6: At first, I have no idea how to write JUnit, so I search online and learn Junit.

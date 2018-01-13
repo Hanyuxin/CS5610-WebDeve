@@ -1,7 +1,0 @@
-Client, the individual client
-Message, randomly generated integer from the set [0, 30000].
-RSA_keyGenerator, generate RSA key
-RSA_signature, generate the signature
-RSA_verification, for RSA verification
-SecureBankVerificationSimulator, the main class
-TransactionType,  enum, only have Deposit, Withdrawal
