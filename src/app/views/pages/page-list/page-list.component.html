@@ -21,12 +21,10 @@
 
 <div class="container-fluid cl-container-padding">
   <ul class="list-group cl-list-group-borderless">
-    <div class="list-group-item cl-list-item-borderless">
-      <li  *ngFor="let page of pages">
+      <li  *ngFor="let page of pages" class="list-group-item cl-list-item-borderless">
         <a routerLink="./{{page._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
         <a routerLink="./{{page._id}}/widget">{{page.name}}</a>
       </li>
-    </div>
   </ul>
 </div>
 

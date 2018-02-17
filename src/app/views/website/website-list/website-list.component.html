@@ -14,12 +14,10 @@
 
 <div class="container">
   <ul class="list-group cl-list-group-borderless">
-  <div class="list-group-item cl-list-item-borderless">
-    <li  *ngFor="let website of websites">
+    <li  *ngFor="let website of websites" class="list-group-item cl-list-item-borderless">
       <a routerLink="./{{website._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
       <a routerLink="./{{website._id}}/page">{{website.name}}</a>
     </li>
-  </div>
 </ul>
 </div>
 

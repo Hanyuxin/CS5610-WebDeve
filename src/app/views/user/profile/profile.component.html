@@ -37,7 +37,8 @@
            name="last-name" #lastName="ngModel"/>
   </div>
 
-<button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Update</button>
-<button class="btn btn-danger btn-block" type="button" (click)="logout()">Logout</button>
+  <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Update</button>
+  <button class="btn btn-success btn-block" type="button" routerLink="./website">Website</button>
+  <button class="btn btn-danger btn-block" type="button" (click)="logout()">Logout</button>
 </form>
 </div>

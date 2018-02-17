@@ -11,6 +11,7 @@ import {WebsiteService} from '../../../services/website.service.client';
 export class WebsiteEditComponent implements OnInit {
 
   wid: String;
+  website: Website;
   userId: String;
   websites: Website[] = [];
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute, private router: Router) { }
@@ -30,9 +31,10 @@ export class WebsiteEditComponent implements OnInit {
     console.log(this.websites);
 
     this.activatedRoute.params.subscribe(params => {
-      console.log(params.get('wid'));
-      this.wid = params.get('wid');
+      console.log(params['wid']);
+      this.wid = params['wid'];
     });
+    this.website = this.websiteService.findWebsitesById(this.wid);
   }
 
 }

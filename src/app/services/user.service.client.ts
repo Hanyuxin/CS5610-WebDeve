@@ -4,9 +4,10 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class UserService {
   users: User[] = [
-    new User('123', 'alice', 'qq'),
-    new User('234', 'bob', 'qq'),
-    new User('345', 'charlie', 'qq')
+    new User('123', 'alice', 'alice', 'Alice', 'Wonder'),
+    new User('234', 'bob', 'bob', 'Bob', 'Marley'),
+    new User('345', 'charlie', 'charlie', 'Charlie', 'Garcia'),
+    new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi')
   ];
 
   createUser(user: User) {
@@ -31,6 +32,15 @@ export class UserService {
         this.users[i].firstName = user.firstName;
         this.users[i].lastName = user.lastName;
         return this.users[i];
+      }
+    }
+  }
+
+  deleteUser(userId: String) {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i]._id === userId) {
+        const j = +i;
+        this.users.splice(j, 1);
       }
     }
   }

@@ -22,6 +22,7 @@ import { WidgetImageComponent } from './views/widget/widget-edit/widget-image/wi
 import { WidgetYoutubeComponent } from './views/widget/widget-edit/widget-youtube/widget-youtube.component';
 import {WebsiteService} from './services/website.service.client';
 import {PageService} from './services/page.service.client';
+import {WidgetService} from './services/widget.service.client';
 
 
 @NgModule({
@@ -41,14 +42,14 @@ import {PageService} from './services/page.service.client';
     WidgetEditComponent,
     WidgetHeaderComponent,
     WidgetImageComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
   ],
-  providers: [UserService, WebsiteService, PageService],
+  providers: [UserService, WebsiteService, PageService, WidgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

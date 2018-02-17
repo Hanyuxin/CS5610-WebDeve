@@ -19,7 +19,9 @@ export class LoginComponent implements OnInit {
     this.passname = this.loginForm.value.password;
 
     const user = this.userService.findUserByCredential(this.username, this.passname);
-    console.log(user);
+    if (user === undefined) {
+      alert('User or Password not fit');
+    }
     this.router.navigate(['/user', user._id]);
   }
   register() {
