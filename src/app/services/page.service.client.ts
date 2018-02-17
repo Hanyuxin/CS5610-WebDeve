@@ -7,6 +7,7 @@ export class PageService {
 
   pages: Page[] = [
     new Page('321', 'page321', '321', 'test page 321' ),
+    new Page('456', 'page456', '321', 'test page 456'),
     new Page('111', 'page111', '111', 'test page 111' ),
     new Page('222', 'page222', '222', 'test page 222' ),
     new Page('333', 'page3', '333', 'test page 333' ),
