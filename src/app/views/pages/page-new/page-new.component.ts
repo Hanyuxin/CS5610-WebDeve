@@ -22,6 +22,7 @@ export class PageNewComponent implements OnInit {
     const page = new Page(this.pageService.pages.length, this.pageName, this.websiteID, this.pageTitle);
     console.log(page);
     this.pageService.createPage(this.websiteID, page);
+    alert(this.pageName + ' Create Success!');
     // this.router.navigate(['..']);
   }
   ngOnInit() {
