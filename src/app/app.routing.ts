@@ -18,7 +18,6 @@ import {WidgetYoutubeComponent} from './views/widget/widget-edit/widget-youtube/
 
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'user/:_id', component: ProfileComponent},
@@ -31,6 +30,7 @@ const appRoutes: Routes = [
   {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

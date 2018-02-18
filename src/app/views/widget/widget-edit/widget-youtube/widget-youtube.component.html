@@ -46,7 +46,7 @@
              name="width" #width="ngModel"/>
     </div>
   </form>
-  <button class="btn btn-danger  btn-block" type="submit">Delete</button>
+  <button class="btn btn-danger  btn-block" type="submit" [disabled]="!f.valid">Delete</button>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
