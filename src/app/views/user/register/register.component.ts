@@ -31,9 +31,9 @@ export class RegisterComponent implements OnInit {
       this.userErrorFlag = true;
     }
 
-    const user: User = new User(this.userService.users.length, this.username, this.password);
+    const user: User = new User(this.userService.users.length.toString(), this.username, this.password);
     this.userService.createUser(user);
-    this.router.navigate(['/profile', user._id]);
+    this.router.navigate(['/user', user._id]);
   }
   login() {
     this.router.navigate(['/login']);

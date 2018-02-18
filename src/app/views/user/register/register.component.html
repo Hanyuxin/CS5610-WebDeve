@@ -7,7 +7,7 @@
         <label for="name">UserName</label>
         <input placeholder="username" type="text" class="form-control" id="name"
                ngModel required
-               name="name" #username="ngModel"/>
+               name="username" #username="ngModel"/>
         <div [hidden]="username.valid || username.untouched"
              class="alert alert-danger">
           Name is required
@@ -26,7 +26,7 @@
         <label for="Veripassword">Verify PassWord</label>
         <input placeholder="Verify password" type="password"  class="form-control" id="Veripassword"
                ngModel required
-               name="password" #verifypw="ngModel"/>
+               name="verifypw" #verifypw="ngModel"/>
       </div>
 
       <div *ngIf="pwErrorFlag"
