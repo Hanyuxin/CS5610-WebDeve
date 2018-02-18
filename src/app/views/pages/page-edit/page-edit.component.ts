@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WebsiteService} from '../../../services/website.service.client';
 import {PageService} from '../../../services/page.service.client';
+import {Page} from '../../../models/page.model.client';
 
 @Component({
   selector: 'app-page-edit',
@@ -11,6 +12,7 @@ import {PageService} from '../../../services/page.service.client';
 export class PageEditComponent implements OnInit {
 
   pageID: String;
+  page: Page;
   constructor(private pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   deleteWeb() {
@@ -22,6 +24,7 @@ export class PageEditComponent implements OnInit {
       console.log(params.get('pid'));
       this.pageID = params.get('pid');
     });
+    this.page = this.pageService.findPageById(this.pageID);
   }
 
 }
