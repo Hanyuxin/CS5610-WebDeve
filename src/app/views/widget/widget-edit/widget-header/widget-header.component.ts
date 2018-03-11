@@ -28,6 +28,7 @@ export class WidgetHeaderComponent implements OnInit {
     this.widget.text = this.headerForm.value.text;
     this.widget.size = this.headerForm.value.size;
     if (this.wgid === undefined) {
+      this.widget._id = this.widgetService.widgets.length.toString();
       this.widgetService.createWidget(this.pageID, this.widget);
     } else {
       this.widgetService.updateWidget(this.wgid, this.widget);

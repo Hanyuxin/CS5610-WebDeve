@@ -29,6 +29,7 @@ export class WidgetYoutubeComponent implements OnInit {
     this.widget.text = this.youtubeForm.value.text;
     this.widget.width = this.youtubeForm.value.width;
     if (this.wgid === undefined) {
+      this.widget._id = this.widgetService.widgets.length.toString();
       this.widgetService.createWidget(this.pageID, this.widget);
     } else {
       this.widgetService.updateWidget(this.wgid, this.widget);
