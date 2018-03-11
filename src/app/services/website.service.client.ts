@@ -59,11 +59,9 @@ export class WebsiteService {
   }
 
   deleteWebsite(websiteId: String) {
-    for (const i in this.websites) {
-      if (this.websites[i]._id === websiteId) {
-        const j = +i;
-        this.websites.splice(j, 1);
-      }
+    const index = this.websites.indexOf(this.findWebsitesById(websiteId));
+    if (index > -1) {
+      this.websites.splice(index, 1);
     }
   }
 }

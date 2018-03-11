@@ -27,9 +27,9 @@ export class WidgetImageComponent implements OnInit {
     this.url = this.imageForm.value.url;
     this.width = this.imageForm.value.width;
 
-    this.widget = new Widget(this.widgetService.widgets.length, 'IMAGE', this.pageID,
+    const widget = new Widget(this.widgetService.widgets.length, 'IMAGE', this.pageID,
       '1', this.text.toString(), this.width.toString(), this.url.toString());
-    this.widgetService.createWidget(this.pageID, this.widget);
+    this.widgetService.createWidget(this.pageID, widget);
   }
 
   delete() {
@@ -48,6 +48,11 @@ export class WidgetImageComponent implements OnInit {
       console.log(params['wgid']);
       this.wgid = params['wgid'];
     });
+    if (this.wgid === undefined) {
+      this.widget = new Widget('', 'IMAGE', this.pageID, '', '', '', '');
+    } else {
+      this.widget = this.widgetService.findWidgetById(this.wgid);
+    }
   }
 
 }

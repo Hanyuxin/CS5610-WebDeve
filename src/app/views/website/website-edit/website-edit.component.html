@@ -7,7 +7,7 @@
             <span class="glyphicon glyphicon-chevron-left"></span>
           </a>
         </p>
-        <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="..">
           Websites
         </a>
         <a routerLink="../new"class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
@@ -20,8 +20,8 @@
         <a class="cl-text-white navbar-brand cl-text-bold" href="#">
           Edit Websites
         </a>
-        <a routerLink=".." class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
-          <span class="glyphicon glyphicon-ok"></span>
+        <a class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+          <span class="glyphicon glyphicon-ok" (click)="update()"></span>
         </a>
       </div>
     </div>
@@ -57,7 +57,7 @@
                   ngModel required
                   name="description" #description="ngModel"></textarea>
       </div>
-      <button class="btn btn-danger btn-block" routerLink=".." type="submit" [disabled]="!f.valid">Delete</button>
+      <button class="btn btn-danger btn-block" type="submit" [disabled]="!f.valid">Delete</button>
     </form>
   </div>
 </div>

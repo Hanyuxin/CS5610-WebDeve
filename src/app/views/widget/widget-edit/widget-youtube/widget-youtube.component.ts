@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {NgForm} from '@angular/forms';
+import {Widget} from '../../../../models/widget.model.client';
 
 @Component({
   selector: 'app-widget-youtube',
@@ -17,7 +18,22 @@ export class WidgetYoutubeComponent implements OnInit {
   name: String;
   text: String;
   url: String;
+  widget: Widget;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
+
+  update () {
+    if (this.youtubeForm.value.headName === '') {
+      alert('Please input header Name');
+    }
+    this.widget.url = this.youtubeForm.value.url;
+    this.widget.text = this.youtubeForm.value.text;
+    this.widget.width = this.youtubeForm.value.width;
+    if (this.wgid === undefined) {
+      this.widgetService.createWidget(this.pageID, this.widget);
+    } else {
+      this.widgetService.updateWidget(this.wgid, this.widget);
+    }
+  }
 
   delete () {
     const widget = this.widgetService.deleteWidgetbyID(this.wgid);
@@ -34,6 +50,12 @@ export class WidgetYoutubeComponent implements OnInit {
       console.log(params['wgid']);
       this.wgid = params['wgid'];
     });
+
+    if (this.wgid === undefined) {
+      this.widget = new Widget('', 'YOUTUBE', this.pageID, '', '', '', '');
+    } else {
+      this.widget = this.widgetService.findWidgetById(this.wgid);
+    }
   }
 
 }

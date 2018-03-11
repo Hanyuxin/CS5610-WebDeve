@@ -29,6 +29,9 @@ const appRoutes: Routes = [
   {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/header', component: WidgetHeaderComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/image', component: WidgetImageComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/youtube', component: WidgetEditComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
 ];

@@ -16,9 +16,15 @@
 
 <div class="container-fluid cl-container-padding">
   <ul class="list-group cl-list-group-borderless">
-      <li *ngFor="let widget of widgets" class="list-group-item cl-list-item-borderless">
-        <a routerLink="../{{widget._id}}">{{widget.type}}</a>
+      <li class="list-group-item cl-list-item-borderless">
+        <a routerLink="../header">HEADER</a>
       </li>
+    <li class="list-group-item cl-list-item-borderless">
+      <a routerLink="../image">IMAGE</a>
+    </li>
+    <li class="list-group-item cl-list-item-borderless">
+      <a routerLink="../youtube">YOUTUBE</a>
+    </li>
   </ul>
 </div>
 
