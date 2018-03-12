@@ -8,9 +8,9 @@
       </a>
     </div>
     <div class="navbar-text pull-right">
-      <a routerLink=".." class="cl-icon-padding cl-text-black">
-          <span class="glyphicon glyphicon-ok">
-          </span>
+      <a class="cl-icon-padding cl-text-black">
+          <button class="glyphicon glyphicon-ok" (click)="f.ngSubmit.emit()" [hidden]="!f.valid" [disabled]="!f.valid">
+          </button>
       </a>
     </div>
     <a class="navbar-brand cl-text-white cl-text-bold" href="#">
@@ -20,7 +20,7 @@
 </nav>
 
 <div class="container">
-  <form (ngSubmit)="deletePage()" #f="ngForm">
+  <form (ngSubmit)="update()" #f="ngForm">
     <div class="form-group">
       <label for="page-name">Name</label>
       <input type="text" class="form-control" id="page-name" placeholder={{page.name}}
@@ -37,8 +37,8 @@
       ngModel required
       name="title" #title="ngModel"/>
     </div>
+  <button class="btn btn-danger btn-block" type="button" (click)="deletePage()" routerLink="..">Delete</button>
   </form>
-  <button class="btn btn-danger btn-block" type="submit" [disabled]="!f.valid">Delete</button>
 </div>
 
 

@@ -23,6 +23,7 @@ import { WidgetYoutubeComponent } from './views/widget/widget-edit/widget-youtub
 import {WebsiteService} from './services/website.service.client';
 import {PageService} from './services/page.service.client';
 import {WidgetService} from './services/widget.service.client';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import {WidgetService} from './services/widget.service.client';
     BrowserModule,
     routing,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [UserService, WebsiteService, PageService, WidgetService],
   bootstrap: [AppComponent]
