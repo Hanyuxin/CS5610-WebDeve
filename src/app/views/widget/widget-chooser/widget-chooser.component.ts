@@ -22,7 +22,11 @@ export class WidgetChooserComponent implements OnInit {
       }
     );
 
-    this.widgets = this.widgetService.findWidgetByPage(this.pageID);
+    this.widgetService.findAllWidgetsForPage(this.pageID).subscribe(
+      (widgets: Widget[]) => {
+        this.widgets = widgets;
+      }
+    );
   }
 
 }

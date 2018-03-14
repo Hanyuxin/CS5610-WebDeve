@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../services/user.service.client';
+import {User} from '../../../models/user.model.client';
 
 
 @Component({
@@ -17,12 +18,13 @@ export class LoginComponent implements OnInit {
   login() {
     this.username = this.loginForm.value.username;
     this.passname = this.loginForm.value.password;
-
-    const user = this.userService.findUserByCredential(this.username, this.passname);
-    if (user === undefined) {
-      alert('User or Password not fit');
-    }
-    this.router.navigate(['/user', user._id]);
+    this.userService.findUserByCredential(this.username, this.passname)
+      .subscribe((user: User) => {
+        if (user) {
+          console.log(user);
+          this.router.navigate(['/user', user._id ]);
+        }
+      });
   }
   register() {
     this.router.navigate(['/register']);

@@ -18,8 +18,11 @@ export class WidgetEditComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       console.log(params['wgid']);
       this.wgid = params['wgid'];
+      this.widgetService.findWidgetById(this.wgid).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+        });
     });
-    this.widget = this.widgetService.findWidgetById(this.wgid);
   }
 
 }

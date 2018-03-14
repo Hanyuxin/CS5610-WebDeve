@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {NgForm} from '@angular/forms';
 import {Widget} from '../../../../models/widget.model.client';
@@ -15,39 +15,47 @@ export class WidgetHeaderComponent implements OnInit {
   wgid: String;
   pageID: String;
   widget: Widget;
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private route: Router) { }
 
   delete() {
-    this.widgetService.deleteWidgetbyID(this.wgid);
+    this.widgetService.deleteWidget(this.wgid).subscribe(
+      () => this.route.navigate(['../'], {relativeTo: this.activatedRoute})
+    );
   }
 
   update() {
-    if (this.headerForm.value.headName === '') {
-      alert('Please input header Name');
-    }
     this.widget.text = this.headerForm.value.text;
     this.widget.size = this.headerForm.value.size;
     if (this.wgid === undefined) {
-      this.widget._id = this.widgetService.widgets.length.toString();
-      this.widgetService.createWidget(this.pageID, this.widget);
+      this.widgetService.createWidget(this.pageID, this.widget).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.route.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
     } else {
-      this.widgetService.updateWidget(this.wgid, this.widget);
+      this.widgetService.updateWidget(this.wgid, this.widget).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.route.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
     }
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
         this.pageID = params['pid'];
-      }
-    );
-    this.activatedRoute.params.subscribe(params => {
-      this.wgid = params['wgid'];
-    });
-    if (this.wgid === undefined) {
-      this.widget = new Widget('', 'HEADER', this.pageID, '', '', '', '');
-    } else {
-      this.widget = this.widgetService.findWidgetById(this.wgid);
-    }
+        this.wgid = params['wgid'];
+        if (this.wgid === undefined) {
+          this.widget = new Widget('', 'HEADER', this.pageID, '', '', '', '');
+        } else {
+          this.widgetService.findWidgetById(this.wgid).subscribe(
+            (widget: Widget) => {
+              this.widget = widget;
+            });
+        }
+      });
   }
 
 }

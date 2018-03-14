@@ -16,17 +16,23 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
 
-  updateUser(user) {
-    console.log(user);
-    this.user = this.userService.updateUser(user);
+  updateUser(changed_user) {
+      return this.userService.updateUser(changed_user).subscribe(
+        (user: User) => {
+          this.user = user;
+        }
+      );
   }
   logout() {
     this.router.navigate(['/login']);
   }
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log(params['_id']);
-      this.user = this.userService.findUserById(params['_id']);
+      return this.userService.findUserById(params['_id']).subscribe(
+        (user: User) => {
+          this.user = user;
+        }
+      );
     });
   }
 

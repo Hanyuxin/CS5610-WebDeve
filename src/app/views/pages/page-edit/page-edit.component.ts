@@ -18,19 +18,27 @@ export class PageEditComponent implements OnInit {
   constructor(private pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   update() {
-    const page = new Page(this.pageID, this.pageForm.value.pagename, this.page.websiteId, this.pageForm.value.title);
-    this.pageService.updatePage(this.pageID, page);
-    alert('success Update Page!');
+    const new_page = new Page(this.pageID, this.pageForm.value.pagename, this.page.websiteId, this.pageForm.value.title);
+    this.pageService.updatePage(this.pageID, new_page).subscribe(
+      (page: Page) => {
+        this.page = page;
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      });
   }
   deletePage() {
-    this.pageService.deletePage(this.pageID);
+    this.pageService.deletePage(this.pageID).subscribe(
+      () => this.router.navigate(['../'], {relativeTo: this.activatedRoute})
+    );
   }
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
       console.log(params.get('pid'));
       this.pageID = params.get('pid');
+      this.pageService.findPagesById(this.pageID).subscribe((page: Page) => {
+        this.page = page;
+        }
+      );
     });
-    this.page = this.pageService.findPageById(this.pageID);
   }
 
 }

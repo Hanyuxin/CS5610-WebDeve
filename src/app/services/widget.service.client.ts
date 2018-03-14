@@ -1,86 +1,52 @@
-import {Injectable} from '@angular/core';
 import { Widget } from '../models/widget.model.client';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import 'rxjs/Rx';
+import { environment } from '../../environments/environment';
 
 @Injectable()
-export  class WidgetService {
+export class WidgetService {
 
-  // constructor(_id:String, type:String, pageId:String, size= '1', text = 'text', url = 'url', width = '100%')
-  widgets: Widget[] = [
-    new Widget('123', 'HEADER', '321', '2', 'GOP Releases Formerly Classified Memo Critical Of FBI' ),
-    new Widget('234', 'HEADER', '321', '4', 'It hints at a new GOP target: deputy attorney general' ),
-    new Widget('345', 'IMAGE', '321', '2', 'text', '100%',
-      'https://media.fox5dc.com/media.fox5dc.com/photo/2018/02/01/trump_classified_1517500733623_4880181_ver1.0_640_360.jpg'),
-    new Widget('456', 'HTML', '321', '2', '<p>blalbla</p>' ),
-    new Widget('567', 'HEADER', '321', '4', 'Memo asserts bias on part of FBI investigation in Russia probe'),
-    new Widget('678', 'YOUTUBE', '321', '2', 'text', '100%', 'https://www.youtube.com/embed/I84wnvEqGXc' ),
-  ];
+  constructor(private http: Http) { }
 
-  findWidgetByPage(pageId: String) {
-    const resultSet = [];
-    for ( const i in this.widgets) {
-      if (this.widgets[i].pageId === pageId) {
-        resultSet.push(this.widgets[i]);
-      }
-    }
-    return resultSet;
+  baseUrl = environment.baseUrl;
+
+  createWidget(pageId: String, widget: Widget) {
+    return this.http.post(this.baseUrl + '/api/page/' + pageId + '/widget', widget)
+      .map((res: Response) => {
+        return res.json();
+      });
   }
 
+  findAllWidgetsForPage(pageId: String) {
+    return this.http.get(this.baseUrl + '/api/page/' + pageId + '/widget')
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
   findWidgetById(widgetId: String) {
-    let widget: Widget;
-    for ( const i in this.widgets) {
-      if (this.widgets[i]._id === widgetId) {
-        widget = this.widgets[i];
-      }
-    }
-    return widget;
+    return this.http.get(this.baseUrl + '/api/widget/' + widgetId)
+      .map((res: Response) => {
+        return res.json();
+      });
   }
 
-  createWidget(pageId, widget) {
-    this.widgets.push(widget);
+  updateWidget(widgetId: String, widget: Widget) {
+    return this.http.put(this.baseUrl + '/api/widget/' + widgetId, widget)
+      .map((res: Response) => {
+        return res.json();
+      });
   }
 
-  deleteWidget(widget) {
-    for (const i in this.widgets) {
-      if (this.widgets[i] === widget) {
-        const j = +i;
-        this.widgets.splice(j, 1);
-      }
-    }
+  deleteWidget(widgetId: String) {
+    return this.http.delete(this.baseUrl + '/api/widget/' + widgetId);
   }
 
-  updateWidget(widgetId, widget) {
-    for ( const i in this.widgets ) {
-      if ( this.widgets[i]._id === widgetId ) {
-        switch (widget.widgetType) {
-          case 'HEADER':
-            this.widgets[i].text = widget.text;
-            this.widgets[i].size = widget.size;
-            return true;
-
-          case 'IMAGE':
-            this.widgets[i].text = widget.text;
-            this.widgets[i].url = widget.url;
-            this.widgets[i].width = widget.width;
-            return true;
-
-          case 'YOUTUBE':
-            this.widgets[i].text = widget.text;
-            this.widgets[i].url = widget.url;
-            this.widgets[i].width = widget.width;
-            return true;
-        }
-
-      }
-    }
-    return false;
-  }
-
-  deleteWidgetbyID(widgetID: String) {
-    for (const i in this.widgets) {
-      if (this.widgets[i]._id === widgetID) {
-        const j = +i;
-        this.widgets.splice(j, 1);
-      }
-    }
+  reSortWidget(pageId: String, start: String, end: String) {
+    const url = this.baseUrl + '/page/' + pageId + '/widget?initial=' + start + '&final=' + end;
+    return this.http.put(url, '')
+      .map((res: Response) => {
+      return res.json();
+    });
   }
 }

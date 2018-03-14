@@ -19,15 +19,21 @@ export class WidgetListComponent implements OnInit {
     return this.domSanitizer.bypassSecurityTrustResourceUrl(url.toString());
   }
 
+  sortWidget(indexes) {
+    this.widgetService.reSortWidget(this.pageID, indexes.startIndex, indexes.endIndex).subscribe();
+  }
+
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
         console.log(params['pid']);
         this.pageID = params['pid'];
+        this.widgetService.findAllWidgetsForPage(this.pageID).subscribe(
+          (widgets: Widget[]) => {
+            this.widgets = widgets;
+          });
       }
     );
-
-    this.widgets = this.widgetService.findWidgetByPage(this.pageID);
   }
 
 }

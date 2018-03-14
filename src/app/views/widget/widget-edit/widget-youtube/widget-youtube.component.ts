@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {NgForm} from '@angular/forms';
 import {Widget} from '../../../../models/widget.model.client';
@@ -19,25 +19,36 @@ export class WidgetYoutubeComponent implements OnInit {
   text: String;
   url: String;
   widget: Widget;
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private route: Router) { }
 
   update () {
-    if (this.youtubeForm.value.headName === '') {
-      alert('Please input header Name');
-    }
+    // if (this.youtubeForm.value.headName === '') {
+    //   alert('Please input header Name');
+    // }
     this.widget.url = this.youtubeForm.value.url;
     this.widget.text = this.youtubeForm.value.text;
     this.widget.width = this.youtubeForm.value.width;
     if (this.wgid === undefined) {
-      this.widget._id = this.widgetService.widgets.length.toString();
-      this.widgetService.createWidget(this.pageID, this.widget);
+      this.widgetService.createWidget(this.pageID, this.widget).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.route.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
     } else {
-      this.widgetService.updateWidget(this.wgid, this.widget);
+      this.widgetService.updateWidget(this.wgid, this.widget).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.route.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
     }
   }
 
   delete () {
-    const widget = this.widgetService.deleteWidgetbyID(this.wgid);
+    this.widgetService.deleteWidget(this.wgid).subscribe(
+      () => this.route.navigate(['../'], {relativeTo: this.activatedRoute})
+    );
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -55,7 +66,10 @@ export class WidgetYoutubeComponent implements OnInit {
     if (this.wgid === undefined) {
       this.widget = new Widget('', 'YOUTUBE', this.pageID, '', '', '', '');
     } else {
-      this.widget = this.widgetService.findWidgetById(this.wgid);
+      this.widgetService.findWidgetById(this.wgid).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+        });
     }
   }
 
