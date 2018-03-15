@@ -13,7 +13,7 @@
           </span>
       </a>
     </div>
-    <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+    <a class="navbar-brand cl-text-white cl-text-bold">
       HTML Edit
     </a>
   </div>
@@ -30,7 +30,9 @@
 <label for="html-editor">HTML</label>
 <quill-editor [(ngModel)]="editorContent"
               [options]="editorOptions"
-              id="html-editor">
+              (change)="onContentChanged($event)"
+              id="html-editor"
+              name="editor">
 </quill-editor>
 </div>
 <button class="btn btn-danger btn-block" type="button" (click)="delete()">Delete</button>

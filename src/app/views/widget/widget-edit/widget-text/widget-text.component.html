@@ -9,11 +9,11 @@
     </div>
     <div class="navbar-text pull-right">
       <a class="cl-icon-padding cl-text-black">
-        <button class="glyphicon glyphicon-ok" (click)="f.ngSubmit.emit()" [hidden]="!f.valid" [disabled]="!f.valid">
+        <button class="glyphicon glyphicon-ok" (click)="f.ngSubmit.emit()">
         </button>
       </a>
     </div>
-    <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+    <a class="navbar-brand cl-text-white cl-text-bold">
       Text Edit
     </a>
   </div>
@@ -34,7 +34,7 @@
     </div>
     <div class="form-group">
       <label for="heading-placeholder">Placeholder</label>
-      <input type="text" class="form-control" id="heading-placeholder"
+      <input type="text" class="form-control" id="heading-placeholder" placeholder="placeholder"
              ngModel required
              name="holder" #holder="ngModel"/>
     </div>

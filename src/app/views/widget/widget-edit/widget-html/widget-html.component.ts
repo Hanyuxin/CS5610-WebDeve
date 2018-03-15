@@ -21,13 +21,36 @@ export class WidgetHtmlComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private route: Router) { }
 
+  onContentChanged({ quill, html, text }) {
+    // console.log('quill content is changed!', quill, html, text);
+    this.widget.text = html;
+  }
+
   delete() {
+    if (this.wgid === undefined) {
+      return;
+    }
     this.widgetService.deleteWidget(this.wgid).subscribe(
       () => this.route.navigate(['../'], {relativeTo: this.activatedRoute})
     );
   }
-  update() {
 
+  update() {
+    if (this.wgid === undefined) {
+      this.widgetService.createWidget(this.pageID, this.widget).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.route.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
+    } else {
+      this.widgetService.updateWidget(this.wgid, this.widget).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.route.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
+    }
   }
 
   ngOnInit() {
@@ -42,6 +65,7 @@ export class WidgetHtmlComponent implements OnInit {
             (widget: Widget) => {
               this.widget = widget;
               this.editorContent = this.widget.text;
+              console.log(this.editorContent);
             });
         }
       });

@@ -21,6 +21,24 @@ export class WidgetTextComponent implements OnInit {
     );
   }
 
+  update() {
+    if (this.wgid === undefined) {
+      this.widgetService.createWidget(this.pageID, this.widget).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.route.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
+    } else {
+      this.widgetService.updateWidget(this.wgid, this.widget).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.route.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
+    }
+  }
+
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
