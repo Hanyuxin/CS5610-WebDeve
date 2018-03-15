@@ -1,7 +1,11 @@
 module.exports = function(app) {
 
+  var multer = require('multer');
+  var upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
+
   //POST calls
   app.post("/api/page/:pageId/widget", createWidget);
+  app.post ("/api/upload", upload.single('myFile'), uploadImage);
   //Get calls
   app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
   app.get("/api/widget/:widgetId", findWidgetById);
@@ -113,4 +117,36 @@ module.exports = function(app) {
         widgets[endIndex] = temp;
       }
     }
+
+  function uploadImage(req, res) {
+
+    var widgetId      = req.body.widgetId;
+    var width         = req.body.width;
+    var myFile        = req.file;
+    var userId = req.body.userId;
+    var websiteId = req.body.websiteId;
+    var pageId = req.body.pageId;
+
+    var originalname  = myFile.originalname; // file name on user's computer
+    var filename      = myFile.filename;     // new file name in upload folder
+    var path          = myFile.path;         // full path of uploaded file
+    var destination   = myFile.destination;  // folder where file is saved to
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
+
+    if (widgetId == '') {
+      widgetId = new Date().getTime().toString();
+      widgets.push({_id: widgetId, type: 'IMAGE', pageId: pageId,size: size,text: 'text', width:'100%',
+        url:'/uploads/'+filename})
+    } else {
+      var widget = widgets.find(function(widget) {
+        return widget._id == widgetId;
+      });
+       widget.url = '/uploads/'+filename;
+    }
+
+    var callbackUrl   = "/user/"+ userId+ "/website/" + websiteId + "/page/" + pageId+ "/widget";
+    res.redirect(callbackUrl);
+  }
 }
+

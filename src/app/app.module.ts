@@ -26,6 +26,9 @@ import {WidgetService} from './services/widget.service.client';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 import { SortableDirective } from '../../assignment/directives/sortable.directive';
+import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
+import {QuillEditorModule} from 'ngx-quill-editor/quillEditor.module';
+import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
 
 
 @NgModule({
@@ -47,6 +50,8 @@ import { SortableDirective } from '../../assignment/directives/sortable.directiv
     WidgetImageComponent,
     WidgetYoutubeComponent,
     SortableDirective,
+    WidgetHtmlComponent,
+    WidgetTextComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +59,7 @@ import { SortableDirective } from '../../assignment/directives/sortable.directiv
     FormsModule,
     HttpClientModule,
     HttpModule,
+    QuillEditorModule,
   ],
   providers: [UserService, WebsiteService, PageService, WidgetService],
   bootstrap: [AppComponent]

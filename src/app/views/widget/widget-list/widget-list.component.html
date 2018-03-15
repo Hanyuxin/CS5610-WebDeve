@@ -69,6 +69,12 @@
     </div>
 
     <div *ngSwitchCase="'HTML'">
+      <a routerLink="." class="pull-right">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </a>
+      <a routerLink="./{{widget._id}}" class="pull-right">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
       {{widget.text}}
     </div>
 

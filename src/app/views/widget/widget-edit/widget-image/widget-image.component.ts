@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {Widget} from '../../../../models/widget.model.client';
 import {NgForm} from '@angular/forms';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-widget-image',
@@ -13,11 +14,14 @@ export class WidgetImageComponent implements OnInit {
   @ViewChild('f') imageForm: NgForm;
   pageID: String;
   wgid: String;
+  websiteId: String;
+  userId: String;
   width: String;
   name: String;
   text: String;
   url: String;
   widget: Widget;
+  baseUrl: String = environment.baseUrl;
 
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private route: Router) {}
 
@@ -44,23 +48,19 @@ export class WidgetImageComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        console.log(params['pid']);
+        this.userId = params['uid'];
+        this.websiteId = params['wid']
         this.pageID = params['pid'];
-      }
-    );
-
-    this.activatedRoute.params.subscribe(params => {
-      console.log(params['wgid']);
-      this.wgid = params['wgid'];
-    });
-    if (this.wgid === undefined) {
-      this.widget = new Widget('', 'IMAGE', this.pageID, '', '', '', '');
-    } else {
-      this.widgetService.findWidgetById(this.wgid).subscribe(
-        (widget: Widget) => {
-          this.widget = widget;
-        });
-    }
+        this.wgid = params['wgid'];
+        if (this.wgid === undefined) {
+          this.widget = new Widget(undefined, 'IMAGE', this.pageID, '', '', '', '');
+        } else {
+          this.widgetService.findWidgetById(this.wgid).subscribe(
+            (widget: Widget) => {
+              this.widget = widget;
+            });
+        }
+      });
   }
 
 }
