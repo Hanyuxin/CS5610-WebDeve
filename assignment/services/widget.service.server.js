@@ -142,7 +142,7 @@ module.exports = function(app) {
       var widget = widgets.find(function(widget) {
         return widget._id == widgetId;
       });
-       widget.url = '/uploads/'+filename;
+       widget.url = 'assets/uploads/'+filename;
     }
 
     var callbackUrl   = "/user/"+ userId+ "/website/" + websiteId + "/page/" + pageId+ "/widget";

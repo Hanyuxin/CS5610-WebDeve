@@ -14,17 +14,18 @@ export class LoginComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
   username: String;
   passname: String;
+  errorFlag: boolean;
+  errorMsg = 'Invalid username or password !';
+
   constructor(private userService: UserService, private router: Router) { }
   login() {
-    this.username = this.loginForm.value.username;
-    this.passname = this.loginForm.value.password;
     this.userService.findUserByCredential(this.username, this.passname)
-      .subscribe((user: User) => {
-        if (user) {
-          console.log(user);
-          this.router.navigate(['/user', user._id ]);
-        }
-      });
+      .subscribe((data: any) => {
+          this.errorFlag = false;
+          this.router.navigate(['/user', data._id]); },
+        (error: any) => {
+          this.errorFlag = true;
+        });
   }
   register() {
     this.router.navigate(['/register']);

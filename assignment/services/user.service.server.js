@@ -56,6 +56,11 @@ module.exports = function (app) {
       user = users.find(function (user) {
         return user.username === username && user.password === password;
       });
+      if (user) {
+        res.status(200).send(user);
+      } else {
+        res.status(404).send('Not found');
+      }
     }
     // res.sendStatus(200);
     res.json(user);

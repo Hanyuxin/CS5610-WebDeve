@@ -5,6 +5,9 @@
   <a routerLink="/user/{{user._id}}/website" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
     <span class="glyphicon glyphicon-plus"></span>
   </a>
+  <a class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+    <button class="glyphicon glyphicon-ok"(click)="f.ngSubmit.emit()" [hidden]="!f.valid" [disabled]="!f.valid"></button>
+  </a>
 </nav>
 
 <div class="container">
@@ -37,7 +40,7 @@
            name="last-name" #lastName="ngModel"/>
   </div>
 
-  <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Update</button>
+  <button class="btn btn-primary btn-block" type="button" (click)="deleteUser(user)">Delete</button>
   <button class="btn btn-success btn-block" type="button" routerLink="./website">Website</button>
   <button class="btn btn-danger btn-block" type="button" (click)="logout()">Logout</button>
 </form>

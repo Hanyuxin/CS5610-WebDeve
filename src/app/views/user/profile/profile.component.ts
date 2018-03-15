@@ -20,8 +20,14 @@ export class ProfileComponent implements OnInit {
       return this.userService.updateUser(changed_user).subscribe(
         (user: User) => {
           this.user = user;
+          this.router.navigate(['/login']);
         }
       );
+  }
+  deleteUser(delete_user) {
+    return this.userService.deleteUser(delete_user._id).subscribe(
+      () => this.router.navigate(['/login'])
+    );
   }
   logout() {
     this.router.navigate(['/login']);
