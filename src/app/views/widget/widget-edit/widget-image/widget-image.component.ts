@@ -36,6 +36,7 @@ export class WidgetImageComponent implements OnInit {
     this.widgetService.createWidget(this.pageID, new_widget).subscribe(
       (widget: Widget) => {
         this.widget = widget;
+        this.route.navigate(['../'], {relativeTo: this.activatedRoute});
       });
   }
 

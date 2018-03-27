@@ -49,6 +49,12 @@ function updateWidget(widgetId, widget){
 }
 
 function deleteWidget(widgetId) {
+  widget = WidgetModel.findWidgetById(widgetId).then(function(widget) {
+    PageModel.findPageById(widget.pageId).then(function(page){
+      page.widgets.pull({_id: widgetId});
+      page.save();
+    })
+  });
   return WidgetModel.remove({_id: widgetId});
 }
 

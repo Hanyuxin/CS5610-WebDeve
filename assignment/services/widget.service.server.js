@@ -105,7 +105,7 @@ module.exports = function(app) {
 
     // find widget by id
     if (widgetId === undefined) {
-      var widget = {type: 'IMAGE', pageId: pageId,size: size,text: 'text', width:'100%',
+      var widget = {_id: undefined, type: 'IMAGE', pageId: pageId,size: size,text: 'text', width:'100%',
         url:'/uploads/'+filename};
       WidgetModel.createWidget(pageId, widget)
     } else {

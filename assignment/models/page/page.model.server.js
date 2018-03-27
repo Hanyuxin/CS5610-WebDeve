@@ -38,5 +38,13 @@ function updatePage(pageId, page){
 }
 
 function deletePage(pageId) {
+  page = PageModel.findPageById(pageId)
+    .then(function (page) {
+      WebsiteModel.findWebisteById(page.websiteId)
+        .then(function (website) {
+          website.pages.pull({_id : pageId});
+          website.save();
+        })
+    })
   return PageModel.remove({_id: pageId});
 }
