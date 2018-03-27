@@ -45,6 +45,10 @@ export class WidgetImageComponent implements OnInit {
     );
   }
 
+  search() {
+    this.route.navigate(['./flickr'], {relativeTo: this.activatedRoute});
+  }
+
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
@@ -53,7 +57,7 @@ export class WidgetImageComponent implements OnInit {
         this.pageID = params['pid'];
         this.wgid = params['wgid'];
         if (this.wgid === undefined) {
-          this.widget = new Widget(undefined, 'IMAGE', this.pageID, '', '', '', '');
+          this.widget = new Widget(undefined, 'IMAGE', this.pageID);
         } else {
           this.widgetService.findWidgetById(this.wgid).subscribe(
             (widget: Widget) => {
