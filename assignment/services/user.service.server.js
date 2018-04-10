@@ -25,19 +25,19 @@ module.exports = function (app) {
   //delete calls
   app.delete("/api/user/:userId", deleteUser);
 
+  // auth with Facebook
+  app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
+
   //authentication api
   app.post('/api/login', passport.authenticate('local'), login);
   app.post('/api/logout', logout);
   app.post('/api/register', register);
   app.post ('/api/loggedIn', loggedIn);
 
-  // auth with Facebook
-  app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
       successRedirect: '/profile',
-      failureRedirect: '/login'
+      failureRedirect: '/register'
     }));
 
 
@@ -81,8 +81,8 @@ module.exports = function (app) {
   }
 
   function facebookStrategy(token, refreshToken, profile, done) {
-    userModel
-      .findUserByFacebookId(profile.id)
+    UserModel
+      .findFacebookUser(profile.id)
       .then(
         function(user) {
           if(user) {
@@ -98,7 +98,7 @@ module.exports = function (app) {
                 token: token
               }
             };
-            return model.userModel.createUser(newFacebookUser);
+            return model.UserModel.createUser(newFacebookUser);
           }
         },
         function(err) {
