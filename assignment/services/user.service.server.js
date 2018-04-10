@@ -1,15 +1,15 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+
+var facebookConfig = {
+  clientID     : '1898300067127396',
+  clientSecret : '72f06905537ac8553e6138c0923d8f74',
+  callbackURL  : 'https://cs5610-webdev-yuxinhan.herokuapp.com/auth/facebook/callback'
+};
 module.exports = function (app) {
 
   var UserModel = require("../models/user/user.model.server");
-
-  var facebookConfig = {
-    clientID     : '1898300067127396',
-    clientSecret : '72f06905537ac8553e6138c0923d8f74',
-    callbackURL  : 'https://cs5610-webdev-yuxinhan.herokuapp.com/auth/facebook/callback'
-  };
 
   //Put calls
   app.put("/api/user/:userId",updateUser);
