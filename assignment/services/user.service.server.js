@@ -81,38 +81,41 @@ module.exports = function (app) {
   }
 
   function facebookStrategy(token, refreshToken, profile, done) {
-    UserModel
-      .findFacebookUser(profile.id)
-      .then(
-        function(user) {
-          if(user) {
-            return done(null, user);
-          } else {
-            var names = profile.displayName.split(" ");
-            var newFacebookUser = {
-              lastName:  names[1],
-              firstName: names[0],
-              email:     profile.emails ? profile.emails[0].value:"",
-              facebook: {
-                id:    profile.id,
-                token: token
-              }
-            };
-            // return model.UserModel.createUser(newFacebookUser);
-          }
-        },
-        function(err) {
-          if (err) { return done(err); }
-        }
-      )
-      .then(
-        function(user){
+    UserModel.findFacebookUser(profile.id).then(
+      function (user) {
+        if (user) {
           return done(null, user);
-        },
-        function(err){
-          if (err) { return done(err); }
+        } else {
+          var names = profile.displayName.split(" ");
+          var newFacebookUser = {
+            username: '123',
+            password: '123',
+            lastName: names[1],
+            firstName: names[0],
+            email: profile.emails ? profile.emails[0].value : "",
+            facebook: {
+              id: profile.id,
+              token: token
+            }
+          };
+          return UserModel.createUser(newFacebookUser);
         }
-      );
+      },
+      function (err) {
+        if (err) {
+          return done(err);
+        }
+      }
+    ).then(
+      function (user) {
+        return done(null, user);
+      },
+      function (err) {
+        if (err) {
+          return done(err);
+        }
+      }
+    );
   }
 
   function login(req, res) {
