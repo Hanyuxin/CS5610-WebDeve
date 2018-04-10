@@ -13,7 +13,7 @@
   <input placeholder="username" type="text" class="form-control" id="name"
          [(ngModel)]="username" required
          name="username"/>
-  <div [hidden]="username.valid || username.untouched"
+  <div [hidden]="username.untouched || username.valid "
        class="alert alert-danger">
     Name is required
   </div>

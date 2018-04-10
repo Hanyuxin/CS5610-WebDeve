@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
     this.verifypw = this.registerForm.value.verifypw;
     if (this.password !== this.verifypw) {
       this.pwErrorFlag = true;
+      return;
     }
     // if (this.userService.findUserByCredential(this.username, this.password)) {
     //   this.userErrorFlag = true;
