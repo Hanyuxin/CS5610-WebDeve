@@ -8,7 +8,7 @@ module.exports = function (app) {
   var facebookConfig = {
     clientID     : '1898300067127396',
     clientSecret : '72f06905537ac8553e6138c0923d8f74',
-    callbackURL  : '/auth/facebook/callback'
+    callbackURL  : 'https://cs5610-webdev-yuxinhan.herokuapp.com/auth/facebook/callback'
   };
 
   //Put calls
